@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TiKOXPRO VIP</title>
+    <style>
+        :root {
+            --primary-purple: #6c5ce7;
+            --dark-purple: #4834d4;
+            --gold-vip: #f1c40f;
+            --bg-color: #f8f9fa;
+            --card-bg: #ffffff;
+            --text-main: #2d3436;
+        }
+
+        [data-theme="dark"] {
+            --bg-color: #121212;
+            --card-bg: #1e1e1e;
+            --text-main: #e0e0e0;
+        }
+
+        body {
+            transition: all 0.3s ease;
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: 'Segoe UI', Tahoma, sans-serif;
+            margin: 0; padding-bottom: 80px;
+        }
+
+        header {
+            background: linear-gradient(135deg, var(--dark-purple), var(--primary-purple));
+            color: white; padding: 2rem 1rem; text-align: center; position: relative;
+        }
+
+        .controls-top {
+            position: absolute; top: 10px; left: 10px; display: flex; gap: 5px;
+        }
+
+        .small-btn {
+            background: rgba(255, 255, 255, 0.2);
+            border: none; border-radius: 8px;
+            width: 32px; height: 32px;
+            cursor: pointer; display: flex;
+            align-items: center; justify-content: center;
+            font-size: 1rem; color: white;
+            transition: 0.2s;
+        }
+
+        .small-btn:hover { background: rgba(255, 255, 255, 0.4); }
+
+        .container { max-width: 800px; margin: auto; padding: 1rem; }
+
+        .tabs { display: flex; justify-content: center; gap: 10px; margin: 20px 0; }
+        .tab-btn {
+            padding: 12px 25px; border: none; border-radius: 12px;
+            cursor: pointer; font-weight: bold; background: #ddd; color: #555;
+        }
+        .tab-btn.active { background: var(--primary-purple); color: white; }
+        .tab-btn.vip-tab.active { background: var(--gold-vip); color: black; }
+
+        .section-content { display: none; animation: fadeIn 0.5s; }
+        .section-content.active { display: block; }
+
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        .activation-box {
+            background: rgba(241, 196, 15, 0.1); padding: 30px;
+            border-radius: 20px; border: 2px solid var(--gold-vip);
+            margin-top: 20px; text-align: center;
+        }
+
+        .input-code {
+            width: 80%; max-width: 300px; padding: 12px;
+            border-radius: 10px; border: 1px solid #ccc;
+            font-size: 1.1rem; text-align: center; margin-bottom: 10px;
+        }
+
+        .modal {
+            display: none; position: fixed; z-index: 2000;
+            left: 0; top: 0; width: 100%; height: 100%;
+            background-color: rgba(0,0,0,0.9); backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: var(--card-bg); margin: 5% auto;
+            padding: 25px; border-radius: 20px; width: 90%; max-width: 450px;
+            text-align: center; border: 2px solid var(--gold-vip);
+            position: relative;
+        }
+
+        .payment-details-row {
+            background: rgba(108, 92, 231, 0.1); padding: 8px;
+            border-radius: 10px; margin: 8px 0; text-align: right;
+            display: flex; justify-content: space-between; align-items: center;
+        }
+
+        .copy-icon { background: var(--primary-purple); color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; }
+
+        .telegram-float {
+            position: fixed; bottom: 20px; right: 20px;
+            background: #0088cc; color: white; padding: 15px 25px;
+            border-radius: 50px; text-decoration: none; font-weight: bold;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 1000;
+        }
+
+        /* تنسيق قائمة الاختيار */
+        select#subType {
+            width: 85%;
+            max-width: 300px;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: bold;
+            border: 1px solid var(--primary-purple);
+            margin-bottom: 15px;
+            background: var(--bg-color);
+            color: var(--text-main);
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="controls-top">
+            <button class="small-btn" onclick="toggleLanguage()" title="Language">🌐</button>
+            <button class="small-btn" onclick="toggleTheme()" id="modeIcon">🌙</button>
+        </div>
+        <h1>TiKOXPRO VIP</h1>
+        <p id="headerDesc">نظام التوقعات الاحترافي</p>
+    </header>
+
+    <div class="container">
+        <div class="tabs">
+            <button class="tab-btn active" id="tabFree" onclick="showSection('free')">مجاني</button>
+            <button class="tab-btn vip-tab" id="tabVip" onclick="showSection('vip')">VIP 💎</button>
+        </div>
+
+        <div id="free" class="section-content active">
+            <div style="background: var(--card-bg); padding: 40px; border-radius: 20px; text-align: center;">
+                <h3 id="freeTitle">⚽ التوقعات العامة</h3>
+                <p id="freeDesc">يتم تحديث القسم المجاني يومياً.</p>
+            </div>
+        </div>
+
+        <div id="vip" class="section-content">
+            <div id="vip-gate">
+                <div style="text-align: center; padding: 30px 20px; background: var(--card-bg); border-radius: 25px;">
+                    <h2 id="vipTitle" style="color: var(--gold-vip);">💎 قسم المحترفين</h2>
+                    <p id="vipDesc">قم بالإيداع أولاً، ثم أدخل كود التفعيل:</p>
+                    
+                    <button style="background:var(--gold-vip); padding:15px 30px; border-radius:30px; border:none; font-weight:bold; cursor:pointer;" onclick="openPaymentModal()" id="requestBtn">إظهار معلومات الدفع والطلب</button>
+                    
+                    <div class="activation-box">
+                        <select id="subType">
+                            <option value="7" id="optWeek">أسبوعي (2.99$)</option>
+                            <option value="30" id="optMonth">شهري (7.99$)</option>
+                        </select>
+                        <br>
+                        <input type="text" id="userCode" class="input-code" placeholder="TiKO...">
+                        <br>
+                        <button onclick="checkSerialCode()" style="background:var(--primary-purple); color:white; padding:10px 25px; border:none; border-radius:8px; cursor:pointer;" id="activateBtn">تفعيل الاشتراك ✅</button>
+                    </div>
+                </div>
+            </div>
+
+            <div id="vip-content" style="display: none; background: #27ae60; color: white; padding: 30px; border-radius: 20px; text-align: center;">
+                <h3 id="vipSuccess">✅ أهلاً بك في VIP</h3>
+                <div id="expiryDisplay" style="margin-bottom:15px; background:rgba(0,0,0,0.1); padding:10px; border-radius:10px;"></div>
+                <button onclick="logout()" style="background:white; color:red; border:none; padding:5px 15px; border-radius:5px; cursor:pointer; font-weight:bold;" id="logoutBtn">خروج</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="paymentModal" class="modal">
+        <div class="modal-content">
+            <h3 id="payTitle">📋 إنشاء طلب إيداع</h3>
+            <div style="background:#eee; color:#333; padding:10px; border-radius:8px; margin-bottom:15px; font-weight:bold; border:1px dashed #999;">
+                رقم الطلب: <span id="displayOrderID" style="color:#e74c3c;">#------</span>
+            </div>
+
+            <div class="payment-details-row"><span>ID BINANCE: 760134995</span><button class="copy-icon" onclick="copy('760134995')">نسخ</button></div>
+            <div class="payment-details-row"><span>VISA: 4938755438550012</span><button class="copy-icon" onclick="copy('4938755438550012')">نسخ</button></div>
+            <div style="font-size: 0.8rem; margin: 10px 0; color: var(--primary-purple);">
+                USDT (TRC20): TXBjzZ...PrQnMPHi <button class="copy-icon" onclick="copy('TXBjzZgWBWJVmw5Scpgubg26GhPrQnMPHi')">نسخ</button>
+            </div>
+
+            <input type="text" id="clientName" placeholder="الاسم الكامل" style="width:100%; padding:10px; margin-top:10px; border-radius:8px; border:1px solid #ccc;">
+
+            <button onclick="sendToSupport()" style="background:#27ae60; color:white; width:100%; padding:15px; border:none; border-radius:10px; font-weight:bold; cursor:pointer; margin-top:10px;" id="sendBtn">إرسال للدعم ✅</button>
+            <p onclick="closePaymentModal()" style="color:red; cursor:pointer; margin-top:15px;" id="closeBtn">إغلاق</p>
+        </div>
+    </div>
+
+    <a href="https://t.me/+TGctJjTcepxlZTFk" class="telegram-float" id="tgLink">قناتنا تليجرام للمزيد من التوقعات 🚀</a>
+
+    <script>
+        let currentLang = 'ar';
+        let currentSequence = parseInt(localStorage.getItem('tiko_sequence')) || 1;
+
+        const langData = {
+            ar: {
+                headerDesc: "نظام التوقعات الاحترافي", tabFree: "مجاني", tabVip: "VIP 💎", freeTitle: "⚽ التوقعات العامة",
+                freeDesc: "يتم تحديث القسم المجاني يومياً.", vipTitle: "💎 قسم المحترفين", vipDesc: "قم بالإيداع أولاً، ثم أدخل كود التفعيل:",
+                requestBtn: "إظهار معلومات الدفع والطلب", optWeek: "أسبوعي (2.99$)", optMonth: "شهري (7.99$)", activateBtn: "تفعيل الاشتراك ✅",
+                vipSuccess: "✅ أهلاً بك في VIP", logoutBtn: "خروج", payTitle: "📋 إنشاء طلب إيداع", sendBtn: "إرسال للدعم ✅", closeBtn: "إغلاق",
+                tgLink: "قناتنا تليجرام للمزيد من التوقعات 🚀"
+            },
+            en: {
+                headerDesc: "Pro Predictions System", tabFree: "Free", tabVip: "VIP 💎", freeTitle: "⚽ General Tips",
+                freeDesc: "Free section updated daily.", vipTitle: "💎 Pro Section", vipDesc: "Deposit first, then enter activation code:",
+                requestBtn: "Show Payment Info", optWeek: "Weekly (2.99$)", optMonth: "Monthly (7.99$)", activateBtn: "Activate Subscription ✅",
+                vipSuccess: "✅ Welcome to VIP", logoutBtn: "Logout", payTitle: "📋 Create Deposit", sendBtn: "Send to Support ✅", closeBtn: "Close",
+                tgLink: "Our Telegram for more 🚀"
+            }
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            const t = langData[currentLang];
+            for (let id in t) { if(document.getElementById(id)) document.getElementById(id).innerText = t[id]; }
+        }
+
+        function toggleTheme() {
+            const body = document.body;
+            const icon = document.getElementById('modeIcon');
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                icon.innerText = "🌙";
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                icon.innerText = "☀️";
+            }
+        }
+
+        function checkExpiry() {
+            const expiry = localStorage.getItem('tiko_expiry');
+            if (expiry && new Date().getTime() > parseInt(expiry)) {
+                localStorage.removeItem('tiko_vip_status');
+                localStorage.removeItem('tiko_expiry');
+                return false;
+            }
+            return !!expiry;
+        }
+
+        function showSection(id) {
+            document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            document.getElementById(id).classList.add('active');
+            event.currentTarget.classList.add('active');
+            if (id === 'vip' && checkExpiry()) showVipContent();
+        }
+
+        function checkSerialCode() {
+            const input = document.getElementById('userCode').value.trim();
+            const days = parseInt(document.getElementById('subType').value);
+            const correctCode = "TiKO" + currentSequence;
+            if (input === correctCode) {
+                const expiry = new Date().getTime() + (days * 24 * 60 * 60 * 1000);
+                localStorage.setItem('tiko_vip_status', 'unlocked');
+                localStorage.setItem('tiko_expiry', expiry.toString());
+                currentSequence++;
+                localStorage.setItem('tiko_sequence', currentSequence);
+                showVipContent();
+            } else { alert("Code Error!"); }
+        }
+
+        function showVipContent() {
+            const expiry = parseInt(localStorage.getItem('tiko_expiry'));
+            document.getElementById('vip-gate').style.display = 'none';
+            document.getElementById('vip-content').style.display = 'block';
+            document.getElementById('expiryDisplay').innerText = "Expires on: " + new Date(expiry).toLocaleDateString();
+        }
+
+        function logout() { localStorage.clear(); location.reload(); }
+        function openPaymentModal() {
+            document.getElementById('displayOrderID').innerText = "TKO-" + Math.random().toString(36).substr(2, 6).toUpperCase();
+            document.getElementById('paymentModal').style.display = 'block';
+        }
+        function closePaymentModal() { document.getElementById('paymentModal').style.display = 'none'; }
+        function copy(t) { navigator.clipboard.writeText(t); alert("Copied!"); }
+        function sendToSupport() {
+            const name = document.getElementById('clientName').value;
+            const order = document.getElementById('displayOrderID').innerText;
+            if(!name) return alert("Name Required");
+            window.open(`https://t.me/TiKO_SUPPORT?text=Order: ${order}%0AName: ${name}`, '_blank');
+            closePaymentModal();
+        }
+    </script>
+</body>
+</html>
