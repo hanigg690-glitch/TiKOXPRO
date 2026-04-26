@@ -61,7 +61,7 @@
         .match-card {
             background: var(--card-bg);
             border-radius: 15px;
-            padding: 18px;
+            padding: 20px;
             margin-bottom: 18px;
             box-shadow: 0 5px 15px rgba(0,0,0,0.05);
             display: flex;
@@ -75,14 +75,15 @@
             justify-content: space-around;
             align-items: center;
             width: 100%;
-            margin-bottom: 12px;
+            margin-bottom: 15px;
         }
 
-        .team { text-align: center; flex: 1; }
-        .team img { width: 60px; height: 60px; object-fit: contain; margin-bottom: 8px; }
-        .team span { display: block; font-size: 0.95rem; font-weight: 700; }
+        .team { text-align: center; flex: 1; padding: 10px; }
+        /* تصغير حجم الصور المتبقية لتبقى متناسقة مع النصوص */
+        .team img { width: 50px; height: 50px; object-fit: contain; margin-bottom: 8px; }
+        .team span { display: block; font-size: 1.1rem; font-weight: 900; color: var(--text-main); }
 
-        .vs { font-weight: 900; color: var(--primary-purple); font-size: 1.3rem; }
+        .vs { font-weight: 900; color: var(--primary-purple); font-size: 1.4rem; padding: 0 10px; }
 
         .prediction-box {
             background: rgba(108, 92, 231, 0.1);
@@ -148,9 +149,9 @@
             
             <div class="match-card">
                 <div class="teams-row">
-                    <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/150.png"><span>Real Sociedad</span></div>
+                    <div class="team"><span>Real Sociedad</span></div>
                     <div class="vs">VS</div>
-                    <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/367.png"><span>Rayo Vallecano</span></div>
+                    <div class="team"><span>Rayo Vallecano</span></div>
                 </div>
                 <div class="prediction-box"><span class="prediction-text" data-ar="فرصة مزدوجة لـ رايو فاليكانو" data-en="Double Chance: Rayo Vallecano">فرصة مزدوجة لـ رايو فاليكانو</span></div>
             </div>
@@ -177,14 +178,14 @@
                 <div class="teams-row">
                     <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/1082.png"><span>Lille OSC</span></div>
                     <div class="vs">VS</div>
-                    <div class="team"><img src="https://raw.githubusercontent.com/hanigg690-glitch/TiKOXPRO/main/paris-fc.png"><span>Paris FC</span></div>
+                    <div class="team"><span>Paris FC</span></div>
                 </div>
                 <div class="prediction-box"><span class="prediction-text" data-ar="هدف في كلا الشوطين" data-en="Goal in both halves">هدف في كلا الشوطين</span></div>
             </div>
 
             <div class="match-card">
                 <div class="teams-row">
-                    <div class="team"><img src="https://upload.wikimedia.org/wikipedia/en/thumb/3/3b/Sevilla_FC_logo.svg/1200px-Sevilla_FC_logo.svg.png"><span>Sevilla</span></div>
+                    <div class="team"><span>Sevilla</span></div>
                     <div class="vs">VS</div>
                     <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/331.png"><span>Osasuna</span></div>
                 </div>
