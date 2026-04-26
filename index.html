@@ -79,8 +79,8 @@
         }
 
         .team { text-align: center; flex: 1; }
-        .team img { width: 55px; height: 55px; object-fit: contain; margin-bottom: 8px; }
-        .team span { display: block; font-size: 0.9rem; font-weight: 700; }
+        .team img { width: 60px; height: 60px; object-fit: contain; margin-bottom: 8px; }
+        .team span { display: block; font-size: 0.95rem; font-weight: 700; }
 
         .vs { font-weight: 900; color: var(--primary-purple); font-size: 1.3rem; }
 
@@ -93,7 +93,7 @@
             border-right: 5px solid var(--primary-purple);
         }
 
-        .prediction-text { color: var(--primary-purple); font-weight: 800; }
+        .prediction-text { color: var(--primary-purple); font-weight: 800; font-size: 1rem; }
 
         .vip-match-card { border: 2px solid var(--gold-vip); }
         .vip-prediction-box { background: rgba(241, 196, 15, 0.1); border-right: 5px solid var(--gold-vip); }
@@ -125,14 +125,6 @@
             box-shadow: 0 6px 20px rgba(0,0,0,0.3); z-index: 1000;
             font-size: 0.9rem;
         }
-
-        select#subType {
-            width: 90%; max-width: 320px; padding: 12px;
-            border-radius: 10px; font-weight: 800;
-            border: 2px solid var(--primary-purple); margin-bottom: 15px;
-            background: var(--bg-color); color: var(--text-main);
-            font-family: 'Cairo', sans-serif;
-        }
     </style>
 </head>
 <body>
@@ -156,7 +148,7 @@
             
             <div class="match-card">
                 <div class="teams-row">
-                    <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/150.png"><span>Real Sociedad</span></div>
+                    <div class="team"><img src="https://images.t-online.de/2023/08/Ue2O1VbTCHjV/0x65:1333x1000/fit-in/1333x1000/real-sociedad-san-sebastian.png"><span>Real Sociedad</span></div>
                     <div class="vs">VS</div>
                     <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/367.png"><span>Rayo Vallecano</span></div>
                 </div>
@@ -185,23 +177,14 @@
                 <div class="teams-row">
                     <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/1082.png"><span>Lille OSC</span></div>
                     <div class="vs">VS</div>
-                    <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/625.png"><span>Paris FC</span></div>
+                    <div class="team"><img src="https://images.t-online.de/2023/07/7y9Z7h0j8X3h/0x49:1333x1000/fit-in/1333x1000/paris-fc.png"><span>Paris FC</span></div>
                 </div>
                 <div class="prediction-box"><span class="prediction-text" data-ar="هدف في كلا الشوطين" data-en="Goal in both halves">هدف في كلا الشوطين</span></div>
             </div>
 
             <div class="match-card">
                 <div class="teams-row">
-                    <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/60.png"><span>Freiburg</span></div>
-                    <div class="vs">VS</div>
-                    <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/16.png"><span>Dortmund</span></div>
-                </div>
-                <div class="prediction-box"><span class="prediction-text" data-ar="هنديكاب 2 (2)" data-en="Handicap 2 (2)">هنديكاب 2 (2)</span></div>
-            </div>
-
-            <div class="match-card">
-                <div class="teams-row">
-                    <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/33.png"><span>Sevilla</span></div>
+                    <div class="team"><img src="https://images.t-online.de/2023/08/8g9f7h1j8X4h/0x30:1333x1000/fit-in/1333x1000/sevilla-fc.png"><span>Sevilla</span></div>
                     <div class="vs">VS</div>
                     <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/331.png"><span>Osasuna</span></div>
                 </div>
@@ -216,7 +199,7 @@
                 </div>
                 <div class="prediction-box"><span class="prediction-text" data-ar="فرصة مزدوجة يوفينتوس + أهداف أقل من 4.5" data-en="1X & Under 4.5 Goals">فرصة مزدوجة يوفينتوس + أهداف أقل من 4.5</span></div>
             </div>
-
+            
             <div class="match-card">
                 <div class="teams-row">
                     <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/940.png"><span>Celta Vigo</span></div>
@@ -234,7 +217,7 @@
                     <p id="vipDesc" style="font-weight: 700;">قم بالإيداع أولاً، ثم أدخل كود التفعيل:</p>
                     <button style="background:var(--gold-vip); padding:15px 35px; border-radius:30px; border:none; font-weight:900; cursor:pointer; font-family:'Cairo';" onclick="openPaymentModal()" id="requestBtn">إظهار معلومات الدفع والطلب</button>
                     <div class="activation-box">
-                        <select id="subType">
+                        <select id="subType" style="width: 90%; max-width: 320px; padding: 12px; border-radius: 10px; font-weight: 800; border: 2px solid var(--primary-purple); margin-bottom: 15px; font-family: 'Cairo';">
                             <option value="7" id="optWeek">اشتراك أسبوعي (2.99$)</option>
                             <option value="30" id="optMonth">اشتراك شهري (7.99$)</option>
                         </select>
@@ -272,13 +255,13 @@
         </div>
     </div>
 
-    <div id="paymentModal" class="modal">
+    <div id="paymentModal" class="modal" style="display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9);">
         <div class="modal-content">
             <h3 id="payTitle" style="font-weight: 900;">إنشاء طلب إيداع</h3>
             <div style="background:#eee; color:#333; padding:12px; border-radius:8px; margin-bottom:15px; font-weight:900; border:2px dashed #999;">رقم الطلب: <span id="displayOrderID" style="color:#e74c3c;">#------</span></div>
             <div style="background:rgba(108, 92, 231, 0.1); padding:10px; border-radius:10px; margin:10px 0; display:flex; justify-content:space-between; align-items:center;">
                 <span style="font-weight:700;">ID BINANCE: 760134995</span>
-                <button class="copy-icon" onclick="copy('760134995')">نسخ</button>
+                <button onclick="copy('760134995')" style="background:var(--primary-purple); color:white; border:none; padding:5px 10px; border-radius:5px; cursor:pointer;">نسخ</button>
             </div>
             <input type="text" id="clientName" placeholder="الاسم الكامل" style="width:100%; padding:12px; margin-top:10px; border-radius:8px; border:2px solid #ccc; font-family:'Cairo'; font-weight:700;">
             <button onclick="sendToSupport()" style="background:#27ae60; color:white; width:100%; padding:15px; border:none; border-radius:10px; font-weight:900; cursor:pointer; margin-top:15px; font-family:'Cairo';" id="sendBtn">إرسال للدعم</button>
