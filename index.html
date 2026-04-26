@@ -133,7 +133,7 @@
                     <button style="background:var(--gold-vip); padding:18px 40px; border-radius:15px; border:none; font-weight:900; cursor:pointer; font-family:'Cairo'; font-size: 1.2rem;" onclick="openPaymentModal()">إظهار معلومات الدفع والطلب</button>
                     <div class="activation-box">
                         <select id="subType" style="width: 100%; padding: 15px; border-radius: 10px; font-weight: 900; border: 3px solid var(--primary-purple); margin-bottom: 20px; font-family: 'Cairo'; font-size: 1.1rem;"><option value="7">أسبوعي (2.99$)</option><option value="30">شهري (7.99$)</option></select>
-                        <input type="text" id="userCode" class="input-code" placeholder="TiKO...">
+                        <input type="text" id="userCode" class="input-code" placeholder="أدخل الكود هنا...">
                         <button onclick="checkSerialCode()" style="background:var(--primary-purple); color:white; width:100%; padding:18px; border:none; border-radius:12px; cursor:pointer; font-weight:900; font-family:'Cairo'; font-size: 1.2rem;">تفعيل الآن</button>
                     </div>
                 </div>
@@ -150,10 +150,8 @@
         <div class="modal-content">
             <h3 style="font-weight: 900; font-size: 1.6rem;">📋 إنشاء طلب إيداع</h3>
             <div style="background:#eee; color:#333; padding:12px; border-radius:8px; margin-bottom:15px; font-weight:900; border:2px dashed #999;">رقم الطلب: <span id="displayOrderID" style="color:#e74c3c;">#------</span></div>
-            
             <div class="pay-row"><span>ID BINANCE: 760134995</span><button class="copy-btn" onclick="copy('760134995')">نسخ</button></div>
             <div class="pay-row"><span>VISA: 4938755438550012</span><button class="copy-btn" onclick="copy('4938755438550012')">نسخ</button></div>
-
             <input type="text" id="clientName" placeholder="الاسم الكامل" style="width:100%; padding:15px; margin-top:10px; border-radius:10px; border:3px solid #ccc; font-family:'Cairo'; font-weight:900;">
             <button onclick="sendToSupport()" style="background:#27ae60; color:white; width:100%; padding:18px; border:none; border-radius:10px; font-weight:900; cursor:pointer; margin-top:15px; font-family:'Cairo';">إرسال للدعم ✅</button>
             <p onclick="closePaymentModal()" style="color:red; cursor:pointer; margin-top:15px; font-weight:900;">إغلاق</p>
@@ -164,6 +162,7 @@
 
     <script>
         let currentLang = 'ar';
+        // جلب التسلسل الحالي، إذا لم يوجد نبدأ بـ 1
         let currentSequence = parseInt(localStorage.getItem('tiko_sequence')) || 1;
 
         function toggleLanguage() {
@@ -194,16 +193,28 @@
             return expiry && new Date().getTime() < parseInt(expiry);
         }
 
+        // --- تعديل منطق كود التفعيل ليتغير فوراً بعد الاستخدام ---
         function checkSerialCode() {
             const input = document.getElementById('userCode').value.trim();
             const days = parseInt(document.getElementById('subType').value);
-            if (input === "TiKO" + currentSequence) {
+            
+            // الكود الصحيح هو TiKO متبوعاً بالرقم الحالي
+            const correctCode = "TiKO" + currentSequence;
+            
+            if (input === correctCode) {
+                // 1. حساب تاريخ الانتهاء وحفظ الحالة
                 const expiry = new Date().getTime() + (days * 24 * 60 * 60 * 1000);
                 localStorage.setItem('tiko_expiry', expiry.toString());
+                
+                // 2. تحديث التسلسل فوراً لمرة واحدة (بحيث يصبح TiKO1 غير صالح ويطلب TiKO2)
                 currentSequence++;
-                localStorage.setItem('tiko_sequence', currentSequence);
+                localStorage.setItem('tiko_sequence', currentSequence.toString());
+                
+                // 3. عرض المحتوى
                 showVipContent();
-            } else { alert("الكود غير صحيح!"); }
+            } else { 
+                alert("هذا الكود خاطئ أو تم استخدامه مسبقاً!"); 
+            }
         }
 
         function showVipContent() {
