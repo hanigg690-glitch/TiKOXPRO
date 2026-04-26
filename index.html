@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TiKOXPRO VIP</title>
+    <title>TiKOXPRO VIP - V4.3</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -26,7 +26,7 @@
             background-color: var(--bg-color);
             color: var(--text-main);
             font-family: 'Cairo', sans-serif;
-            margin: 0; padding-bottom: 80px;
+            margin: 0; padding-bottom: 100px;
             -webkit-font-smoothing: antialiased;
         }
 
@@ -71,7 +71,7 @@
         .teams-row { display: flex; justify-content: center; align-items: center; width: 100%; margin-bottom: 20px; gap: 15px; }
 
         .team { text-align: center; flex: 1; }
-        .team span { display: block; font-size: 1.4rem; font-weight: 900; line-height: 1.2; letter-spacing: -0.5px; }
+        .team span { display: block; font-size: 1.4rem; font-weight: 900; line-height: 1.2; letter-spacing: -0.5px; text-transform: uppercase; }
 
         .vs { font-weight: 900; color: var(--primary-purple); font-size: 1.1rem; background: rgba(108, 92, 231, 0.15); padding: 4px 10px; border-radius: 8px; }
 
@@ -95,7 +95,10 @@
 
         .copy-btn { background: var(--primary-purple); color: white; border: none; padding: 5px 12px; border-radius: 5px; cursor: pointer; font-family: 'Cairo'; }
 
-        .telegram-float { position: fixed; bottom: 25px; right: 25px; background: #0088cc; color: white; padding: 18px 35px; border-radius: 50px; text-decoration: none; font-weight: 900; box-shadow: 0 10px 25px rgba(0,0,0,0.3); z-index: 1000; font-size: 1rem; }
+        .telegram-float { 
+            position: fixed; bottom: 20px; right: 20px; background: #0088cc; color: white; padding: 15px 25px; 
+            border-radius: 50px; text-decoration: none; font-weight: 900; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 1000;
+        }
     </style>
 </head>
 <body>
@@ -133,8 +136,8 @@
                     <button style="background:var(--gold-vip); padding:18px 40px; border-radius:15px; border:none; font-weight:900; cursor:pointer; font-family:'Cairo'; font-size: 1.2rem;" onclick="openPaymentModal()">إظهار معلومات الدفع والطلب</button>
                     <div class="activation-box">
                         <select id="subType" style="width: 100%; padding: 15px; border-radius: 10px; font-weight: 900; border: 3px solid var(--primary-purple); margin-bottom: 20px; font-family: 'Cairo'; font-size: 1.1rem;"><option value="7">أسبوعي (2.99$)</option><option value="30">شهري (7.99$)</option></select>
-                        <input type="text" id="userCode" class="input-code" placeholder="أدخل الكود هنا...">
-                        <button onclick="checkSerialCode()" style="background:var(--primary-purple); color:white; width:100%; padding:18px; border:none; border-radius:12px; cursor:pointer; font-weight:900; font-family:'Cairo'; font-size: 1.2rem;">تفعيل الآن</button>
+                        <input type="text" id="userCode" class="input-code" placeholder="TiKO...">
+                        <button onclick="checkSerialCode()" style="background:var(--primary-purple); color:white; width:100%; padding:18px; border:none; border-radius:12px; cursor:pointer; font-weight:900; font-family:'Cairo'; font-size: 1.2rem;">تفعيل الاشتراك</button>
                     </div>
                 </div>
             </div>
@@ -158,12 +161,14 @@
         </div>
     </div>
 
-    <a href="https://t.me/+TGctJjTcepxlZTFk" class="telegram-float">انضم للقناة الرسمية</a>
+    <a href="https://t.me/+TGctJjTcepxlZTFk" class="telegram-float">قناتنا تليجرام للمزيد من التوقعات 🚀</a>
 
     <script>
         let currentLang = 'ar';
-        // جلب التسلسل الحالي، إذا لم يوجد نبدأ بـ 1
-        let currentSequence = parseInt(localStorage.getItem('tiko_sequence')) || 1;
+        
+        function getDeviceSequence() {
+            return parseInt(localStorage.getItem('tiko_dev_seq')) || 1;
+        }
 
         function toggleLanguage() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
@@ -176,8 +181,13 @@
 
         function toggleTheme() {
             const body = document.body;
-            body.getAttribute('data-theme') === 'dark' ? body.removeAttribute('data-theme') : body.setAttribute('data-theme', 'dark');
-            document.getElementById('modeIcon').innerText = body.getAttribute('data-theme') === 'dark' ? "☀️" : "🌙";
+            if (body.getAttribute('data-theme') === 'dark') {
+                body.removeAttribute('data-theme');
+                document.getElementById('modeIcon').innerText = "🌙";
+            } else {
+                body.setAttribute('data-theme', 'dark');
+                document.getElementById('modeIcon').innerText = "☀️";
+            }
         }
 
         function showSection(id) {
@@ -193,27 +203,19 @@
             return expiry && new Date().getTime() < parseInt(expiry);
         }
 
-        // --- تعديل منطق كود التفعيل ليتغير فوراً بعد الاستخدام ---
         function checkSerialCode() {
             const input = document.getElementById('userCode').value.trim();
             const days = parseInt(document.getElementById('subType').value);
+            const devSeq = getDeviceSequence();
+            const expectedCode = "TiKO" + devSeq;
             
-            // الكود الصحيح هو TiKO متبوعاً بالرقم الحالي
-            const correctCode = "TiKO" + currentSequence;
-            
-            if (input === correctCode) {
-                // 1. حساب تاريخ الانتهاء وحفظ الحالة
-                const expiry = new Date().getTime() + (days * 24 * 60 * 60 * 1000);
-                localStorage.setItem('tiko_expiry', expiry.toString());
-                
-                // 2. تحديث التسلسل فوراً لمرة واحدة (بحيث يصبح TiKO1 غير صالح ويطلب TiKO2)
-                currentSequence++;
-                localStorage.setItem('tiko_sequence', currentSequence.toString());
-                
-                // 3. عرض المحتوى
+            if (input === expectedCode) {
+                const expiryTime = new Date().getTime() + (days * 24 * 60 * 60 * 1000);
+                localStorage.setItem('tiko_expiry', expiryTime.toString());
+                localStorage.setItem('tiko_dev_seq', (devSeq + 1).toString());
                 showVipContent();
-            } else { 
-                alert("هذا الكود خاطئ أو تم استخدامه مسبقاً!"); 
+            } else {
+                alert("هذا الكود غير صالح، أو تم استهلاكه مسبقاً على هذا الجهاز!");
             }
         }
 
@@ -221,11 +223,11 @@
             document.getElementById('vip-gate').style.display = 'none';
             document.getElementById('vip-content').style.display = 'block';
             const expiry = parseInt(localStorage.getItem('tiko_expiry'));
-            document.getElementById('expiryDisplay').innerText = "ينتهي في: " + new Date(expiry).toLocaleDateString();
+            document.getElementById('expiryDisplay').innerText = "ينتهي الاشتراك في: " + new Date(expiry).toLocaleDateString();
         }
 
-        function logout() { localStorage.clear(); location.reload(); }
-        
+        function logout() { localStorage.removeItem('tiko_expiry'); location.reload(); }
+
         function openPaymentModal() {
             const orderID = "TKO-" + Math.random().toString(36).substr(2, 6).toUpperCase();
             document.getElementById('displayOrderID').innerText = orderID;
@@ -233,16 +235,12 @@
         }
 
         function closePaymentModal() { document.getElementById('paymentModal').style.display = 'none'; }
-        
-        function copy(t) { 
-            navigator.clipboard.writeText(t); 
-            alert("تم النسخ بنجاح!"); 
-        }
+        function copy(t) { navigator.clipboard.writeText(t); alert("تم النسخ!"); }
 
         function sendToSupport() {
             const name = document.getElementById('clientName').value;
             const order = document.getElementById('displayOrderID').innerText;
-            if(!name) return alert("الرجاء إدخال الاسم الكامل");
+            if(!name) return alert("الرجاء إدخال الاسم");
             window.open(`https://t.me/TiKO_SUPPORT?text=طلب تفعيل VIP%0Aرقم الطلب: ${order}%0Aالاسم: ${name}`, '_blank');
         }
 
