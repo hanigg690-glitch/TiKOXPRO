@@ -47,8 +47,6 @@
             transition: 0.2s;
         }
 
-        .small-btn:hover { background: rgba(255, 255, 255, 0.4); }
-
         .container { max-width: 800px; margin: auto; padding: 1rem; }
 
         .tabs { display: flex; justify-content: center; gap: 10px; margin: 20px 0; }
@@ -63,6 +61,49 @@
         .section-content.active { display: block; }
 
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+        /* تنسيق بطاقات المباريات */
+        .match-card {
+            background: var(--card-bg);
+            border-radius: 15px;
+            padding: 15px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .teams-row {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+            margin-bottom: 10px;
+        }
+
+        .team { text-align: center; flex: 1; }
+        .team img { width: 45px; height: 45px; object-fit: contain; margin-bottom: 5px; }
+        .team span { display: block; font-size: 0.9rem; font-weight: bold; }
+
+        .vs { font-weight: bold; color: var(--primary-purple); font-size: 1.2rem; }
+
+        .prediction-box {
+            background: rgba(108, 92, 231, 0.1);
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+            text-align: center;
+            border-left: 4px solid var(--primary-purple);
+        }
+
+        .prediction-text { color: var(--primary-purple); font-weight: bold; font-size: 0.95rem; }
+
+        /* تنسيق الـ VIP الخاص بالنتائج */
+        .vip-match-card { border: 1px solid var(--gold-vip); }
+        .vip-prediction-box { background: rgba(241, 196, 15, 0.1); border-left: 4px solid var(--gold-vip); }
+        .vip-prediction-text { color: #d4a017; }
 
         .activation-box {
             background: rgba(241, 196, 15, 0.1); padding: 30px;
@@ -104,17 +145,11 @@
             box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 1000;
         }
 
-        /* تنسيق قائمة الاختيار */
         select#subType {
-            width: 85%;
-            max-width: 300px;
-            padding: 12px;
-            border-radius: 10px;
-            font-weight: bold;
-            border: 1px solid var(--primary-purple);
-            margin-bottom: 15px;
-            background: var(--bg-color);
-            color: var(--text-main);
+            width: 85%; max-width: 300px; padding: 12px;
+            border-radius: 10px; font-weight: bold;
+            border: 1px solid var(--primary-purple); margin-bottom: 15px;
+            background: var(--bg-color); color: var(--text-main);
         }
     </style>
 </head>
@@ -136,10 +171,79 @@
         </div>
 
         <div id="free" class="section-content active">
-            <div style="background: var(--card-bg); padding: 40px; border-radius: 20px; text-align: center;">
-                <h3 id="freeTitle">⚽ التوقعات العامة</h3>
-                <p id="freeDesc">يتم تحديث القسم المجاني يومياً.</p>
+            
+            <div class="match-card">
+                <div class="teams-row">
+                    <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/150.png" alt="Real Sociedad"><span>Real Sociedad</span></div>
+                    <div class="vs">VS</div>
+                    <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/367.png" alt="Rayo Vallecano"><span>Rayo Vallecano</span></div>
+                </div>
+                <div class="prediction-box"><span class="prediction-text" data-ar="فرصة مزدوجة لـ رايو فاليكانو" data-en="Double Chance: Rayo Vallecano">فرصة مزدوجة لـ رايو فاليكانو</span></div>
             </div>
+
+            <div class="match-card">
+                <div class="teams-row">
+                    <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/86.png" alt="Werder Bremen"><span>Werder Bremen</span></div>
+                    <div class="vs">VS</div>
+                    <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/79.png" alt="Stuttgart"><span>Stuttgart</span></div>
+                </div>
+                <div class="prediction-box"><span class="prediction-text" data-ar="هدف في كلا الشوطين" data-en="Goal in both halves">هدف في كلا الشوطين</span></div>
+            </div>
+
+            <div class="match-card">
+                <div class="teams-row">
+                    <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/399.png" alt="Leeds"><span>Leeds United</span></div>
+                    <div class="vs">VS</div>
+                    <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/631.png" alt="Chelsea"><span>Chelsea</span></div>
+                </div>
+                <div class="prediction-box"><span class="prediction-text" data-ar="فرصة مزدوجة ليدز" data-en="Double Chance: Leeds">فرصة مزدوجة ليدز</span></div>
+            </div>
+
+            <div class="match-card">
+                <div class="teams-row">
+                    <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/1082.png" alt="Lille"><span>Lille OSC</span></div>
+                    <div class="vs">VS</div>
+                    <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/625.png" alt="Paris FC"><span>Paris FC</span></div>
+                </div>
+                <div class="prediction-box"><span class="prediction-text" data-ar="هدف في كلا الشوطين" data-en="Goal in both halves">هدف في كلا الشوطين</span></div>
+            </div>
+
+            <div class="match-card">
+                <div class="teams-row">
+                    <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/60.png" alt="Freiburg"><span>Freiburg</span></div>
+                    <div class="vs">VS</div>
+                    <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/16.png" alt="Dortmund"><span>Dortmund</span></div>
+                </div>
+                <div class="prediction-box"><span class="prediction-text" data-ar="هنديكاب 2 (2)" data-en="Handicap 2 (2)">هنديكاب 2 (2)</span></div>
+            </div>
+
+            <div class="match-card">
+                <div class="teams-row">
+                    <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/33.png" alt="Sevilla"><span>Sevilla</span></div>
+                    <div class="vs">VS</div>
+                    <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/331.png" alt="Osasuna"><span>Osasuna</span></div>
+                </div>
+                <div class="prediction-box"><span class="prediction-text" data-ar="هنديكاب 1 (0)" data-en="Handicap 1 (0)">هنديكاب 1 (0)</span></div>
+            </div>
+
+            <div class="match-card">
+                <div class="teams-row">
+                    <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/506.png" alt="Juventus"><span>Juventus</span></div>
+                    <div class="vs">VS</div>
+                    <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/5.png" alt="AC Milan"><span>AC Milan</span></div>
+                </div>
+                <div class="prediction-box"><span class="prediction-text" data-ar="فرصة مزدوجة يوفينتوس + أهداف أقل من 4.5" data-en="1X & Under 4.5 Goals">فرصة مزدوجة يوفينتوس + أهداف أقل من 4.5</span></div>
+            </div>
+
+            <div class="match-card">
+                <div class="teams-row">
+                    <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/940.png" alt="Celta Vigo"><span>Celta Vigo</span></div>
+                    <div class="vs">VS</div>
+                    <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/1050.png" alt="Villarreal"><span>Villarreal</span></div>
+                </div>
+                <div class="prediction-box"><span class="prediction-text" data-ar="هنديكاب 1 (0)" data-en="Handicap 1 (0)">هنديكاب 1 (0)</span></div>
+            </div>
+
         </div>
 
         <div id="vip" class="section-content">
@@ -147,9 +251,7 @@
                 <div style="text-align: center; padding: 30px 20px; background: var(--card-bg); border-radius: 25px;">
                     <h2 id="vipTitle" style="color: var(--gold-vip);">💎 قسم المحترفين</h2>
                     <p id="vipDesc">قم بالإيداع أولاً، ثم أدخل كود التفعيل:</p>
-                    
                     <button style="background:var(--gold-vip); padding:15px 30px; border-radius:30px; border:none; font-weight:bold; cursor:pointer;" onclick="openPaymentModal()" id="requestBtn">إظهار معلومات الدفع والطلب</button>
-                    
                     <div class="activation-box">
                         <select id="subType">
                             <option value="7" id="optWeek">أسبوعي (2.99$)</option>
@@ -163,10 +265,30 @@
                 </div>
             </div>
 
-            <div id="vip-content" style="display: none; background: #27ae60; color: white; padding: 30px; border-radius: 20px; text-align: center;">
-                <h3 id="vipSuccess">✅ أهلاً بك في VIP</h3>
-                <div id="expiryDisplay" style="margin-bottom:15px; background:rgba(0,0,0,0.1); padding:10px; border-radius:10px;"></div>
-                <button onclick="logout()" style="background:white; color:red; border:none; padding:5px 15px; border-radius:5px; cursor:pointer; font-weight:bold;" id="logoutBtn">خروج</button>
+            <div id="vip-content" style="display: none;">
+                <div class="match-card vip-match-card">
+                    <div class="teams-row">
+                        <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/6574.png" alt="Sassuolo"><span>Sassuolo</span></div>
+                        <div class="vs">VS</div>
+                        <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/430.png" alt="Fiorentina"><span>Fiorentina</span></div>
+                    </div>
+                    <div class="prediction-box vip-prediction-box"><span class="prediction-text vip-prediction-text" data-ar="مجموع بطاقات صفراء للفريق الثاني أكثر من 1.5" data-en="Away Team Yellow Cards Over 1.5">مجموع بطاقات صفراء للفريق الثاني أكثر من 1.5</span></div>
+                </div>
+
+                <div class="match-card vip-match-card">
+                    <div class="teams-row">
+                        <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/1047.png" alt="Como"><span>Como</span></div>
+                        <div class="vs">VS</div>
+                        <div class="team"><img src="https://tmssl.akamaized.net/images/wappen/head/252.png" alt="Genoa"><span>Genoa</span></div>
+                    </div>
+                    <div class="prediction-box vip-prediction-box"><span class="prediction-text vip-prediction-text" data-ar="مجموع بطاقات صفراء أكثر من 3.5" data-en="Total Yellow Cards Over 3.5">مجموع بطاقات صفراء أكثر من 3.5</span></div>
+                </div>
+
+                <div style="background: #27ae60; color: white; padding: 20px; border-radius: 15px; text-align: center; margin-top: 20px;">
+                    <h3 id="vipSuccess">✅ أهلاً بك في VIP</h3>
+                    <div id="expiryDisplay"></div>
+                    <button onclick="logout()" style="background:white; color:red; border:none; padding:5px 15px; border-radius:5px; cursor:pointer; font-weight:bold; margin-top:10px;" id="logoutBtn">خروج</button>
+                </div>
             </div>
         </div>
     </div>
@@ -174,18 +296,10 @@
     <div id="paymentModal" class="modal">
         <div class="modal-content">
             <h3 id="payTitle">📋 إنشاء طلب إيداع</h3>
-            <div style="background:#eee; color:#333; padding:10px; border-radius:8px; margin-bottom:15px; font-weight:bold; border:1px dashed #999;">
-                رقم الطلب: <span id="displayOrderID" style="color:#e74c3c;">#------</span>
-            </div>
-
+            <div style="background:#eee; color:#333; padding:10px; border-radius:8px; margin-bottom:15px; font-weight:bold; border:1px dashed #999;">رقم الطلب: <span id="displayOrderID" style="color:#e74c3c;">#------</span></div>
             <div class="payment-details-row"><span>ID BINANCE: 760134995</span><button class="copy-icon" onclick="copy('760134995')">نسخ</button></div>
             <div class="payment-details-row"><span>VISA: 4938755438550012</span><button class="copy-icon" onclick="copy('4938755438550012')">نسخ</button></div>
-            <div style="font-size: 0.8rem; margin: 10px 0; color: var(--primary-purple);">
-                USDT (TRC20): TXBjzZ...PrQnMPHi <button class="copy-icon" onclick="copy('TXBjzZgWBWJVmw5Scpgubg26GhPrQnMPHi')">نسخ</button>
-            </div>
-
             <input type="text" id="clientName" placeholder="الاسم الكامل" style="width:100%; padding:10px; margin-top:10px; border-radius:8px; border:1px solid #ccc;">
-
             <button onclick="sendToSupport()" style="background:#27ae60; color:white; width:100%; padding:15px; border:none; border-radius:10px; font-weight:bold; cursor:pointer; margin-top:10px;" id="sendBtn">إرسال للدعم ✅</button>
             <p onclick="closePaymentModal()" style="color:red; cursor:pointer; margin-top:15px;" id="closeBtn">إغلاق</p>
         </div>
@@ -199,18 +313,18 @@
 
         const langData = {
             ar: {
-                headerDesc: "نظام التوقعات الاحترافي", tabFree: "مجاني", tabVip: "VIP 💎", freeTitle: "⚽ التوقعات العامة",
-                freeDesc: "يتم تحديث القسم المجاني يومياً.", vipTitle: "💎 قسم المحترفين", vipDesc: "قم بالإيداع أولاً، ثم أدخل كود التفعيل:",
-                requestBtn: "إظهار معلومات الدفع والطلب", optWeek: "أسبوعي (2.99$)", optMonth: "شهري (7.99$)", activateBtn: "تفعيل الاشتراك ✅",
-                vipSuccess: "✅ أهلاً بك في VIP", logoutBtn: "خروج", payTitle: "📋 إنشاء طلب إيداع", sendBtn: "إرسال للدعم ✅", closeBtn: "إغلاق",
-                tgLink: "قناتنا تليجرام للمزيد من التوقعات 🚀"
+                headerDesc: "نظام التوقعات الاحترافي", tabFree: "مجاني", tabVip: "VIP 💎", vipTitle: "💎 قسم المحترفين", 
+                vipDesc: "قم بالإيداع أولاً، ثم أدخل كود التفعيل:", requestBtn: "إظهار معلومات الدفع والطلب",
+                optWeek: "أسبوعي (2.99$)", optMonth: "شهري (7.99$)", activateBtn: "تفعيل الاشتراك ✅",
+                vipSuccess: "✅ أهلاً بك في VIP", logoutBtn: "خروج", payTitle: "📋 إنشاء طلب إيداع", 
+                sendBtn: "إرسال للدعم ✅", closeBtn: "إغلاق", tgLink: "قناتنا تليجرام للمزيد من التوقعات 🚀"
             },
             en: {
-                headerDesc: "Pro Predictions System", tabFree: "Free", tabVip: "VIP 💎", freeTitle: "⚽ General Tips",
-                freeDesc: "Free section updated daily.", vipTitle: "💎 Pro Section", vipDesc: "Deposit first, then enter activation code:",
-                requestBtn: "Show Payment Info", optWeek: "Weekly (2.99$)", optMonth: "Monthly (7.99$)", activateBtn: "Activate Subscription ✅",
-                vipSuccess: "✅ Welcome to VIP", logoutBtn: "Logout", payTitle: "📋 Create Deposit", sendBtn: "Send to Support ✅", closeBtn: "Close",
-                tgLink: "Our Telegram for more 🚀"
+                headerDesc: "Pro Predictions System", tabFree: "Free", tabVip: "VIP 💎", vipTitle: "💎 Pro Section",
+                vipDesc: "Deposit first, then enter activation code:", requestBtn: "Show Payment Info",
+                optWeek: "Weekly (2.99$)", optMonth: "Monthly (7.99$)", activateBtn: "Activate Subscription ✅",
+                vipSuccess: "✅ Welcome to VIP", logoutBtn: "Logout", payTitle: "📋 Create Deposit",
+                sendBtn: "Send to Support ✅", closeBtn: "Close", tgLink: "Our Telegram for more 🚀"
             }
         };
 
@@ -219,6 +333,11 @@
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
             const t = langData[currentLang];
             for (let id in t) { if(document.getElementById(id)) document.getElementById(id).innerText = t[id]; }
+            
+            // تحديث نصوص التوقعات داخل البطاقات
+            document.querySelectorAll('.prediction-text').forEach(el => {
+                el.innerText = el.getAttribute('data-' + currentLang);
+            });
         }
 
         function toggleTheme() {
@@ -235,12 +354,7 @@
 
         function checkExpiry() {
             const expiry = localStorage.getItem('tiko_expiry');
-            if (expiry && new Date().getTime() > parseInt(expiry)) {
-                localStorage.removeItem('tiko_vip_status');
-                localStorage.removeItem('tiko_expiry');
-                return false;
-            }
-            return !!expiry;
+            return expiry && new Date().getTime() < parseInt(expiry);
         }
 
         function showSection(id) {
@@ -262,14 +376,14 @@
                 currentSequence++;
                 localStorage.setItem('tiko_sequence', currentSequence);
                 showVipContent();
-            } else { alert("Code Error!"); }
+            } else { alert(currentLang === 'ar' ? "كود خاطئ!" : "Wrong Code!"); }
         }
 
         function showVipContent() {
             const expiry = parseInt(localStorage.getItem('tiko_expiry'));
             document.getElementById('vip-gate').style.display = 'none';
             document.getElementById('vip-content').style.display = 'block';
-            document.getElementById('expiryDisplay').innerText = "Expires on: " + new Date(expiry).toLocaleDateString();
+            document.getElementById('expiryDisplay').innerText = (currentLang === 'ar' ? "ينتهي في: " : "Expires: ") + new Date(expiry).toLocaleDateString();
         }
 
         function logout() { localStorage.clear(); location.reload(); }
