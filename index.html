@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TiKOXPRO VIP - V4.3</title>
+    <title>TiKOXPRO VIP - V4.6</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -60,6 +60,10 @@
         .tab-btn.active { background: var(--primary-purple); color: white; box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4); }
         .tab-btn.vip-tab.active { background: var(--gold-vip); color: black; box-shadow: 0 5px 15px rgba(241, 196, 15, 0.4); }
 
+        /* إصلاح منطق الأقسام: إخفاء الكل افتراضياً */
+        .section-content { display: none; width: 100%; }
+        .section-content.active { display: block; }
+
         .match-card {
             background: var(--card-bg);
             border-radius: 20px; padding: 30px 20px; margin-bottom: 25px;
@@ -69,36 +73,27 @@
         }
 
         .teams-row { display: flex; justify-content: center; align-items: center; width: 100%; margin-bottom: 20px; gap: 15px; }
-
         .team { text-align: center; flex: 1; }
         .team span { display: block; font-size: 1.4rem; font-weight: 900; line-height: 1.2; letter-spacing: -0.5px; text-transform: uppercase; }
-
         .vs { font-weight: 900; color: var(--primary-purple); font-size: 1.1rem; background: rgba(108, 92, 231, 0.15); padding: 4px 10px; border-radius: 8px; }
 
-        .prediction-box { background: var(--primary-purple); width: 100%; padding: 16px; border-radius: 12px; text-align: center; }
-
-        .prediction-text { color: white; font-weight: 900; font-size: 1.2rem; }
+        .prediction-box { background: var(--primary-purple); width: 100%; padding: 16px; border-radius: 12px; text-align: center; margin-top: 5px; }
+        .prediction-text { color: white; font-weight: 900; font-size: 1.1rem; }
 
         .vip-match-card { border: 3px solid var(--gold-vip); }
-        .vip-prediction-box { background: var(--gold-vip); }
+        .vip-prediction-box { background: var(--gold-vip); color: black; }
         .vip-prediction-text { color: black; }
 
         .activation-box { background: rgba(241, 196, 15, 0.05); padding: 35px; border-radius: 25px; border: 3px dashed var(--gold-vip); margin-top: 25px; }
-
         .input-code { width: 90%; max-width: 350px; padding: 16px; border-radius: 12px; border: 3px solid #ddd; font-size: 1.5rem; text-align: center; margin-bottom: 20px; font-family: 'Cairo', sans-serif; font-weight: 900; }
 
         .modal { display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.9); }
-
         .modal-content { background-color: var(--card-bg); margin: 5% auto; padding: 25px; border-radius: 20px; width: 90%; max-width: 450px; text-align: center; border: 3px solid var(--gold-vip); position: relative; }
 
         .pay-row { background: rgba(108, 92, 231, 0.1); padding: 12px; border-radius: 10px; margin: 10px 0; display: flex; justify-content: space-between; align-items: center; font-weight: 900; }
-
         .copy-btn { background: var(--primary-purple); color: white; border: none; padding: 5px 12px; border-radius: 5px; cursor: pointer; font-family: 'Cairo'; }
 
-        .telegram-float { 
-            position: fixed; bottom: 20px; right: 20px; background: #0088cc; color: white; padding: 15px 25px; 
-            border-radius: 50px; text-decoration: none; font-weight: 900; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 1000;
-        }
+        .telegram-float { position: fixed; bottom: 20px; right: 20px; background: #0088cc; color: white; padding: 15px 25px; border-radius: 50px; text-decoration: none; font-weight: 900; box-shadow: 0 4px 15px rgba(0,0,0,0.2); z-index: 1000; }
     </style>
 </head>
 <body>
@@ -119,14 +114,32 @@
         </div>
 
         <div id="free" class="section-content active">
-            <div class="match-card"><div class="teams-row"><div class="team"><span>REAL SOCIEDAD</span></div><div class="vs">VS</div><div class="team"><span>RAYO VALLECANO</span></div></div><div class="prediction-box"><span class="prediction-text" data-ar="فرصة مزدوجة لـ رايو فاليكانو" data-en="Double Chance: Rayo Vallecano">فرصة مزدوجة لـ رايو فاليكانو</span></div></div>
-            <div class="match-card"><div class="teams-row"><div class="team"><span>WERDER BREMEN</span></div><div class="vs">VS</div><div class="team"><span>STUTTGART</span></div></div><div class="prediction-box"><span class="prediction-text" data-ar="هدف في كلا الشوطين" data-en="Goal in both halves">هدف في كلا الشوطين</span></div></div>
-            <div class="match-card"><div class="teams-row"><div class="team"><span>LEEDS UNITED</span></div><div class="vs">VS</div><div class="team"><span>CHELSEA</span></div></div><div class="prediction-box"><span class="prediction-text" data-ar="فرصة مزدوجة ليدز" data-en="Double Chance: Leeds">فرصة مزدوجة ليدز</span></div></div>
-            <div class="match-card"><div class="teams-row"><div class="team"><span>LILLE OSC</span></div><div class="vs">VS</div><div class="team"><span>PARIS FC</span></div></div><div class="prediction-box"><span class="prediction-text" data-ar="هدف في كلا الشوطين" data-en="Goal in both halves">هدف في كلا الشوطين</span></div></div>
-            <div class="match-card"><div class="teams-row"><div class="team"><span>FREIBURG</span></div><div class="vs">VS</div><div class="team"><span>DORTMUND</span></div></div><div class="prediction-box"><span class="prediction-text" data-ar="هنديكاب 2 (2)" data-en="Handicap 2 (2)">هنديكاب 2 (2)</span></div></div>
-            <div class="match-card"><div class="teams-row"><div class="team"><span>SEVILLA</span></div><div class="vs">VS</div><div class="team"><span>OSASUNA</span></div></div><div class="prediction-box"><span class="prediction-text" data-ar="هنديكاب 1 (0)" data-en="Handicap 1 (0)">هنديكاب 1 (0)</span></div></div>
-            <div class="match-card"><div class="teams-row"><div class="team"><span>JUVENTUS</span></div><div class="vs">VS</div><div class="team"><span>AC MILAN</span></div></div><div class="prediction-box"><span class="prediction-text" data-ar="النتيجة النهائية: X2" data-en="Final Result: X2">النتيجة النهائية: X2</span></div></div>
-            <div class="match-card"><div class="teams-row"><div class="team"><span>CELTA VIGO</span></div><div class="vs">VS</div><div class="team"><span>VILLARREAL</span></div></div><div class="prediction-box"><span class="prediction-text" data-ar="هنديكاب 1 (0)" data-en="Handicap 1 (0)">هنديكاب 1 (0)</span></div></div>
+            <div class="match-card">
+                <div class="teams-row">
+                    <div class="team"><span>BRENTFORD</span></div>
+                    <div class="vs">VS</div>
+                    <div class="team"><span>MAN UTD</span></div>
+                </div>
+                <div class="prediction-box"><span class="prediction-text">X1 + مجموع أهداف 1 أقل من 2.5</span></div>
+            </div>
+
+            <div class="match-card">
+                <div class="teams-row">
+                    <div class="team"><span>LEVANTE</span></div>
+                    <div class="vs">VS</div>
+                    <div class="team"><span>ESPANYOL</span></div>
+                </div>
+                <div class="prediction-box"><span class="prediction-text">فرصة مزدوجة ليفانتي</span></div>
+            </div>
+
+            <div class="match-card">
+                <div class="teams-row">
+                    <div class="team"><span>FATIH KARAGUMRUK</span></div>
+                    <div class="vs">VS</div>
+                    <div class="team"><span>BESIKTAS</span></div>
+                </div>
+                <div class="prediction-box"><span class="prediction-text">هدف في كلا الشوطين</span></div>
+            </div>
         </div>
 
         <div id="vip" class="section-content">
@@ -135,16 +148,32 @@
                     <h2 id="vipTitle" style="color: var(--gold-vip); font-weight: 900; font-size: 2rem;">قسم المحترفين</h2>
                     <button style="background:var(--gold-vip); padding:18px 40px; border-radius:15px; border:none; font-weight:900; cursor:pointer; font-family:'Cairo'; font-size: 1.2rem;" onclick="openPaymentModal()">إظهار معلومات الدفع والطلب</button>
                     <div class="activation-box">
-                        <select id="subType" style="width: 100%; padding: 15px; border-radius: 10px; font-weight: 900; border: 3px solid var(--primary-purple); margin-bottom: 20px; font-family: 'Cairo'; font-size: 1.1rem;"><option value="7">أسبوعي (2.99$)</option><option value="30">شهري (7.99$)</option></select>
+                        <select id="subType" style="width: 100%; padding: 15px; border-radius: 10px; font-weight: 900; border: 3px solid var(--primary-purple); margin-bottom: 20px; font-family: 'Cairo'; font-size: 1.1rem;">
+                            <option value="7">أسبوعي (2.99$)</option>
+                            <option value="30">شهري (7.99$)</option>
+                        </select>
                         <input type="text" id="userCode" class="input-code" placeholder="TiKO...">
                         <button onclick="checkSerialCode()" style="background:var(--primary-purple); color:white; width:100%; padding:18px; border:none; border-radius:12px; cursor:pointer; font-weight:900; font-family:'Cairo'; font-size: 1.2rem;">تفعيل الاشتراك</button>
                     </div>
                 </div>
             </div>
+            
             <div id="vip-content" style="display: none;">
-                <div class="match-card vip-match-card"><div class="teams-row"><div class="team"><span>SASSUOLO</span></div><div class="vs">VS</div><div class="team"><span>FIORENTINA</span></div></div><div class="prediction-box vip-prediction-box"><span class="prediction-text">بطاقات صفراء (2) أكثر من 1.5</span></div></div>
-                <div class="match-card vip-match-card"><div class="teams-row"><div class="team"><span>COMO</span></div><div class="vs">VS</div><div class="team"><span>GENOA</span></div></div><div class="prediction-box vip-prediction-box"><span class="prediction-text">مجموع بطاقات صفراء أكثر من 3.5</span></div></div>
-                <div style="background: #27ae60; color: white; padding: 20px; border-radius: 15px; text-align: center; margin-top: 20px;"><h3 style="font-weight: 900;">تم التفعيل بنجاح</h3><div id="expiryDisplay"></div><button onclick="logout()" style="background:white; color:red; border:none; padding:8px 20px; border-radius:8px; cursor:pointer; font-weight:900; margin-top:15px; font-family:'Cairo';">تسجيل الخروج</button></div>
+                <div class="match-card vip-match-card">
+                    <div class="teams-row">
+                        <div class="team"><span>BRENTFORD</span></div>
+                        <div class="vs">VS</div>
+                        <div class="team"><span>MAN UTD</span></div>
+                    </div>
+                    <div class="prediction-box vip-prediction-box"><span class="prediction-text vip-prediction-text">• يونايتد لا تسجل في كلا الشوطين</span></div>
+                    <div class="prediction-box vip-prediction-box"><span class="prediction-text vip-prediction-text">• يونايتد تسدد على المرمى أكثر من 4.5</span></div>
+                </div>
+                
+                <div style="background: #27ae60; color: white; padding: 20px; border-radius: 15px; text-align: center; margin-top: 20px;">
+                    <h3 style="font-weight: 900;">تم التفعيل بنجاح</h3>
+                    <div id="expiryDisplay"></div>
+                    <button onclick="logout()" style="background:white; color:red; border:none; padding:8px 20px; border-radius:8px; cursor:pointer; font-weight:900; margin-top:15px; font-family:'Cairo';">تسجيل الخروج</button>
+                </div>
             </div>
         </div>
     </div>
@@ -165,37 +194,40 @@
 
     <script>
         let currentLang = 'ar';
-        
-        function getDeviceSequence() {
-            return parseInt(localStorage.getItem('tiko_dev_seq')) || 1;
-        }
+        function getDeviceSequence() { return parseInt(localStorage.getItem('tiko_dev_seq')) || 1; }
 
         function toggleLanguage() {
             currentLang = currentLang === 'ar' ? 'en' : 'ar';
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-            document.querySelectorAll('.prediction-text').forEach(el => {
-                let text = el.getAttribute('data-' + currentLang);
-                if(text) el.innerText = text;
-            });
         }
 
         function toggleTheme() {
             const body = document.body;
-            if (body.getAttribute('data-theme') === 'dark') {
-                body.removeAttribute('data-theme');
-                document.getElementById('modeIcon').innerText = "🌙";
-            } else {
-                body.setAttribute('data-theme', 'dark');
-                document.getElementById('modeIcon').innerText = "☀️";
-            }
+            body.getAttribute('data-theme') === 'dark' ? body.removeAttribute('data-theme') : body.setAttribute('data-theme', 'dark');
+            document.getElementById('modeIcon').innerText = body.getAttribute('data-theme') === 'dark' ? "☀️" : "🌙";
         }
 
+        // تحسين دالة التبديل لتضمن فصل الأقسام تماماً
         function showSection(id) {
-            document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
-            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+            // إخفاء كل المحتويات
+            document.querySelectorAll('.section-content').forEach(s => {
+                s.classList.remove('active');
+            });
+            // إزالة نشاط الأزرار
+            document.querySelectorAll('.tab-btn').forEach(b => {
+                b.classList.remove('active');
+            });
+            
+            // إظهار القسم المختار فقط
             document.getElementById(id).classList.add('active');
-            event.currentTarget.classList.add('active');
-            if (id === 'vip' && checkExpiry()) showVipContent();
+            // تفعيل الزر المختار
+            const activeBtnId = id === 'free' ? 'tabFree' : 'tabVip';
+            document.getElementById(activeBtnId).classList.add('active');
+
+            // إذا كان القسم VIP، تحقق من حالة الاشتراك لعرض المحتوى الصحيح بداخله
+            if (id === 'vip' && checkExpiry()) {
+                showVipContent();
+            }
         }
 
         function checkExpiry() {
@@ -207,36 +239,28 @@
             const input = document.getElementById('userCode').value.trim();
             const days = parseInt(document.getElementById('subType').value);
             const devSeq = getDeviceSequence();
-            const expectedCode = "TiKO" + devSeq;
-            
-            if (input === expectedCode) {
+            if (input === "TiKO" + devSeq) {
                 const expiryTime = new Date().getTime() + (days * 24 * 60 * 60 * 1000);
                 localStorage.setItem('tiko_expiry', expiryTime.toString());
                 localStorage.setItem('tiko_dev_seq', (devSeq + 1).toString());
                 showVipContent();
-            } else {
-                alert("هذا الكود غير صالح، أو تم استهلاكه مسبقاً على هذا الجهاز!");
-            }
+            } else { alert("الكود غير صالح أو تم استهلاكه!"); }
         }
 
         function showVipContent() {
             document.getElementById('vip-gate').style.display = 'none';
             document.getElementById('vip-content').style.display = 'block';
             const expiry = parseInt(localStorage.getItem('tiko_expiry'));
-            document.getElementById('expiryDisplay').innerText = "ينتهي الاشتراك في: " + new Date(expiry).toLocaleDateString();
+            document.getElementById('expiryDisplay').innerText = "ينتهي في: " + new Date(expiry).toLocaleDateString();
         }
 
         function logout() { localStorage.removeItem('tiko_expiry'); location.reload(); }
-
         function openPaymentModal() {
-            const orderID = "TKO-" + Math.random().toString(36).substr(2, 6).toUpperCase();
-            document.getElementById('displayOrderID').innerText = orderID;
+            document.getElementById('displayOrderID').innerText = "TKO-" + Math.random().toString(36).substr(2, 6).toUpperCase();
             document.getElementById('paymentModal').style.display = 'block';
         }
-
         function closePaymentModal() { document.getElementById('paymentModal').style.display = 'none'; }
         function copy(t) { navigator.clipboard.writeText(t); alert("تم النسخ!"); }
-
         function sendToSupport() {
             const name = document.getElementById('clientName').value;
             const order = document.getElementById('displayOrderID').innerText;
@@ -244,7 +268,12 @@
             window.open(`https://t.me/TiKO_SUPPORT?text=طلب تفعيل VIP%0Aرقم الطلب: ${order}%0Aالاسم: ${name}`, '_blank');
         }
 
-        window.onload = () => { if(checkExpiry()) showVipContent(); };
+        window.onload = () => { 
+            if(checkExpiry()) {
+                // إذا كان المستخدم مشتركاً، تأكد من تحديث واجهة الـ VIP داخلياً
+                showVipContent();
+            }
+        };
     </script>
 </body>
 </html>
