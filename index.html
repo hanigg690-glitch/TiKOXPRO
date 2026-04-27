@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TiKOXPRO VIP - V4.6</title>
+    <title>TiKOXPRO VIP - V4.7</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;900&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -60,7 +60,6 @@
         .tab-btn.active { background: var(--primary-purple); color: white; box-shadow: 0 5px 15px rgba(108, 92, 231, 0.4); }
         .tab-btn.vip-tab.active { background: var(--gold-vip); color: black; box-shadow: 0 5px 15px rgba(241, 196, 15, 0.4); }
 
-        /* إصلاح منطق الأقسام: إخفاء الكل افتراضياً */
         .section-content { display: none; width: 100%; }
         .section-content.active { display: block; }
 
@@ -131,15 +130,6 @@
                 </div>
                 <div class="prediction-box"><span class="prediction-text">فرصة مزدوجة ليفانتي</span></div>
             </div>
-
-            <div class="match-card">
-                <div class="teams-row">
-                    <div class="team"><span>FATIH KARAGUMRUK</span></div>
-                    <div class="vs">VS</div>
-                    <div class="team"><span>BESIKTAS</span></div>
-                </div>
-                <div class="prediction-box"><span class="prediction-text">هدف في كلا الشوطين</span></div>
-            </div>
         </div>
 
         <div id="vip" class="section-content">
@@ -193,41 +183,20 @@
     <a href="https://t.me/+TGctJjTcepxlZTFk" class="telegram-float">قناتنا تليجرام للمزيد من التوقعات 🚀</a>
 
     <script>
-        let currentLang = 'ar';
         function getDeviceSequence() { return parseInt(localStorage.getItem('tiko_dev_seq')) || 1; }
-
-        function toggleLanguage() {
-            currentLang = currentLang === 'ar' ? 'en' : 'ar';
-            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
-        }
-
         function toggleTheme() {
             const body = document.body;
             body.getAttribute('data-theme') === 'dark' ? body.removeAttribute('data-theme') : body.setAttribute('data-theme', 'dark');
             document.getElementById('modeIcon').innerText = body.getAttribute('data-theme') === 'dark' ? "☀️" : "🌙";
         }
 
-        // تحسين دالة التبديل لتضمن فصل الأقسام تماماً
         function showSection(id) {
-            // إخفاء كل المحتويات
-            document.querySelectorAll('.section-content').forEach(s => {
-                s.classList.remove('active');
-            });
-            // إزالة نشاط الأزرار
-            document.querySelectorAll('.tab-btn').forEach(b => {
-                b.classList.remove('active');
-            });
-            
-            // إظهار القسم المختار فقط
+            document.querySelectorAll('.section-content').forEach(s => s.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
             document.getElementById(id).classList.add('active');
-            // تفعيل الزر المختار
             const activeBtnId = id === 'free' ? 'tabFree' : 'tabVip';
             document.getElementById(activeBtnId).classList.add('active');
-
-            // إذا كان القسم VIP، تحقق من حالة الاشتراك لعرض المحتوى الصحيح بداخله
-            if (id === 'vip' && checkExpiry()) {
-                showVipContent();
-            }
+            if (id === 'vip' && checkExpiry()) showVipContent();
         }
 
         function checkExpiry() {
@@ -267,13 +236,7 @@
             if(!name) return alert("الرجاء إدخال الاسم");
             window.open(`https://t.me/TiKO_SUPPORT?text=طلب تفعيل VIP%0Aرقم الطلب: ${order}%0Aالاسم: ${name}`, '_blank');
         }
-
-        window.onload = () => { 
-            if(checkExpiry()) {
-                // إذا كان المستخدم مشتركاً، تأكد من تحديث واجهة الـ VIP داخلياً
-                showVipContent();
-            }
-        };
+        window.onload = () => { if(checkExpiry()) showVipContent(); };
     </script>
 </body>
 </html>
