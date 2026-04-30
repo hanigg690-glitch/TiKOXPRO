@@ -73,8 +73,8 @@
 
         .teams-row { display: flex; justify-content: center; align-items: center; width: 100%; margin-bottom: 20px; gap: 15px; }
         .team { text-align: center; flex: 1; }
-        .team span { display: block; font-size: 1.4rem; font-weight: 900; line-height: 1.2; letter-spacing: -0.5px; text-transform: uppercase; }
-        .vs { font-weight: 900; color: var(--primary-purple); font-size: 1.1rem; background: rgba(108, 92, 231, 0.15); padding: 4px 10px; border-radius: 8px; }
+        .team span { display: block; font-size: 1.2rem; font-weight: 900; line-height: 1.2; text-transform: uppercase; }
+        .vs { font-weight: 900; color: var(--primary-purple); font-size: 1rem; background: rgba(108, 92, 231, 0.15); padding: 4px 10px; border-radius: 8px; }
 
         .prediction-box { background: var(--primary-purple); width: 100%; padding: 16px; border-radius: 12px; text-align: center; margin-top: 5px; margin-bottom: 8px; }
         .prediction-text { color: white; font-weight: 900; font-size: 1.1rem; }
@@ -102,7 +102,7 @@
             <button class="small-btn" onclick="toggleLanguage()">🌐</button>
             <button class="small-btn" onclick="toggleTheme()" id="modeIcon">🌙</button>
         </div>
-        <h1>TiKOXPRO VIP</h1>
+        <h1 id="appTitle">TiKOXPRO VIP</h1>
         <p id="headerDesc" style="font-weight: 900; font-size: 1.1rem;">أقوى توقعات المباريات اليومية</p>
     </header>
 
@@ -115,13 +115,35 @@
         <div id="free" class="section-content active">
             <div class="match-card">
                 <div class="teams-row">
-                    <div class="team"><span>ARSENAL</span></div>
+                    <div class="team"><span>Crystal Palace</span></div>
                     <div class="vs">VS</div>
-                    <div class="team"><span>A. MADRID</span></div>
+                    <div class="team"><span>Shakhtar Donetsk</span></div>
                 </div>
-                <div class="prediction-box">
-                    <span class="prediction-text">أكثر من (2) أهداف</span>
+                <div class="prediction-box"><span class="prediction-text" data-ar="فرصة مزدوجة شاختار دونيتسك (X2)" data-en="Double Chance Shakhtar (X2)">فرصة مزدوجة شاختار دونيتسك (X2)</span></div>
+            </div>
+            <div class="match-card">
+                <div class="teams-row">
+                    <div class="team"><span>Freiburg</span></div>
+                    <div class="vs">VS</div>
+                    <div class="team"><span>Braga</span></div>
                 </div>
+                <div class="prediction-box"><span class="prediction-text" data-ar="أكثر من (2) أهداف" data-en="Over (2) Goals">أكثر من (2) أهداف</span></div>
+            </div>
+            <div class="match-card">
+                <div class="teams-row">
+                    <div class="team"><span>Aston Villa</span></div>
+                    <div class="vs">VS</div>
+                    <div class="team"><span>Nott'm Forest</span></div>
+                </div>
+                <div class="prediction-box"><span class="prediction-text" data-ar="فرصة مزدوجة نوتينغهام فورست (X2)" data-en="Double Chance Nott'm Forest (X2)">فرصة مزدوجة نوتينغهام فورست (X2)</span></div>
+            </div>
+            <div class="match-card">
+                <div class="teams-row">
+                    <div class="team"><span>Strasbourg</span></div>
+                    <div class="vs">VS</div>
+                    <div class="team"><span>Rayo Vallecano</span></div>
+                </div>
+                <div class="prediction-box"><span class="prediction-text" data-ar="هنديكاب (0) لـ رايو فاليكانو" data-en="Handicap (0) Rayo Vallecano">هنديكاب (0) لـ رايو فاليكانو</span></div>
             </div>
         </div>
 
@@ -129,34 +151,38 @@
             <div id="vip-gate">
                 <div style="text-align: center; padding: 20px;">
                     <h2 id="vipTitle" style="color: var(--gold-vip); font-weight: 900; font-size: 2rem;">قسم المحترفين</h2>
-                    <button style="background:var(--gold-vip); padding:18px 40px; border-radius:15px; border:none; font-weight:900; cursor:pointer; font-family:'Cairo'; font-size: 1.2rem;" onclick="openPaymentModal()">إظهار معلومات الدفع والطلب</button>
+                    <button id="paymentBtn" style="background:var(--gold-vip); padding:18px 40px; border-radius:15px; border:none; font-weight:900; cursor:pointer; font-family:'Cairo'; font-size: 1.2rem;" onclick="openPaymentModal()">إظهار معلومات الدفع والطلب</button>
                     <div class="activation-box">
                         <select id="subType" style="width: 100%; padding: 15px; border-radius: 10px; font-weight: 900; border: 3px solid var(--primary-purple); margin-bottom: 20px; font-family: 'Cairo'; font-size: 1.1rem;">
-                            <option value="7">أسبوعي (2.99$)</option>
-                            <option value="30">شهري (7.99$)</option>
+                            <option value="7" data-ar="أسبوعي (2.99$)" data-en="Weekly (2.99$)">أسبوعي (2.99$)</option>
+                            <option value="30" data-ar="شهري (7.99$)" data-en="Monthly (7.99$)">شهري (7.99$)</option>
                         </select>
                         <input type="text" id="userCode" class="input-code" placeholder="TiKO...">
-                        <button onclick="checkSerialCode()" style="background:var(--primary-purple); color:white; width:100%; padding:18px; border:none; border-radius:12px; cursor:pointer; font-weight:900; font-family:'Cairo'; font-size: 1.2rem;">تفعيل الاشتراك</button>
+                        <button id="activateBtn" onclick="checkSerialCode()" style="background:var(--primary-purple); color:white; width:100%; padding:18px; border:none; border-radius:12px; cursor:pointer; font-weight:900; font-family:'Cairo'; font-size: 1.2rem;">تفعيل الاشتراك</button>
                     </div>
                 </div>
             </div>
-            
             <div id="vip-content" style="display: none;">
                 <div class="match-card vip-match-card">
                     <div class="teams-row">
-                        <div class="team"><span>ARSENAL</span></div>
+                        <div class="team"><span>Freiburg</span></div>
                         <div class="vs">VS</div>
-                        <div class="team"><span>A. MADRID</span></div>
+                        <div class="team"><span>Braga</span></div>
                     </div>
-                    <div class="prediction-box vip-prediction-box">
-                        <span class="prediction-text vip-prediction-text">ارسنال (4) ركنيات أو أكثر</span>
-                    </div>
+                    <div class="prediction-box vip-prediction-box"><span class="prediction-text vip-prediction-text" data-ar="• مجموع أهداف أكثر من 1.5" data-en="• Total Goals Over 1.5">• مجموع أهداف أكثر من 1.5</span></div>
                 </div>
-                
+                <div class="match-card vip-match-card">
+                    <div class="teams-row">
+                        <div class="team"><span>Crystal Palace</span></div>
+                        <div class="vs">VS</div>
+                        <div class="team"><span>Shakhtar Donetsk</span></div>
+                    </div>
+                    <div class="prediction-box vip-prediction-box"><span class="prediction-text vip-prediction-text" data-ar="• مجموع أهداف أكثر من 1.5" data-en="• Total Goals Over 1.5">• مجموع أهداف أكثر من 1.5</span></div>
+                </div>
                 <div style="background: #27ae60; color: white; padding: 20px; border-radius: 15px; text-align: center; margin-top: 20px;">
-                    <h3 style="font-weight: 900;">تم التفعيل بنجاح</h3>
+                    <h3 id="activeMsg" style="font-weight: 900;">تم التفعيل بنجاح</h3>
                     <div id="expiryDisplay"></div>
-                    <button onclick="logout()" style="background:white; color:red; border:none; padding:8px 20px; border-radius:8px; cursor:pointer; font-weight:900; margin-top:15px; font-family:'Cairo';">تسجيل الخروج</button>
+                    <button id="logoutBtn" onclick="logout()" style="background:white; color:red; border:none; padding:8px 20px; border-radius:8px; cursor:pointer; font-weight:900; margin-top:15px; font-family:'Cairo';">تسجيل الخروج</button>
                 </div>
             </div>
         </div>
@@ -164,19 +190,57 @@
 
     <div id="paymentModal" class="modal">
         <div class="modal-content">
-            <h3 style="font-weight: 900; font-size: 1.6rem;">📋 إنشاء طلب إيداع</h3>
-            <div style="background:#eee; color:#333; padding:12px; border-radius:8px; margin-bottom:15px; font-weight:900; border:2px dashed #999;">رقم الطلب: <span id="displayOrderID" style="color:#e74c3c;">#------</span></div>
+            <h3 id="modalTitle" style="font-weight: 900; font-size: 1.6rem;">📋 إنشاء طلب إيداع</h3>
+            <div style="background:#eee; color:#333; padding:12px; border-radius:8px; margin-bottom:15px; font-weight:900; border:2px dashed #999;"><span id="orderLabel">رقم الطلب:</span> <span id="displayOrderID" style="color:#e74c3c;">#------</span></div>
             <div class="pay-row"><span>ID BINANCE: 760134995</span><button class="copy-btn" onclick="copy('760134995')">نسخ</button></div>
             <div class="pay-row"><span>VISA: 4938755438550012</span><button class="copy-btn" onclick="copy('4938755438550012')">نسخ</button></div>
             <input type="text" id="clientName" placeholder="الاسم الكامل" style="width:100%; padding:15px; margin-top:10px; border-radius:10px; border:3px solid #ccc; font-family:'Cairo'; font-weight:900;">
-            <button onclick="sendToSupport()" style="background:#27ae60; color:white; width:100%; padding:18px; border:none; border-radius:10px; font-weight:900; cursor:pointer; margin-top:15px; font-family:'Cairo';">إرسال للدعم ✅</button>
-            <p onclick="closePaymentModal()" style="color:red; cursor:pointer; margin-top:15px; font-weight:900;">إغلاق</p>
+            <button id="supportBtn" onclick="sendToSupport()" style="background:#27ae60; color:white; width:100%; padding:18px; border:none; border-radius:10px; font-weight:900; cursor:pointer; margin-top:15px; font-family:'Cairo';">إرسال للدعم ✅</button>
+            <p id="closeModal" onclick="closePaymentModal()" style="color:red; cursor:pointer; margin-top:15px; font-weight:900;">إغلاق</p>
         </div>
     </div>
 
-    <a href="https://t.me/+TGctJjTcepxlZTFk" class="telegram-float">قناتنا تليجرام للمزيد من التوقعات 🚀</a>
+    <a href="https://t.me/+TGctJjTcepxlZTFk" class="telegram-float" id="teleBtn">قناتنا تليجرام للمزيد من التوقعات 🚀</a>
 
     <script>
+        let currentLang = 'ar';
+        const translations = {
+            ar: {
+                headerDesc: "أقوى توقعات المباريات اليومية", tabFree: "مجاني", tabVip: "VIP", vipTitle: "قسم المحترفين",
+                paymentBtn: "إظهار معلومات الدفع والطلب", activateBtn: "تفعيل الاشتراك", activeMsg: "تم التفعيل بنجاح",
+                logoutBtn: "تسجيل الخروج", modalTitle: "📋 إنشاء طلب إيداع", orderLabel: "رقم الطلب:", supportBtn: "إرسال للدعم ✅",
+                closeModal: "إغلاق", teleBtn: "قناتنا تليجرام للمزيد من التوقعات 🚀", clientPlaceholder: "الاسم الكامل"
+            },
+            en: {
+                headerDesc: "Strongest Daily Match Predictions", tabFree: "Free", tabVip: "VIP", vipTitle: "Pro Section",
+                paymentBtn: "Show Payment Info", activateBtn: "Activate Subscription", activeMsg: "Activated Successfully",
+                logoutBtn: "Logout", modalTitle: "📋 Create Deposit Request", orderLabel: "Order ID:", supportBtn: "Send to Support ✅",
+                closeModal: "Close", teleBtn: "Telegram Channel for More 🚀", clientPlaceholder: "Full Name"
+            }
+        };
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'ar' ? 'en' : 'ar';
+            document.documentElement.lang = currentLang;
+            document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
+            
+            // تحديث النصوص الثابتة
+            for (let id in translations[currentLang]) {
+                const el = document.getElementById(id);
+                if (el) {
+                    if (id === 'clientPlaceholder') el.placeholder = translations[currentLang][id];
+                    else el.innerText = translations[currentLang][id];
+                }
+            }
+
+            // تحديث التوقعات وخيارات السحب
+            document.querySelectorAll('[data-ar]').forEach(el => {
+                el.innerText = el.getAttribute('data-' + currentLang);
+            });
+            
+            document.getElementById('clientName').placeholder = translations[currentLang].clientPlaceholder;
+        }
+
         function getDeviceSequence() { return parseInt(localStorage.getItem('tiko_dev_seq')) || 1; }
         function toggleTheme() {
             const body = document.body;
@@ -207,14 +271,14 @@
                 localStorage.setItem('tiko_expiry', expiryTime.toString());
                 localStorage.setItem('tiko_dev_seq', (devSeq + 1).toString());
                 showVipContent();
-            } else { alert("الكود غير صالح أو تم استهلاكه!"); }
+            } else { alert(currentLang === 'ar' ? "الكود غير صالح!" : "Invalid Code!"); }
         }
 
         function showVipContent() {
             document.getElementById('vip-gate').style.display = 'none';
             document.getElementById('vip-content').style.display = 'block';
             const expiry = parseInt(localStorage.getItem('tiko_expiry'));
-            document.getElementById('expiryDisplay').innerText = "ينتهي في: " + new Date(expiry).toLocaleDateString();
+            document.getElementById('expiryDisplay').innerText = (currentLang === 'ar' ? "ينتهي في: " : "Expires on: ") + new Date(expiry).toLocaleDateString();
         }
 
         function logout() { localStorage.removeItem('tiko_expiry'); location.reload(); }
@@ -223,12 +287,12 @@
             document.getElementById('paymentModal').style.display = 'block';
         }
         function closePaymentModal() { document.getElementById('paymentModal').style.display = 'none'; }
-        function copy(t) { navigator.clipboard.writeText(t); alert("تم النسخ!"); }
+        function copy(t) { navigator.clipboard.writeText(t); alert(currentLang === 'ar' ? "تم النسخ!" : "Copied!"); }
         function sendToSupport() {
             const name = document.getElementById('clientName').value;
             const order = document.getElementById('displayOrderID').innerText;
-            if(!name) return alert("الرجاء إدخال الاسم");
-            window.open(`https://t.me/TiKO_SUPPORT?text=طلب تفعيل VIP%0Aرقم الطلب: ${order}%0Aالاسم: ${name}`, '_blank');
+            if(!name) return alert(currentLang === 'ar' ? "الرجاء إدخال الاسم" : "Please enter name");
+            window.open(`https://t.me/TiKO_SUPPORT?text=Order ID: ${order}%0AName: ${name}`, '_blank');
         }
         window.onload = () => { if(checkExpiry()) showVipContent(); };
     </script>
