@@ -113,38 +113,29 @@
         </div>
 
         <div id="free" class="section-content active">
+            
             <div class="match-card">
                 <div class="teams-row">
-                    <div class="team"><span>Crystal Palace</span></div>
+                    <div class="team"><span>LASK Linz</span></div>
                     <div class="vs">VS</div>
-                    <div class="team"><span>Shakhtar Donetsk</span></div>
+                    <div class="team"><span>Altach</span></div>
                 </div>
-                <div class="prediction-box"><span class="prediction-text" data-ar="فرصة مزدوجة شاختار دونيتسك (X2)" data-en="Double Chance Shakhtar (X2)">فرصة مزدوجة شاختار دونيتسك (X2)</span></div>
+                <div class="prediction-box">
+                    <span class="prediction-text" data-ar="مجموع أهداف أكثر من (2)" data-en="Total Goals Over (2)">مجموع أهداف أكثر من (2)</span>
+                </div>
             </div>
+
             <div class="match-card">
                 <div class="teams-row">
-                    <div class="team"><span>Freiburg</span></div>
+                    <div class="team"><span>Mallorca</span></div>
                     <div class="vs">VS</div>
-                    <div class="team"><span>Braga</span></div>
+                    <div class="team"><span>Girona</span></div>
                 </div>
-                <div class="prediction-box"><span class="prediction-text" data-ar="أكثر من (2) أهداف" data-en="Over (2) Goals">أكثر من (2) أهداف</span></div>
-            </div>
-            <div class="match-card">
-                <div class="teams-row">
-                    <div class="team"><span>Aston Villa</span></div>
-                    <div class="vs">VS</div>
-                    <div class="team"><span>Nott'm Forest</span></div>
+                <div class="prediction-box">
+                    <span class="prediction-text" data-ar="هنديكاب (0) لـ جيرونا" data-en="Handicap (0) Girona">هنديكاب (0) لـ جيرونا</span>
                 </div>
-                <div class="prediction-box"><span class="prediction-text" data-ar="فرصة مزدوجة نوتينغهام فورست (X2)" data-en="Double Chance Nott'm Forest (X2)">فرصة مزدوجة نوتينغهام فورست (X2)</span></div>
             </div>
-            <div class="match-card">
-                <div class="teams-row">
-                    <div class="team"><span>Strasbourg</span></div>
-                    <div class="vs">VS</div>
-                    <div class="team"><span>Rayo Vallecano</span></div>
-                </div>
-                <div class="prediction-box"><span class="prediction-text" data-ar="هنديكاب (0) لـ رايو فاليكانو" data-en="Handicap (0) Rayo Vallecano">هنديكاب (0) لـ رايو فاليكانو</span></div>
-            </div>
+
         </div>
 
         <div id="vip" class="section-content">
@@ -162,23 +153,20 @@
                     </div>
                 </div>
             </div>
+            
             <div id="vip-content" style="display: none;">
+                
                 <div class="match-card vip-match-card">
                     <div class="teams-row">
-                        <div class="team"><span>Freiburg</span></div>
+                        <div class="team"><span>Burnley</span></div>
                         <div class="vs">VS</div>
-                        <div class="team"><span>Braga</span></div>
+                        <div class="team"><span>Leeds</span></div>
                     </div>
-                    <div class="prediction-box vip-prediction-box"><span class="prediction-text vip-prediction-text" data-ar="• مجموع أهداف أكثر من 1.5" data-en="• Total Goals Over 1.5">• مجموع أهداف أكثر من 1.5</span></div>
-                </div>
-                <div class="match-card vip-match-card">
-                    <div class="teams-row">
-                        <div class="team"><span>Crystal Palace</span></div>
-                        <div class="vs">VS</div>
-                        <div class="team"><span>Shakhtar Donetsk</span></div>
+                    <div class="prediction-box vip-prediction-box">
+                        <span class="prediction-text vip-prediction-text" data-ar="ليدز لا تسجل في كلى الشوطين" data-en="Leeds not to score in both halves">ليدز لا تسجل في كلى الشوطين</span>
                     </div>
-                    <div class="prediction-box vip-prediction-box"><span class="prediction-text vip-prediction-text" data-ar="• مجموع أهداف أكثر من 1.5" data-en="• Total Goals Over 1.5">• مجموع أهداف أكثر من 1.5</span></div>
                 </div>
+                
                 <div style="background: #27ae60; color: white; padding: 20px; border-radius: 15px; text-align: center; margin-top: 20px;">
                     <h3 id="activeMsg" style="font-weight: 900;">تم التفعيل بنجاح</h3>
                     <div id="expiryDisplay"></div>
@@ -224,7 +212,6 @@
             document.documentElement.lang = currentLang;
             document.documentElement.dir = currentLang === 'ar' ? 'rtl' : 'ltr';
             
-            // تحديث النصوص الثابتة
             for (let id in translations[currentLang]) {
                 const el = document.getElementById(id);
                 if (el) {
@@ -233,7 +220,6 @@
                 }
             }
 
-            // تحديث التوقعات وخيارات السحب
             document.querySelectorAll('[data-ar]').forEach(el => {
                 el.innerText = el.getAttribute('data-' + currentLang);
             });
