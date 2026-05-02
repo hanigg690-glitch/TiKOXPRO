@@ -9,7 +9,6 @@
 <title>TiKOXPRO VIP</title>
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;700;900&display=swap" rel="stylesheet">
 <style>
-/* ===== VARIABLES ===== */
 :root {
   --primary: #6c5ce7; --dark-purple: #4834d4;
   --gold: #f1c40f;    --gold-dark: #f39c12;
@@ -24,11 +23,7 @@
   --card-bg: #111; --text: #fff; --text-muted: #aaa;
   --border: #333; --muted-bg: #1a1a1a; --input-border: #444;
 }
-
-/* ===== RESET ===== */
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
-
-/* ===== BODY ===== */
 body {
   font-family:'Cairo',sans-serif; color:var(--text);
   min-height:100vh; padding-bottom:110px;
@@ -51,7 +46,7 @@ body {
   background-repeat:no-repeat,no-repeat,no-repeat,repeat;
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 header {
   background:linear-gradient(135deg,var(--dark-purple),var(--primary));
   color:#fff; padding:3rem 1rem 2rem;
@@ -68,17 +63,17 @@ header p {font-size:1.05rem;font-weight:700;opacity:.9;margin-top:.4rem;position
 .admin-btn{position:absolute;top:14px;right:14px;background:transparent;border:none;color:rgba(255,255,255,.3);cursor:pointer;font-size:1.1rem;transition:color .2s;z-index:10;}
 .admin-btn:hover{color:#fff;}
 
-/* ===== CONTAINER ===== */
+/* CONTAINER */
 .container{max-width:520px;margin:auto;padding:1rem;}
 
-/* ===== STATS BAR ===== */
+/* STATS */
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0;}
 .stat-card{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:10px 6px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06);}
 .stat-val{font-size:1.2rem;font-weight:900;}
 .stat-label{font-size:10px;color:var(--text-muted);font-weight:700;margin-top:2px;line-height:1.2;}
 .c-green{color:#27ae60;} .c-primary{color:var(--primary);} .c-red{color:var(--destructive);}
 
-/* ===== TABS ===== */
+/* TABS */
 .tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;background:rgba(0,0,0,.06);border-radius:14px;padding:5px;margin:0 0 20px;}
 [data-theme="dark"] .tabs{background:rgba(255,255,255,.08);}
 .tab-btn{padding:11px 6px;border:none;border-radius:10px;cursor:pointer;font-weight:900;font-family:'Cairo',sans-serif;font-size:.9rem;transition:all .25s;background:transparent;color:var(--text-muted);display:flex;align-items:center;justify-content:center;gap:5px;}
@@ -87,7 +82,7 @@ header p {font-size:1.05rem;font-weight:700;opacity:.9;margin-top:.4rem;position
 .tab-btn.active-results{background:#27ae60;color:#fff;box-shadow:0 4px 14px rgba(39,174,96,.4);}
 .section{display:none;} .section.active{display:block;}
 
-/* ===== MATCH CARD ===== */
+/* MATCH CARD */
 .match-card{background:var(--card-bg);border-radius:18px;margin-bottom:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.09);transition:box-shadow .2s;}
 .match-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.14);}
 .match-card.vip-card{border:2px solid var(--gold);box-shadow:0 0 18px rgba(241,196,15,.18);}
@@ -101,41 +96,41 @@ header p {font-size:1.05rem;font-weight:700;opacity:.9;margin-top:.4rem;position
 .prediction-box.gold-box{background:linear-gradient(90deg,var(--gold),var(--gold-dark));color:#000;font-size:1.1rem;}
 .card-footer{padding:10px 18px 14px;background:var(--card-bg);display:flex;flex-direction:column;gap:8px;}
 
-/* ===== CONFIDENCE BAR ===== */
+/* CONFIDENCE BAR */
 .conf-row{display:flex;align-items:center;gap:8px;}
 .conf-bar-track{flex:1;background:var(--muted-bg);border-radius:50px;height:5px;overflow:hidden;}
 .conf-bar-fill{height:100%;border-radius:50px;transition:width .5s;}
 .conf-val{font-size:11px;font-weight:900;min-width:30px;text-align:end;}
 
-/* ===== COUNTDOWN ===== */
+/* COUNTDOWN */
 .countdown{display:flex;align-items:center;gap:5px;flex-wrap:wrap;}
 .cd-pill{font-size:11px;font-weight:900;font-family:monospace;background:rgba(108,92,231,.12);color:var(--primary);padding:3px 7px;border-radius:6px;}
 .cd-pill span{font-weight:400;opacity:.65;font-size:9px;}
 .live-badge{font-size:11px;font-weight:900;color:#27ae60;animation:pulse 1s infinite alternate;}
 @keyframes pulse{from{opacity:1}to{opacity:.5}}
 
-/* ===== VIP GATE ===== */
+/* VIP GATE */
 .vip-gate{background:var(--card-bg);border-radius:20px;padding:28px 20px;box-shadow:0 8px 30px rgba(0,0,0,.10);border:1px solid var(--border);text-align:center;}
 .crown-wrap{width:64px;height:64px;background:rgba(241,196,15,.18);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:2rem;}
 .vip-title{color:var(--gold);font-weight:900;font-size:1.9rem;margin-bottom:20px;}
 .divider{display:flex;align-items:center;gap:12px;margin:18px 0;color:var(--text-muted);font-size:.9rem;}
 .divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border);}
 
-/* ===== SUCCESS/INFO BOXES ===== */
+/* BOXES */
 .success-box{background:rgba(39,174,96,.1);border:1.5px solid rgba(39,174,96,.3);color:#27ae60;border-radius:12px;padding:14px;text-align:center;font-weight:900;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:18px;}
 [data-theme="dark"] .success-box{color:#2ecc71;}
 .expiry-box{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center;margin-bottom:14px;}
 .expiry-label{color:var(--text-muted);font-size:.9rem;margin-bottom:4px;}
 .expiry-date{font-weight:900;font-size:1rem;}
 
-/* ===== ABOUT SECTION ===== */
+/* ABOUT */
 .about-card{background:var(--card-bg);border-radius:18px;border:1px solid var(--border);box-shadow:0 2px 12px rgba(0,0,0,.06);overflow:hidden;margin-bottom:16px;}
 .about-toggle{width:100%;background:transparent;border:none;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-weight:900;font-size:1rem;color:var(--text);font-family:'Cairo',sans-serif;}
 .about-body{padding:0 18px 16px;border-top:1px solid var(--border);}
 .about-row{display:flex;align-items:flex-start;gap:10px;margin-top:12px;}
 .about-row p{font-size:.9rem;color:var(--text-muted);font-weight:700;}
 
-/* ===== RESULTS HISTORY ===== */
+/* RESULTS HISTORY */
 .history-title{font-weight:900;font-size:1.1rem;display:flex;align-items:center;gap:8px;margin-bottom:14px;}
 .result-card{border-radius:14px;border:1px solid var(--border);padding:14px;box-shadow:0 2px 8px rgba(0,0,0,.06);background:var(--card-bg);display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;}
 .result-card.won {border-color:rgba(39,174,96,.35);background:rgba(39,174,96,.05);}
@@ -147,7 +142,7 @@ header p {font-size:1.05rem;font-weight:700;opacity:.9;margin-top:.4rem;position
 .result-meta span{font-size:11px;color:var(--text-muted);}
 .result-badge{font-size:10px;font-weight:900;background:var(--muted-bg);border:1px solid var(--border);border-radius:4px;padding:1px 6px;}
 
-/* ===== FORM ELEMENTS ===== */
+/* FORMS */
 select,input[type="text"],input[type="password"]{
   width:100%;padding:13px 14px;border:2px solid var(--input-border);border-radius:10px;
   font-family:'Cairo',sans-serif;font-size:1rem;font-weight:700;
@@ -156,17 +151,16 @@ select,input[type="text"],input[type="password"]{
 select:focus,input:focus{border-color:var(--primary);}
 .code-input{text-align:center;letter-spacing:3px;font-size:1.25rem;}
 
-/* ===== BUTTONS ===== */
+/* BUTTONS */
 .btn{width:100%;padding:14px;border:none;border-radius:12px;cursor:pointer;font-family:'Cairo',sans-serif;font-size:1rem;font-weight:900;transition:opacity .2s,transform .15s;display:flex;align-items:center;justify-content:center;gap:8px;}
 .btn:hover{opacity:.9;} .btn:active{transform:scale(.97);}
 .btn-primary{background:var(--primary);color:#fff;}
 .btn-gold   {background:var(--gold);   color:#000;}
 .btn-green  {background:var(--green-c);color:#fff;}
 .btn-danger {background:transparent;color:var(--destructive);border:1.5px solid rgba(231,76,60,.35);}
-.btn-sm     {padding:8px 14px;font-size:.85rem;width:auto;}
 .btn-outline{background:transparent;border:1.5px solid var(--border);color:var(--text);}
 
-/* ===== MODAL ===== */
+/* MODAL */
 .modal-overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.85);align-items:center;justify-content:center;padding:16px;}
 .modal-overlay.open{display:flex;}
 .modal{background:var(--card-bg);border-radius:20px;border:2px solid var(--gold);padding:0;width:100%;max-width:440px;box-shadow:0 20px 60px rgba(0,0,0,.4);overflow:hidden;max-height:92vh;overflow-y:auto;}
@@ -186,42 +180,40 @@ select:focus,input:focus{border-color:var(--primary);}
 .modal-close{color:var(--destructive);cursor:pointer;font-weight:900;font-size:.9rem;text-align:center;margin-top:12px;display:block;background:transparent;border:none;width:100%;font-family:'Cairo',sans-serif;}
 .modal-close:hover{text-decoration:underline;}
 
-/* ===== ADMIN PANEL ===== */
+/* ADMIN */
 .admin-overlay{display:none;position:fixed;inset:0;z-index:2000;background:var(--bg);overflow-y:auto;}
 .admin-overlay.open{display:block;}
 .admin-header{background:linear-gradient(135deg,var(--dark-purple),var(--primary));color:#fff;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;}
 .admin-header h2{font-weight:900;font-size:1.2rem;display:flex;align-items:center;gap:8px;}
 .admin-container{max-width:600px;margin:auto;padding:16px;}
 .admin-match-card{background:var(--card-bg);border-radius:14px;border:1px solid var(--border);padding:14px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.06);}
-.admin-match-info{margin-bottom:8px;}
 .admin-match-title{font-weight:900;font-size:.95rem;}
 .admin-match-pred{font-size:.8rem;color:var(--text-muted);margin-top:2px;}
 .admin-match-meta{display:flex;gap:8px;margin-top:4px;flex-wrap:wrap;}
 .tag{font-size:10px;font-weight:900;padding:2px 8px;border-radius:5px;border:1px solid var(--border);}
 .tag-vip{border-color:rgba(241,196,15,.5);color:#b8860b;}
 [data-theme="dark"] .tag-vip{color:var(--gold);}
-.admin-actions{display:flex;align-items:center;gap:6px;flex-wrap:wrap;}
+.admin-actions{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:8px;}
 .result-btn{font-size:11px;font-weight:900;font-family:'Cairo',sans-serif;padding:5px 10px;border-radius:20px;border:1.5px solid var(--border);color:var(--text-muted);background:transparent;cursor:pointer;transition:all .2s;}
 .result-btn:hover{border-color:var(--primary);color:var(--primary);}
 .result-btn.active{background:var(--primary);border-color:var(--primary);color:#fff;}
-.del-btn{margin-right:auto;background:transparent;border:none;color:var(--destructive);cursor:pointer;font-size:1.1rem;padding:4px 8px;border-radius:8px;transition:background .2s;}
-[data-theme="dark"] .del-btn{} .del-btn:hover{background:rgba(231,76,60,.1);}
+.del-btn{background:transparent;border:none;color:var(--destructive);cursor:pointer;font-size:1.1rem;padding:4px 8px;border-radius:8px;transition:background .2s;margin-right:auto;}
+.del-btn:hover{background:rgba(231,76,60,.1);}
 .add-form{background:var(--card-bg);border:2px solid var(--gold);border-radius:16px;padding:18px;margin-bottom:16px;}
 .form-grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.form-grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;}
 .form-btns{display:flex;gap:10px;margin-top:4px;}
 .form-btns .btn{padding:12px;}
 
-/* ===== TOAST ===== */
+/* TOAST */
 .toast{position:fixed;bottom:95px;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;z-index:9999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;}
 .toast.show{opacity:1;} .toast.success{background:#27ae60;} .toast.error{background:#e74c3c;}
 
-/* ===== TELEGRAM BUTTON ===== */
+/* TELEGRAM */
 .tg-btn{position:fixed;bottom:18px;left:14px;right:14px;background:var(--telegram);color:#fff;padding:15px 22px;border-radius:50px;text-decoration:none;font-weight:900;font-size:.95rem;box-shadow:0 6px 20px rgba(0,0,0,.22);z-index:500;display:flex;align-items:center;justify-content:center;gap:10px;transition:transform .2s,opacity .2s;}
-.tg-btn:hover{opacity:.92;transform:translateY(-2px);} .tg-btn:active{transform:scale(.97);}
+.tg-btn:hover{opacity:.92;transform:translateY(-2px);}
 @media(min-width:520px){.tg-btn{left:auto;right:20px;width:auto;}}
 
-/* ===== INSTALL PROMPT ===== */
+/* INSTALL */
 .install-prompt{position:fixed;top:12px;left:12px;right:12px;background:var(--primary);color:#fff;border-radius:16px;padding:14px 16px;box-shadow:0 8px 28px rgba(0,0,0,.3);z-index:900;display:none;align-items:center;justify-content:space-between;gap:10px;}
 .install-prompt.visible{display:flex;}
 .install-prompt p{font-weight:900;font-size:.9rem;}
@@ -233,7 +225,7 @@ select:focus,input:focus{border-color:var(--primary);}
 </head>
 <body>
 
-<!-- ===== INSTALL PROMPT ===== -->
+<!-- INSTALL PROMPT -->
 <div class="install-prompt" id="installPrompt">
   <p>📲 <span data-key="installApp">ثبّت التطبيق على هاتفك</span></p>
   <div class="install-btns">
@@ -242,18 +234,17 @@ select:focus,input:focus{border-color:var(--primary);}
   </div>
 </div>
 
-<!-- ===== HEADER ===== -->
+<!-- HEADER -->
 <header>
   <div class="controls-top">
     <button class="icon-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
     <button class="icon-btn" onclick="toggleLang()">🌐</button>
   </div>
-  <button class="admin-btn" onclick="openAdminLogin()" title="Admin">⚙️</button>
+  <button class="admin-btn" onclick="openAdminLogin()">⚙️</button>
   <h1 id="appTitle">TiKOXPRO VIP</h1>
   <p  id="appSubtitle">أقوى توقعات المباريات اليومية</p>
 </header>
 
-<!-- ===== MAIN ===== -->
 <div class="container">
 
   <!-- STATS -->
@@ -262,14 +253,13 @@ select:focus,input:focus{border-color:var(--primary);}
   <!-- TABS -->
   <div class="tabs">
     <button class="tab-btn active-free" id="tabFreeBtn" onclick="showTab('free')"><span data-key="tabFree">مجاني</span></button>
-    <button class="tab-btn"             id="tabVipBtn"  onclick="showTab('vip')">VIP</button>
+    <button class="tab-btn"             id="tabVipBtn"  onclick="showTab('vip')">👑 VIP</button>
     <button class="tab-btn"             id="tabResBtn"  onclick="showTab('results')">📈 <span data-key="tabResults">النتائج</span></button>
   </div>
 
-  <!-- FREE TAB -->
+  <!-- FREE -->
   <div id="sec-free" class="section active">
-    <div id="freeMatchesContainer"><p class="loading-msg" data-key="loading" style="text-align:center;padding:30px;color:var(--text-muted)">جاري التحميل...</p></div>
-    <!-- About -->
+    <div id="freeMatchesContainer"><p style="text-align:center;padding:40px;color:var(--text-muted);font-weight:700">جاري التحميل...</p></div>
     <div class="about-card">
       <button class="about-toggle" onclick="toggleAbout()">
         <span>🏆 <span data-key="aboutTitle">عن الخدمة</span></span>
@@ -284,7 +274,7 @@ select:focus,input:focus{border-color:var(--primary);}
     </div>
   </div>
 
-  <!-- VIP TAB -->
+  <!-- VIP -->
   <div id="sec-vip" class="section">
     <div id="vip-gate" class="vip-gate">
       <div class="crown-wrap">👑</div>
@@ -292,8 +282,8 @@ select:focus,input:focus{border-color:var(--primary);}
       <button class="btn btn-gold" onclick="openPaymentModal()" style="margin-bottom:16px"><span data-key="btnShowPaymentInfo">إظهار معلومات الدفع والطلب</span></button>
       <div class="divider">OR</div>
       <select id="subType">
-        <option value="7"  data-ar="أسبوعي (2.99$)"  data-en="Weekly ($2.99)">أسبوعي (2.99$)</option>
-        <option value="30" data-ar="شهري (7.99$)"    data-en="Monthly ($7.99)">شهري (7.99$)</option>
+        <option value="7"  data-ar="أسبوعي (2.99$)" data-en="Weekly ($2.99)">أسبوعي (2.99$)</option>
+        <option value="30" data-ar="شهري (7.99$)"   data-en="Monthly ($7.99)">شهري (7.99$)</option>
       </select>
       <input type="text" id="codeInput" class="code-input" placeholder="TiKO...">
       <button class="btn btn-primary" onclick="activateCode()"><span data-key="btnActivate">تفعيل الكود</span></button>
@@ -309,28 +299,26 @@ select:focus,input:focus{border-color:var(--primary);}
     </div>
   </div>
 
-  <!-- RESULTS TAB -->
+  <!-- RESULTS -->
   <div id="sec-results" class="section">
     <div class="history-title">📈 <span data-key="historyTitle">سجل النتائج السابقة</span></div>
-    <div id="historyContainer"><p class="loading-msg" data-key="loading" style="text-align:center;padding:30px;color:var(--text-muted)">جاري التحميل...</p></div>
+    <div id="historyContainer"><p style="text-align:center;padding:40px;color:var(--text-muted);font-weight:700">جاري التحميل...</p></div>
   </div>
 </div>
 
-<!-- ===== PAYMENT MODAL ===== -->
+<!-- PAYMENT MODAL -->
 <div class="modal-overlay" id="payModal">
   <div class="modal">
     <div class="modal-header"><p class="modal-title" data-key="modalTitle">📋 معلومات الدفع والطلب</p></div>
     <div class="modal-body">
       <div class="order-box">
-        <span class="order-label" data-key="modalOrderId">رقم الطلب:</span>
-        <span class="order-id"   id="orderIdDisplay">#------</span>
+        <div class="order-label" data-key="modalOrderId">رقم الطلب:</div>
+        <div class="order-id" id="orderIdDisplay">#------</div>
       </div>
-      <!-- Steps -->
       <div class="step-row"><span>1️⃣</span><p data-key="step1">الخطوة 1 — اختر طريقة الدفع وأرسل المبلغ</p></div>
       <div class="step-row"><span>2️⃣</span><p data-key="step2">الخطوة 2 — أرسل رقم الطلب واسمك للدعم</p></div>
       <div class="step-row"><span>3️⃣</span><p data-key="step3">الخطوة 3 — انتظر الكود على تليجرام خلال دقائق</p></div>
-      <!-- Payment -->
-      <div class="pay-row" style="margin-top:10px">
+      <div class="pay-row" style="margin-top:12px">
         <span>BINANCE ID: 760134995</span>
         <button class="copy-btn" onclick="copyText('760134995')"><span data-key="copy">نسخ</span></button>
       </div>
@@ -338,27 +326,26 @@ select:focus,input:focus{border-color:var(--primary);}
         <span>VISA: 4938755438550012</span>
         <button class="copy-btn" onclick="copyText('4938755438550012')"><span data-key="copy">نسخ</span></button>
       </div>
-      <!-- Name + send -->
-      <input type="text" id="clientName" placeholder="الاسم الكامل" data-key-placeholder="fullNamePlaceholder" style="margin-top:12px">
+      <input type="text" id="clientName" placeholder="الاسم الكامل" style="margin-top:12px">
       <button class="btn btn-green" onclick="sendSupport()" style="margin-top:2px"><span data-key="btnSendToSupport">إرسال للدعم الفني</span> ✅</button>
       <button class="modal-close" onclick="closePaymentModal()"><span data-key="btnClose">إغلاق</span></button>
     </div>
   </div>
 </div>
 
-<!-- ===== ADMIN LOGIN MODAL ===== -->
+<!-- ADMIN LOGIN -->
 <div class="modal-overlay" id="adminLoginModal">
   <div class="modal" style="max-width:340px;border-color:var(--primary)">
     <div class="modal-header"><p class="modal-title">🔐 <span data-key="adminTitle">لوحة التحكم</span></p></div>
     <div class="modal-body">
-      <input type="password" id="adminPassInput" placeholder="كلمة السر" data-key-placeholder="adminPassword" style="margin-bottom:10px">
+      <input type="password" id="adminPassInput" placeholder="كلمة السر" style="margin-bottom:10px">
       <button class="btn btn-primary" onclick="tryAdminLogin()"><span data-key="adminLogin">دخول</span></button>
       <button class="modal-close" onclick="closeAdminLogin()"><span data-key="btnClose">إغلاق</span></button>
     </div>
   </div>
 </div>
 
-<!-- ===== ADMIN PANEL ===== -->
+<!-- ADMIN PANEL -->
 <div class="admin-overlay" id="adminPanel">
   <div class="admin-header">
     <h2>🛡️ <span data-key="adminTitle">لوحة التحكم</span></h2>
@@ -370,19 +357,19 @@ select:focus,input:focus{border-color:var(--primary);}
     </button>
     <div class="add-form" id="addForm" style="display:none">
       <div class="form-grid2">
-        <input type="text" id="f_team1"  placeholder="الفريق الأول" data-key-placeholder="team1">
-        <input type="text" id="f_team2"  placeholder="الفريق الثاني" data-key-placeholder="team2">
+        <input type="text" id="f_team1" placeholder="الفريق الأول">
+        <input type="text" id="f_team2" placeholder="الفريق الثاني">
       </div>
-      <input type="text" id="f_predAr" placeholder="التوقع (عربي)" data-key-placeholder="predictionAr">
-      <input type="text" id="f_predEn" placeholder="التوقع (إنجليزي)" data-key-placeholder="predictionEn">
+      <input type="text" id="f_predAr" placeholder="التوقع (عربي)">
+      <input type="text" id="f_predEn" placeholder="Prediction (English)">
       <div class="form-grid2">
-        <input type="text" id="f_date" placeholder="التاريخ (2026-05-02)" data-key-placeholder="matchDateLabel">
-        <input type="text" id="f_time" placeholder="التوقيت (21:00)" data-key-placeholder="matchTimeLabel">
+        <input type="text" id="f_date" placeholder="2026-05-02">
+        <input type="text" id="f_time" placeholder="21:00">
       </div>
       <div class="form-grid2">
         <select id="f_type" style="margin-bottom:10px">
-          <option value="free"  data-ar="مجاني"  data-en="Free">مجاني</option>
-          <option value="vip"   data-ar="VIP"     data-en="VIP">VIP</option>
+          <option value="free" data-ar="مجاني" data-en="Free">مجاني</option>
+          <option value="vip"  data-ar="VIP"   data-en="VIP">VIP</option>
         </select>
         <input type="number" id="f_conf" placeholder="نسبة الدقة (%)" value="80" min="0" max="100">
       </div>
@@ -396,51 +383,45 @@ select:focus,input:focus{border-color:var(--primary);}
   </div>
 </div>
 
-<!-- ===== TELEGRAM ===== -->
+<!-- TELEGRAM -->
 <a href="https://t.me/+TGctJjTcepxlZTFk" target="_blank" rel="noopener noreferrer" class="tg-btn">
   🚀 <span data-key="telegramText">قناتنا تليجرام للمزيد من التوقعات</span>
 </a>
 
-<!-- ===== TOAST ===== -->
+<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
 <script>
-/* ═══════════════════════════════════════════
-   TRANSLATIONS
-═══════════════════════════════════════════ */
+/* ── TRANSLATIONS ── */
 const T = {
   ar:{
-    appTitle:"TiKOXPRO VIP",appSubtitle:"أقوى توقعات المباريات اليومية",
-    tabFree:"مجاني",tabVIP:"VIP",tabResults:"النتائج",
+    appTitle:"TiKOXPRO VIP", appSubtitle:"أقوى توقعات المباريات اليومية",
+    tabFree:"مجاني", tabResults:"النتائج",
     vipProSection:"قسم المحترفين",
     btnShowPaymentInfo:"إظهار معلومات الدفع والطلب",
-    subWeekly:"أسبوعي (2.99$)",subMonthly:"شهري (7.99$)",
-    btnActivate:"تفعيل الكود",invalidCode:"الكود غير صالح!",
+    btnActivate:"تفعيل الكود", invalidCode:"الكود غير صالح!",
     activatedSuccessfully:"تم التفعيل بنجاح",
-    expiresOn:"ينتهي في:",btnLogout:"تسجيل الخروج",
+    expiresOn:"ينتهي في:", btnLogout:"تسجيل الخروج",
     modalTitle:"📋 معلومات الدفع والطلب",
     step1:"الخطوة 1 — اختر طريقة الدفع وأرسل المبلغ",
     step2:"الخطوة 2 — أرسل رقم الطلب واسمك للدعم",
     step3:"الخطوة 3 — انتظر الكود على تليجرام خلال دقائق",
-    modalOrderId:"رقم الطلب:",fullNamePlaceholder:"الاسم الكامل",
-    btnSendToSupport:"إرسال للدعم الفني",btnClose:"إغلاق",
-    copied:"تم النسخ!",telegramText:"قناتنا تليجرام للمزيد من التوقعات",
-    loading:"جاري التحميل...",noMatches:"لا توجد مباريات اليوم",
-    noHistory:"لا توجد نتائج سابقة بعد",
-    adminTitle:"لوحة التحكم",adminPassword:"كلمة السر",
-    adminLogin:"دخول",adminWrongPass:"كلمة السر غير صحيحة",
-    addMatch:"إضافة مباراة",team1:"الفريق الأول",team2:"الفريق الثاني",
-    predictionAr:"التوقع (عربي)",predictionEn:"التوقع (إنجليزي)",
-    matchTimeLabel:"التوقيت (21:00)",matchDateLabel:"التاريخ (2026-05-02)",
-    confidenceLabel:"نسبة الدقة (%)",
-    save:"حفظ",cancel:"إلغاء",deleteConfirm:"تم الحذف",addSuccess:"تمت الإضافة",
-    freeType:"مجاني",vipType:"VIP",manageMatches:"إدارة المباريات",
-    markResult:"النتيجة:",won:"فاز ✅",lost:"خسر ❌",pending:"انتظار ⏳",
-    statsWinRate:"معدل الدقة",statsTotal:"إجمالي التوقعات",statsWon:"ناجح",statsLost:"فاشل",
+    modalOrderId:"رقم الطلب:", fullNamePlaceholder:"الاسم الكامل",
+    btnSendToSupport:"إرسال للدعم الفني", btnClose:"إغلاق",
+    copied:"تم النسخ!", telegramText:"قناتنا تليجرام للمزيد من التوقعات",
+    noMatches:"لا توجد مباريات اليوم", noHistory:"لا توجد نتائج سابقة بعد",
+    adminTitle:"لوحة التحكم", adminPassword:"كلمة السر",
+    adminLogin:"دخول", adminWrongPass:"كلمة السر غير صحيحة",
+    addMatch:"إضافة مباراة", save:"حفظ", cancel:"إلغاء",
+    deleteConfirm:"تم الحذف", addSuccess:"تمت الإضافة",
+    manageMatches:"إدارة المباريات",
+    markResult:"النتيجة:", won:"فاز ✅", lost:"خسر ❌", pending:"انتظار ⏳",
+    statsWinRate:"معدل الدقة", statsTotal:"إجمالي التوقعات",
+    statsWon:"ناجح", statsLost:"فاشل",
     historyTitle:"سجل النتائج السابقة",
     installApp:"ثبّت التطبيق 📲",
-    days:"أيام",hours:"ساعات",mins:"دقائق",secs:"ثواني",
-    liveNow:"🔴 يلعب الآن!",matchEnded:"انتهت",
+    days:"أيام", hours:"ساعات", mins:"دقائق", secs:"ثواني",
+    liveNow:"🔴 يلعب الآن!", matchEnded:"انتهت",
     aboutTitle:"عن الخدمة",
     aboutLine1:"توقعات يومية احترافية من فريق متخصص",
     aboutLine2:"اشتراك أسبوعي أو شهري بأسعار منخفضة",
@@ -449,37 +430,33 @@ const T = {
     copy:"نسخ",
   },
   en:{
-    appTitle:"TiKOXPRO VIP",appSubtitle:"Strongest Daily Match Predictions",
-    tabFree:"Free",tabVIP:"VIP",tabResults:"Results",
+    appTitle:"TiKOXPRO VIP", appSubtitle:"Strongest Daily Match Predictions",
+    tabFree:"Free", tabResults:"Results",
     vipProSection:"Pro Section",
     btnShowPaymentInfo:"Show Payment & Order Info",
-    subWeekly:"Weekly ($2.99)",subMonthly:"Monthly ($7.99)",
-    btnActivate:"Activate Code",invalidCode:"Invalid Code!",
+    btnActivate:"Activate Code", invalidCode:"Invalid Code!",
     activatedSuccessfully:"Activated Successfully",
-    expiresOn:"Expires on:",btnLogout:"Logout",
+    expiresOn:"Expires on:", btnLogout:"Logout",
     modalTitle:"📋 Payment & Order Info",
     step1:"Step 1 — Choose payment method and send amount",
     step2:"Step 2 — Send Order ID and your name to support",
     step3:"Step 3 — Wait for your code on Telegram in minutes",
-    modalOrderId:"Order ID:",fullNamePlaceholder:"Full Name",
-    btnSendToSupport:"Send to Support",btnClose:"Close",
-    copied:"Copied!",telegramText:"Telegram Channel for More Predictions",
-    loading:"Loading...",noMatches:"No matches today",
-    noHistory:"No results yet",
-    adminTitle:"Admin Panel",adminPassword:"Password",
-    adminLogin:"Login",adminWrongPass:"Wrong password",
-    addMatch:"Add Match",team1:"Team 1",team2:"Team 2",
-    predictionAr:"Prediction (Arabic)",predictionEn:"Prediction (English)",
-    matchTimeLabel:"Match Time (21:00)",matchDateLabel:"Date (2026-05-02)",
-    confidenceLabel:"Confidence (%)",
-    save:"Save",cancel:"Cancel",deleteConfirm:"Deleted",addSuccess:"Added Successfully",
-    freeType:"Free",vipType:"VIP",manageMatches:"Manage Matches",
-    markResult:"Result:",won:"Won ✅",lost:"Lost ❌",pending:"Pending ⏳",
-    statsWinRate:"Win Rate",statsTotal:"Total Predictions",statsWon:"Won",statsLost:"Lost",
+    modalOrderId:"Order ID:", fullNamePlaceholder:"Full Name",
+    btnSendToSupport:"Send to Support", btnClose:"Close",
+    copied:"Copied!", telegramText:"Telegram Channel for More Predictions",
+    noMatches:"No matches today", noHistory:"No results yet",
+    adminTitle:"Admin Panel", adminPassword:"Password",
+    adminLogin:"Login", adminWrongPass:"Wrong password",
+    addMatch:"Add Match", save:"Save", cancel:"Cancel",
+    deleteConfirm:"Deleted", addSuccess:"Added Successfully",
+    manageMatches:"Manage Matches",
+    markResult:"Result:", won:"Won ✅", lost:"Lost ❌", pending:"Pending ⏳",
+    statsWinRate:"Win Rate", statsTotal:"Total Predictions",
+    statsWon:"Won", statsLost:"Lost",
     historyTitle:"Past Results",
     installApp:"Install App 📲",
-    days:"d",hours:"h",mins:"m",secs:"s",
-    liveNow:"🔴 Live Now!",matchEnded:"Ended",
+    days:"d", hours:"h", mins:"m", secs:"s",
+    liveNow:"🔴 Live Now!", matchEnded:"Ended",
     aboutTitle:"About",
     aboutLine1:"Daily professional predictions from a specialist team",
     aboutLine2:"Weekly or monthly subscription at low prices",
@@ -489,138 +466,76 @@ const T = {
   }
 };
 
-/* ═══════════════════════════════════════════
-   STATE
-═══════════════════════════════════════════ */
-let lang = "ar", theme = "light", currentTab = "free";
-let allMatches = [], stats = null;
-let deferredInstall = null;
-const ADMIN_KEY = "TiKO-admin-2025";
-const cdIntervals = {};
+/* ── STATE ── */
+let lang="ar", theme="light", currentTab="free";
+let allMatches=[], stats=null;
+let deferredInstall=null;
+const ADMIN_KEY="TiKO-admin-2025";
+const cdIntervals={};
 
-/* ═══════════════════════════════════════════
-   INIT
-═══════════════════════════════════════════ */
-window.onload = async function(){
+/* ── INIT ── */
+window.onload=async function(){
   if(localStorage.getItem("tiko_theme")==="dark") applyTheme("dark");
-  const expiry = parseInt(localStorage.getItem("tiko_expiry")||"0",10);
-  if(expiry && Date.now()<expiry) showVipContent(expiry);
+  const expiry=parseInt(localStorage.getItem("tiko_expiry")||"0",10);
+  if(expiry&&Date.now()<expiry) showVipContent(expiry);
   applyTranslations();
   await loadData();
 };
-
-window.addEventListener("beforeinstallprompt", e=>{
+window.addEventListener("beforeinstallprompt",e=>{
   e.preventDefault(); deferredInstall=e;
   document.getElementById("installPrompt").classList.add("visible");
 });
 
-/* ═══════════════════════════════════════════
-   DATA (uses hardcoded sample if no API)
-═══════════════════════════════════════════ */
-// Sample data so the file works standalone (no server needed)
-const SAMPLE_MATCHES = [
-  {id:1,team1:"LASK Linz",team2:"Altach",predictionAr:"مجموع أهداف أكثر من (2)",predictionEn:"Total Goals Over (2)",type:"free",matchTime:"21:00",matchDate:todayStr(),confidence:82,result:"pending",isActive:true,createdAt:new Date().toISOString()},
-  {id:2,team1:"Mallorca",team2:"Girona",predictionAr:"هنديكاب (0) لـ جيرونا",predictionEn:"Handicap (0) Girona",type:"free",matchTime:"22:00",matchDate:todayStr(),confidence:78,result:"pending",isActive:true,createdAt:new Date().toISOString()},
-  {id:3,team1:"Burnley",team2:"Leeds",predictionAr:"ليدز لا تسجل في كلى الشوطين",predictionEn:"Leeds not to score in both halves",type:"vip",matchTime:"20:45",matchDate:todayStr(),confidence:91,result:"pending",isActive:true,createdAt:new Date().toISOString()},
-  {id:4,team1:"Real Madrid",team2:"Barcelona",predictionAr:"ريال مدريد يفوز",predictionEn:"Real Madrid to Win",type:"free",matchTime:"21:00",matchDate:"2026-04-28",confidence:85,result:"won",isActive:false,createdAt:new Date("2026-04-28").toISOString()},
-  {id:5,team1:"PSG",team2:"Bayern",predictionAr:"كلا الفريقين يسجلان",predictionEn:"Both Teams to Score",type:"vip",matchTime:"20:45",matchDate:"2026-04-28",confidence:88,result:"won",isActive:false,createdAt:new Date("2026-04-28").toISOString()},
-  {id:6,team1:"Arsenal",team2:"Chelsea",predictionAr:"أرسنال بدون هزيمة",predictionEn:"Arsenal Not to Lose",type:"free",matchTime:"18:30",matchDate:"2026-04-27",confidence:76,result:"lost",isActive:false,createdAt:new Date("2026-04-27").toISOString()},
-  {id:7,team1:"Liverpool",team2:"Man City",predictionAr:"ليفربول يفوز",predictionEn:"Liverpool to Win",type:"vip",matchTime:"17:30",matchDate:"2026-04-27",confidence:91,result:"won",isActive:false,createdAt:new Date("2026-04-27").toISOString()},
-  {id:8,team1:"Atletico",team2:"Sevilla",predictionAr:"مجموع أهداف أقل من 3",predictionEn:"Under 3 Goals",type:"free",matchTime:"22:00",matchDate:"2026-04-25",confidence:80,result:"won",isActive:false,createdAt:new Date("2026-04-25").toISOString()},
-  {id:9,team1:"Inter",team2:"Juventus",predictionAr:"إنتر يفوز أو تعادل",predictionEn:"Inter Win or Draw",type:"vip",matchTime:"21:00",matchDate:"2026-04-25",confidence:83,result:"lost",isActive:false,createdAt:new Date("2026-04-25").toISOString()},
-];
-
+/* ── DATA ── */
 function todayStr(){ return new Date().toISOString().split("T")[0]; }
-
 function computeStats(matches){
-  const decided = matches.filter(m=>m.result!=="pending");
-  const won = matches.filter(m=>m.result==="won").length;
-  const lost = matches.filter(m=>m.result==="lost").length;
-  const pending = matches.filter(m=>m.result==="pending").length;
-  const winRate = decided.length>0 ? Math.round(won/decided.length*100) : 0;
-  return {total:matches.length, won, lost, pending, winRate};
+  const decided=matches.filter(m=>m.result!=="pending");
+  const won=matches.filter(m=>m.result==="won").length;
+  const lost=matches.filter(m=>m.result==="lost").length;
+  const winRate=decided.length>0?Math.round(won/decided.length*100):0;
+  return {total:matches.length,won,lost,pending:matches.filter(m=>m.result==="pending").length,winRate};
 }
 
 async function loadData(){
-  // Try API first, fall back to sample data
   try {
-    const [mRes,sRes] = await Promise.all([
-      fetch("/api/matches").then(r=>r.ok?r.json():null),
+    const [mRes,sRes]=await Promise.all([
+      fetch("/api/matches?type=all").then(r=>r.ok?r.json():null),
       fetch("/api/matches/stats").then(r=>r.ok?r.json():null),
     ]);
-    if(mRes && Array.isArray(mRes)) { allMatches=mRes; stats=sRes; }
+    if(mRes&&Array.isArray(mRes)){ allMatches=mRes; stats=sRes; }
     else throw new Error("no api");
   } catch {
-    allMatches = SAMPLE_MATCHES;
-    stats = computeStats(allMatches);
+    allMatches=[]; stats={total:0,won:0,lost:0,pending:0,winRate:0};
   }
-  renderStats();
-  renderMatches();
+  renderStats(); renderMatches();
 }
 
-/* ═══════════════════════════════════════════
-   RENDER STATS
-═══════════════════════════════════════════ */
+/* ── STATS ── */
 function renderStats(){
-  const t=T[lang]; if(!stats||stats.total===0){ document.getElementById("statsGrid").style.display="none"; return; }
-  document.getElementById("statsGrid").style.display="grid";
-  document.getElementById("statsGrid").innerHTML=`
+  const t=T[lang], g=document.getElementById("statsGrid");
+  if(!stats||stats.total===0){ g.style.display="none"; return; }
+  g.style.display="grid";
+  g.innerHTML=`
     <div class="stat-card"><div class="stat-val c-green">${stats.winRate}%</div><div class="stat-label">${t.statsWinRate}</div></div>
     <div class="stat-card"><div class="stat-val c-primary">${stats.total}</div><div class="stat-label">${t.statsTotal}</div></div>
     <div class="stat-card"><div class="stat-val c-green">${stats.won}</div><div class="stat-label">${t.statsWon}</div></div>
-    <div class="stat-card"><div class="stat-val c-red">${stats.lost}</div><div class="stat-label">${t.statsLost}</div></div>
-  `;
+    <div class="stat-card"><div class="stat-val c-red">${stats.lost}</div><div class="stat-label">${t.statsLost}</div></div>`;
 }
 
-/* ═══════════════════════════════════════════
-   RENDER MATCHES
-═══════════════════════════════════════════ */
-function renderMatches(){
-  const t=T[lang];
-  const active = allMatches.filter(m=>m.isActive);
-  const free = active.filter(m=>m.type==="free");
-  const vip  = active.filter(m=>m.type==="vip");
-  const hist = allMatches.filter(m=>m.result!=="pending").sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
-
-  // clear countdown intervals
-  Object.keys(cdIntervals).forEach(k=>clearInterval(cdIntervals[k]));
-
-  // FREE
-  document.getElementById("freeMatchesContainer").innerHTML =
-    free.length===0 ? `<p style="text-align:center;padding:30px;color:var(--text-muted)">${t.noMatches}</p>`
-    : free.map(m=>matchCardHTML(m)).join("");
-
-  // VIP
-  document.getElementById("vipMatchesContainer").innerHTML =
-    vip.length===0 ? `<p style="text-align:center;padding:20px;color:var(--text-muted)">${t.noMatches}</p>`
-    : vip.map(m=>matchCardHTML(m,true)).join("");
-
-  // History
-  document.getElementById("historyContainer").innerHTML =
-    hist.length===0 ? `<p style="text-align:center;padding:30px;color:var(--text-muted)">${t.noHistory}</p>`
-    : hist.map(m=>resultCardHTML(m)).join("");
-
-  // Admin list
-  renderAdminList();
-
-  // Start countdowns
-  active.forEach(m=>{ if(m.matchDate||m.matchTime) startCountdown(m); });
-}
-
+/* ── RENDER MATCHES ── */
 function confColor(v){ return v>=85?"#27ae60":v>=70?"#f1c40f":"#e74c3c"; }
 
-function matchCardHTML(m, isVip=false){
-  const pred = lang==="ar" ? m.predictionAr : m.predictionEn;
-  const color = confColor(m.confidence||80);
-  const confBar = m.confidence!=null ? `
+function matchCardHTML(m,isVip=false){
+  const pred=lang==="ar"?m.predictionAr:m.predictionEn;
+  const color=confColor(m.confidence||80);
+  const confBar=m.confidence!=null?`
     <div class="conf-row">
       <span style="font-size:13px;color:${color}">🎯</span>
       <div class="conf-bar-track"><div class="conf-bar-fill" style="width:${m.confidence}%;background:${isVip?"linear-gradient(90deg,#f1c40f,#f39c12)":color}"></div></div>
       <span class="conf-val" style="color:${color}">${m.confidence}%</span>
-    </div>` : "";
-  const cdHtml = `<div class="countdown" id="cd-${m.id}">
-    ${m.matchTime?`<span style="font-size:11px;color:var(--text-muted);display:flex;align-items:center;gap:4px">🕐 ${m.matchTime}</span>`:""}
-  </div>`;
+    </div>`:"";
+  const cdHtml=`<div class="countdown" id="cd-${m.id}">
+    ${m.matchTime?`<span style="font-size:11px;color:var(--text-muted)">🕐 ${m.matchTime}</span>`:""}</div>`;
   return `
   <div class="match-card${isVip?" vip-card":""}">
     <div class="teams-row">
@@ -634,72 +549,76 @@ function matchCardHTML(m, isVip=false){
 }
 
 function resultCardHTML(m){
-  const pred = lang==="ar" ? m.predictionAr : m.predictionEn;
-  const icon = m.result==="won"?"✅":m.result==="lost"?"❌":"⏳";
-  const cls  = m.result==="won"?"won":m.result==="lost"?"lost":"";
-  const conf = m.confidence!=null?`<span>🎯 ${m.confidence}%</span>`:"";
-  const date = m.matchDate?`<span>📅 ${m.matchDate}</span>`:"";
+  const pred=lang==="ar"?m.predictionAr:m.predictionEn;
+  const icon=m.result==="won"?"✅":m.result==="lost"?"❌":"⏳";
+  const cls=m.result==="won"?"won":m.result==="lost"?"lost":"";
   return `
   <div class="result-card ${cls}">
     <div class="result-icon">${icon}</div>
     <div style="flex:1;min-width:0">
       <div class="result-teams">${m.team1} vs ${m.team2}</div>
       <div class="result-pred">${pred}</div>
-      <div class="result-meta">${date}${conf}<span class="result-badge">${m.type.toUpperCase()}</span></div>
+      <div class="result-meta">
+        ${m.matchDate?`<span>📅 ${m.matchDate}</span>`:""}
+        ${m.confidence!=null?`<span>🎯 ${m.confidence}%</span>`:""}
+        <span class="result-badge">${m.type.toUpperCase()}</span>
+      </div>
     </div>
   </div>`;
 }
 
-/* ═══════════════════════════════════════════
-   COUNTDOWN
-═══════════════════════════════════════════ */
+function renderMatches(){
+  const t=T[lang];
+  Object.keys(cdIntervals).forEach(k=>clearInterval(cdIntervals[k]));
+  const active=allMatches.filter(m=>m.isActive);
+  const free=active.filter(m=>m.type==="free");
+  const vip=active.filter(m=>m.type==="vip");
+  const hist=allMatches.filter(m=>m.result!=="pending").sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
+  document.getElementById("freeMatchesContainer").innerHTML=
+    free.length===0?`<p style="text-align:center;padding:40px;color:var(--text-muted);font-weight:700">${t.noMatches}</p>`:free.map(m=>matchCardHTML(m)).join("");
+  document.getElementById("vipMatchesContainer").innerHTML=
+    vip.length===0?`<p style="text-align:center;padding:20px;color:var(--text-muted);font-weight:700">${t.noMatches}</p>`:vip.map(m=>matchCardHTML(m,true)).join("");
+  document.getElementById("historyContainer").innerHTML=
+    hist.length===0?`<p style="text-align:center;padding:40px;color:var(--text-muted);font-weight:700">${t.noHistory}</p>`:hist.map(m=>resultCardHTML(m)).join("");
+  renderAdminList();
+  active.forEach(m=>startCountdown(m));
+}
+
+/* ── COUNTDOWN ── */
 function startCountdown(m){
-  const el = ()=>document.getElementById(`cd-${m.id}`);
-  const t = T[lang];
+  const t=T[lang];
   const tick=()=>{
-    const e=el(); if(!e) return clearInterval(cdIntervals[m.id]);
-    const dateStr = m.matchDate||new Date().toISOString().split("T")[0];
-    const timeStr = m.matchTime||"00:00";
-    const target  = new Date(`${dateStr}T${timeStr}:00`).getTime();
-    const diff    = target - Date.now();
+    const el=document.getElementById(`cd-${m.id}`); if(!el) return clearInterval(cdIntervals[m.id]);
+    const target=new Date(`${m.matchDate||todayStr()}T${m.matchTime||"00:00"}:00`).getTime();
+    const diff=target-Date.now();
     if(diff>0){
       const d=Math.floor(diff/86400000),h=Math.floor(diff%86400000/3600000),
             mi=Math.floor(diff%3600000/60000),s=Math.floor(diff%60000/1000);
-      e.innerHTML=(d>0?`<span class="cd-pill">${String(d).padStart(2,"0")}<span>${t.days}</span></span>`:"")+
+      el.innerHTML=(d>0?`<span class="cd-pill">${String(d).padStart(2,"0")}<span>${t.days}</span></span>`:"")+
         `<span class="cd-pill">${String(h).padStart(2,"0")}<span>${t.hours}</span></span>`+
         `<span class="cd-pill">${String(mi).padStart(2,"0")}<span>${t.mins}</span></span>`+
         `<span class="cd-pill">${String(s).padStart(2,"0")}<span>${t.secs}</span></span>`;
     } else if(diff>-5400000){
-      e.innerHTML=`<span class="live-badge">${t.liveNow}</span>`;
+      el.innerHTML=`<span class="live-badge">${t.liveNow}</span>`;
     } else {
-      e.innerHTML=`<span style="font-size:11px;color:var(--text-muted)">${t.matchEnded}</span>`;
+      el.innerHTML=`<span style="font-size:11px;color:var(--text-muted)">${t.matchEnded}</span>`;
       clearInterval(cdIntervals[m.id]);
     }
   };
-  tick();
-  cdIntervals[m.id]=setInterval(tick,1000);
+  tick(); cdIntervals[m.id]=setInterval(tick,1000);
 }
 
-/* ═══════════════════════════════════════════
-   TABS
-═══════════════════════════════════════════ */
+/* ── TABS ── */
 function showTab(tab){
   currentTab=tab;
-  ["free","vip","results"].forEach(s=>{
-    document.getElementById(`sec-${s}`).classList.toggle("active",s===tab);
-  });
+  ["free","vip","results"].forEach(s=>document.getElementById(`sec-${s}`).classList.toggle("active",s===tab));
   document.getElementById("tabFreeBtn").className="tab-btn"+(tab==="free"?" active-free":"");
   document.getElementById("tabVipBtn").className ="tab-btn"+(tab==="vip" ?" active-vip" :"");
   document.getElementById("tabResBtn").className ="tab-btn"+(tab==="results"?" active-results":"");
-  if(tab==="vip"){
-    const expiry=parseInt(localStorage.getItem("tiko_expiry")||"0",10);
-    if(expiry&&Date.now()<expiry) showVipContent(expiry);
-  }
+  if(tab==="vip"){const e=parseInt(localStorage.getItem("tiko_expiry")||"0",10);if(e&&Date.now()<e)showVipContent(e);}
 }
 
-/* ═══════════════════════════════════════════
-   VIP ACTIVATION
-═══════════════════════════════════════════ */
+/* ── VIP ── */
 function activateCode(){
   const input=document.getElementById("codeInput").value.trim();
   const devSeq=parseInt(localStorage.getItem("tiko_dev_seq")||"1",10);
@@ -708,11 +627,8 @@ function activateCode(){
     const expiry=Date.now()+days*86400000;
     localStorage.setItem("tiko_expiry",expiry.toString());
     localStorage.setItem("tiko_dev_seq",(devSeq+1).toString());
-    showToast(T[lang].activatedSuccessfully,"success");
-    showVipContent(expiry);
-  } else {
-    showToast(T[lang].invalidCode,"error");
-  }
+    showToast(T[lang].activatedSuccessfully,"success"); showVipContent(expiry);
+  } else showToast(T[lang].invalidCode,"error");
 }
 function showVipContent(expiry){
   document.getElementById("vip-gate").style.display="none";
@@ -727,32 +643,25 @@ function logout(){
   document.getElementById("codeInput").value="";
 }
 
-/* ═══════════════════════════════════════════
-   PAYMENT MODAL
-═══════════════════════════════════════════ */
+/* ── PAYMENT ── */
 function openPaymentModal(){
-  const rid="TKO-"+Math.random().toString(36).substr(2,6).toUpperCase();
-  document.getElementById("orderIdDisplay").textContent=rid;
+  document.getElementById("orderIdDisplay").textContent="#TKO-"+Math.random().toString(36).substr(2,6).toUpperCase();
   document.getElementById("clientName").value="";
   document.getElementById("payModal").classList.add("open");
 }
 function closePaymentModal(){ document.getElementById("payModal").classList.remove("open"); }
 document.addEventListener("click",e=>{ if(e.target===document.getElementById("payModal")) closePaymentModal(); });
-
 function sendSupport(){
   const name=document.getElementById("clientName").value.trim();
   const order=document.getElementById("orderIdDisplay").textContent;
   if(!name){showToast(T[lang].fullNamePlaceholder,"error");return;}
-  window.open(`https://t.me/TiKO_SUPPORT?text=${encodeURIComponent("Order ID: "+order+"\nName: "+name)},"_blank"`);
+  window.open(`https://t.me/TiKO_SUPPORT?text=${encodeURIComponent("Order ID: "+order+"\nName: "+name)}`,"_blank");
 }
 
-/* ═══════════════════════════════════════════
-   ADMIN
-═══════════════════════════════════════════ */
+/* ── ADMIN ── */
 function openAdminLogin(){ document.getElementById("adminPassInput").value=""; document.getElementById("adminLoginModal").classList.add("open"); }
 function closeAdminLogin(){ document.getElementById("adminLoginModal").classList.remove("open"); }
 document.addEventListener("click",e=>{ if(e.target===document.getElementById("adminLoginModal")) closeAdminLogin(); });
-
 function tryAdminLogin(){
   const pass=document.getElementById("adminPassInput").value;
   if(pass===ADMIN_KEY){ closeAdminLogin(); document.getElementById("adminPanel").classList.add("open"); renderAdminList(); }
@@ -760,53 +669,40 @@ function tryAdminLogin(){
 }
 document.getElementById("adminPassInput").addEventListener("keydown",e=>{ if(e.key==="Enter") tryAdminLogin(); });
 function closeAdmin(){ document.getElementById("adminPanel").classList.remove("open"); loadData(); }
-
-function toggleAddForm(){
-  const f=document.getElementById("addForm");
-  f.style.display=f.style.display==="none"?"block":"none";
-}
+function toggleAddForm(){ const f=document.getElementById("addForm"); f.style.display=f.style.display==="none"?"block":"none"; }
 
 function renderAdminList(){
-  const t=T[lang];
-  const el=document.getElementById("adminMatchList"); if(!el)return;
-  if(allMatches.length===0){el.innerHTML=`<p style="text-align:center;padding:20px;color:var(--text-muted)">${t.noMatches}</p>`;return;}
+  const t=T[lang]; const el=document.getElementById("adminMatchList"); if(!el) return;
+  if(allMatches.length===0){
+    el.innerHTML=`<p style="text-align:center;padding:30px;color:var(--text-muted);font-weight:700">${t.noMatches}</p>`;return;
+  }
   el.innerHTML=allMatches.map(m=>`
     <div class="admin-match-card" id="adm-${m.id}">
-      <div class="admin-match-info">
-        <div class="admin-match-title">${m.team1} vs ${m.team2}
-          <span class="tag${m.type==="vip"?" tag-vip":""}">${m.type.toUpperCase()}</span>
-          ${m.matchDate?`<span style="font-size:10px;color:var(--text-muted);margin-right:4px">📅 ${m.matchDate}</span>`:""}
-        </div>
+      <div>
+        <div class="admin-match-title">${m.team1} vs ${m.team2} <span class="tag${m.type==="vip"?" tag-vip":""}">${m.type.toUpperCase()}</span>${m.matchDate?`<span style="font-size:10px;color:var(--text-muted);margin-right:6px">📅 ${m.matchDate}</span>`:""}</div>
         <div class="admin-match-pred">${lang==="ar"?m.predictionAr:m.predictionEn}</div>
       </div>
       <div class="admin-actions">
         <span style="font-size:11px;color:var(--text-muted);font-weight:700">${t.markResult}</span>
         ${["won","lost","pending"].map(r=>`<button class="result-btn${m.result===r?" active":""}" onclick="setResult(${m.id},'${r}')">${t[r]}</button>`).join("")}
-        <button class="del-btn" onclick="deleteMatch(${m.id})" style="margin-right:auto">🗑️</button>
+        <button class="del-btn" onclick="deleteMatch(${m.id})">🗑️</button>
       </div>
-    </div>
-  `).join("");
+    </div>`).join("");
 }
 
 function setResult(id,result){
-  const m=allMatches.find(x=>x.id===id); if(!m)return;
+  const m=allMatches.find(x=>x.id===id); if(!m) return;
   m.result=result;
-  // Try API
   fetch(`/api/matches/${id}/result`,{method:"PATCH",headers:{"Content-Type":"application/json","x-admin-key":ADMIN_KEY},body:JSON.stringify({result})}).catch(()=>{});
-  stats=computeStats(allMatches);
-  renderAdminList(); renderStats(); renderMatches();
+  stats=computeStats(allMatches); renderAdminList(); renderStats(); renderMatches();
 }
-
 function deleteMatch(id){
   allMatches=allMatches.filter(m=>m.id!==id);
   fetch(`/api/matches/${id}`,{method:"DELETE",headers:{"x-admin-key":ADMIN_KEY}}).catch(()=>{});
-  stats=computeStats(allMatches);
-  showToast(T[lang].deleteConfirm,"success");
+  stats=computeStats(allMatches); showToast(T[lang].deleteConfirm,"success");
   renderAdminList(); renderStats(); renderMatches();
 }
-
 async function submitMatch(){
-  const t=T[lang];
   const team1=document.getElementById("f_team1").value.trim();
   const team2=document.getElementById("f_team2").value.trim();
   const predAr=document.getElementById("f_predAr").value.trim();
@@ -815,37 +711,28 @@ async function submitMatch(){
   const matchDate=document.getElementById("f_date").value.trim();
   const matchTime=document.getElementById("f_time").value.trim();
   const confidence=parseInt(document.getElementById("f_conf").value)||80;
-  if(!team1||!team2||!predAr||!predEn){return;}
-
-  const newMatch={id:Date.now(),team1,team2,predictionAr:predAr,predictionEn:predEn,type,matchDate:matchDate||null,matchTime:matchTime||null,confidence,result:"pending",isActive:true,createdAt:new Date().toISOString()};
-  // Try API
+  if(!team1||!team2||!predAr||!predEn) return;
+  const nm={id:Date.now(),team1,team2,predictionAr:predAr,predictionEn:predEn,type,matchDate:matchDate||null,matchTime:matchTime||null,confidence,result:"pending",isActive:true,createdAt:new Date().toISOString()};
   try {
     const res=await fetch("/api/matches",{method:"POST",headers:{"Content-Type":"application/json","x-admin-key":ADMIN_KEY},body:JSON.stringify({team1,team2,predictionAr:predAr,predictionEn:predEn,type,matchDate:matchDate||null,matchTime:matchTime||null,confidence,isActive:true})});
-    if(res.ok){ const created=await res.json(); newMatch.id=created.id; }
+    if(res.ok){ const c=await res.json(); nm.id=c.id; }
   } catch {}
-
-  allMatches.unshift(newMatch);
-  stats=computeStats(allMatches);
-  showToast(t.addSuccess,"success");
+  allMatches.unshift(nm); stats=computeStats(allMatches);
+  showToast(T[lang].addSuccess,"success");
   document.getElementById("addForm").style.display="none";
   ["f_team1","f_team2","f_predAr","f_predEn","f_date","f_time"].forEach(id=>document.getElementById(id).value="");
   document.getElementById("f_conf").value="80";
   renderAdminList(); renderStats(); renderMatches();
 }
 
-/* ═══════════════════════════════════════════
-   ABOUT TOGGLE
-═══════════════════════════════════════════ */
+/* ── ABOUT ── */
 function toggleAbout(){
-  const b=document.getElementById("aboutBody");
-  const open=b.style.display!=="none";
+  const b=document.getElementById("aboutBody"),open=b.style.display!=="none";
   b.style.display=open?"none":"block";
   document.getElementById("aboutArrow").textContent=open?"▼":"▲";
 }
 
-/* ═══════════════════════════════════════════
-   COPY
-═══════════════════════════════════════════ */
+/* ── COPY ── */
 function copyText(text){
   navigator.clipboard.writeText(text).catch(()=>{
     const el=document.createElement("textarea");el.value=text;document.body.appendChild(el);el.select();document.execCommand("copy");document.body.removeChild(el);
@@ -853,70 +740,35 @@ function copyText(text){
   showToast(T[lang].copied,"success");
 }
 
-/* ═══════════════════════════════════════════
-   THEME
-═══════════════════════════════════════════ */
-function applyTheme(t){
-  theme=t;
-  document.documentElement.setAttribute("data-theme",t==="dark"?"dark":"");
-  document.getElementById("themeBtn").textContent=t==="dark"?"☀️":"🌙";
-  localStorage.setItem("tiko_theme",t);
-}
+/* ── THEME ── */
+function applyTheme(t){ theme=t; document.documentElement.setAttribute("data-theme",t==="dark"?"dark":""); document.getElementById("themeBtn").textContent=t==="dark"?"☀️":"🌙"; localStorage.setItem("tiko_theme",t); }
 function toggleTheme(){ applyTheme(theme==="dark"?"light":"dark"); }
 
-/* ═══════════════════════════════════════════
-   LANGUAGE
-═══════════════════════════════════════════ */
+/* ── LANGUAGE ── */
 function toggleLang(){
   lang=lang==="ar"?"en":"ar";
   document.documentElement.lang=lang;
   document.documentElement.dir=lang==="ar"?"rtl":"ltr";
-  applyTranslations();
-  renderStats();
-  renderMatches();
+  applyTranslations(); renderStats(); renderMatches();
 }
-
 function applyTranslations(){
   const t=T[lang];
   document.getElementById("appTitle").textContent=t.appTitle;
   document.getElementById("appSubtitle").textContent=t.appSubtitle;
-  document.querySelectorAll("[data-key]").forEach(el=>{
-    const k=el.getAttribute("data-key");
-    if(t[k]!==undefined) el.textContent=t[k];
-  });
-  document.querySelectorAll("option[data-ar]").forEach(el=>{
-    el.textContent=el.getAttribute("data-"+lang);
-  });
-  document.querySelectorAll("select option[data-ar]").forEach(el=>{
-    el.textContent=el.getAttribute("data-"+lang)||el.textContent;
-  });
-  const cn=document.getElementById("clientName");
-  if(cn) cn.placeholder=t.fullNamePlaceholder;
-  const ap=document.getElementById("adminPassInput");
-  if(ap) ap.placeholder=t.adminPassword;
+  document.querySelectorAll("[data-key]").forEach(el=>{ const k=el.getAttribute("data-key"); if(t[k]!==undefined) el.textContent=t[k]; });
+  document.querySelectorAll("option[data-ar]").forEach(el=>{ el.textContent=el.getAttribute("data-"+lang)||el.textContent; });
 }
 
-/* ═══════════════════════════════════════════
-   PWA INSTALL
-═══════════════════════════════════════════ */
-function installApp(){
-  if(deferredInstall){ deferredInstall.prompt(); deferredInstall=null; }
-  document.getElementById("installPrompt").classList.remove("visible");
-}
-function dismissInstall(){
-  document.getElementById("installPrompt").classList.remove("visible");
-}
+/* ── PWA ── */
+function installApp(){ if(deferredInstall){ deferredInstall.prompt(); deferredInstall=null; } document.getElementById("installPrompt").classList.remove("visible"); }
+function dismissInstall(){ document.getElementById("installPrompt").classList.remove("visible"); }
 
-/* ═══════════════════════════════════════════
-   TOAST
-═══════════════════════════════════════════ */
+/* ── TOAST ── */
 let toastTimer;
 function showToast(msg,type){
   const toast=document.getElementById("toast");
-  toast.textContent=msg;
-  toast.className="toast show "+(type||"");
-  clearTimeout(toastTimer);
-  toastTimer=setTimeout(()=>{ toast.className="toast"; },2800);
+  toast.textContent=msg; toast.className="toast show "+(type||"");
+  clearTimeout(toastTimer); toastTimer=setTimeout(()=>{ toast.className="toast"; },2800);
 }
 </script>
 </body>
