@@ -45,7 +45,6 @@ body{
   background-size:100% 100%,100% 100%,100% 100%,22px 22px;
   background-repeat:no-repeat,no-repeat,no-repeat,repeat;
 }
-/* HEADER */
 header{background:linear-gradient(135deg,var(--dark-purple),var(--primary));color:#fff;padding:3rem 1rem 2rem;text-align:center;position:relative;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.18);}
 header::before{content:'';position:absolute;top:-40px;right:-40px;width:140px;height:140px;background:rgba(255,255,255,.10);border-radius:50%;filter:blur(20px);}
 header::after{content:'';position:absolute;bottom:-40px;left:-40px;width:160px;height:160px;background:rgba(241,196,15,.18);border-radius:50%;filter:blur(30px);}
@@ -56,7 +55,10 @@ header p{font-size:1.05rem;font-weight:700;opacity:.9;margin-top:.4rem;position:
 .icon-btn:hover{background:rgba(255,255,255,.35);}
 .admin-btn{position:absolute;top:14px;right:14px;background:transparent;border:none;color:rgba(255,255,255,.3);cursor:pointer;font-size:1.1rem;transition:color .2s;z-index:10;}
 .admin-btn:hover{color:#fff;}
-/* CONTAINER */
+/* LIVE DOT */
+.live-dot{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#27ae60;margin-top:6px;}
+.live-dot::before{content:'';width:7px;height:7px;background:#27ae60;border-radius:50%;animation:blink 1.4s infinite;}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
 .container{max-width:520px;margin:auto;padding:1rem;}
 /* STATS */
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0;}
@@ -192,9 +194,6 @@ select:focus,input:focus{border-color:var(--primary);}
 .install-btns button{font-family:'Cairo',sans-serif;font-weight:900;border:none;cursor:pointer;border-radius:8px;padding:7px 12px;font-size:.8rem;}
 .install-yes{background:#fff;color:var(--primary);}
 .install-no{background:rgba(255,255,255,.2);color:#fff;}
-/* SAVING INDICATOR */
-.saving-badge{display:none;font-size:11px;font-weight:900;color:var(--primary);background:rgba(108,92,231,.1);border:1px solid rgba(108,92,231,.2);border-radius:20px;padding:3px 10px;margin-bottom:10px;text-align:center;}
-.saving-badge.visible{display:block;}
 </style>
 </head>
 <body>
@@ -215,15 +214,14 @@ select:focus,input:focus{border-color:var(--primary);}
     <button class="icon-btn" onclick="toggleLang()">🌐</button>
   </div>
   <button class="admin-btn" onclick="openAdminLogin()">⚙️</button>
-  <h1 id="appTitle">TiKOXPRO VIP</h1>
+  <h1>TiKOXPRO VIP</h1>
   <p id="appSubtitle">أقوى توقعات المباريات اليومية</p>
+  <div class="live-dot" id="liveDot" style="justify-content:center;display:none">مباشر — يتحدث تلقائياً</div>
 </header>
 
 <div class="container">
-  <!-- STATS -->
   <div class="stats-grid" id="statsGrid" style="display:none"></div>
 
-  <!-- TABS -->
   <div class="tabs">
     <button class="tab-btn active-free" id="tabFreeBtn" onclick="showTab('free')">مجاني</button>
     <button class="tab-btn" id="tabVipBtn" onclick="showTab('vip')">👑 VIP</button>
@@ -324,12 +322,7 @@ select:focus,input:focus{border-color:var(--primary);}
     <button class="icon-btn" onclick="closeAdmin()">✕</button>
   </div>
   <div class="admin-container">
-    <div class="saving-badge" id="savingBadge">⏳ جاري الحفظ...</div>
-
-    <button class="btn btn-gold" onclick="toggleAddForm()" style="margin-bottom:14px">
-      + إضافة مباراة
-    </button>
-
+    <button class="btn btn-gold" onclick="toggleAddForm()" style="margin-bottom:14px">+ إضافة مباراة</button>
     <div class="add-form" id="addForm" style="display:none">
       <div class="form-grid2">
         <input type="text" id="f_team1" placeholder="الفريق الأول">
@@ -353,7 +346,6 @@ select:focus,input:focus{border-color:var(--primary);}
         <button class="btn btn-outline" onclick="toggleAddForm()" style="flex:1">إلغاء</button>
       </div>
     </div>
-
     <h3 style="font-weight:900;margin-bottom:12px">إدارة المباريات</h3>
     <div id="adminMatchList"></div>
   </div>
@@ -364,62 +356,74 @@ select:focus,input:focus{border-color:var(--primary);}
   🚀 قناتنا تليجرام للمزيد من التوقعات
 </a>
 
-<!-- TOAST -->
 <div class="toast" id="toast"></div>
 
 <script>
-/* ── STATE ── */
-let lang = "ar", theme = "light", currentTab = "free";
-let allMatches = [];
-let stats = null;
+/* ══════════════════════════════════════════
+   STATE
+══════════════════════════════════════════ */
+let lang = "ar", theme = "light";
+let allMatches = [], stats = null;
 let apiAvailable = false;
 let deferredInstall = null;
+let autoRefreshTimer = null;
+let adminOpen = false;
 const ADMIN_KEY = "TiKO-admin-2025";
 const cdIntervals = {};
 
-const LABELS = {
-  ar: {
-    noMatches:"لا توجد مباريات اليوم", noHistory:"لا توجد نتائج سابقة بعد",
-    adminWrongPass:"كلمة السر غير صحيحة", invalidCode:"الكود غير صالح!",
-    activatedSuccessfully:"تم التفعيل بنجاح", deleteConfirm:"تم الحذف",
-    addSuccess:"تمت الإضافة", copied:"تم النسخ!",
-    statsWinRate:"معدل الدقة", statsTotal:"إجمالي التوقعات",
-    statsWon:"ناجح", statsLost:"فاشل",
-    days:"أيام", hours:"ساعات", mins:"دقائق", secs:"ثواني",
-    liveNow:"🔴 يلعب الآن!", matchEnded:"انتهت",
-    won:"فاز ✅", lost:"خسر ❌", pending:"انتظار ⏳",
-    markResult:"النتيجة:", appSubtitle:"أقوى توقعات المباريات اليومية",
-  },
-  en: {
-    noMatches:"No matches today", noHistory:"No results yet",
-    adminWrongPass:"Wrong password", invalidCode:"Invalid Code!",
-    activatedSuccessfully:"Activated Successfully", deleteConfirm:"Deleted",
-    addSuccess:"Added Successfully", copied:"Copied!",
-    statsWinRate:"Win Rate", statsTotal:"Total Predictions",
-    statsWon:"Won", statsLost:"Lost",
-    days:"d", hours:"h", mins:"m", secs:"s",
-    liveNow:"🔴 Live Now!", matchEnded:"Ended",
-    won:"Won ✅", lost:"Lost ❌", pending:"Pending ⏳",
-    markResult:"Result:", appSubtitle:"Strongest Daily Match Predictions",
-  }
-};
-
-/* ── INIT ── */
+/* ══════════════════════════════════════════
+   INIT
+══════════════════════════════════════════ */
 window.onload = async function(){
   if(localStorage.getItem("tiko_theme")==="dark") applyTheme("dark");
   if(localStorage.getItem("tiko_lang")==="en"){ lang="en"; applyLangAttrs(); }
   const expiry = parseInt(localStorage.getItem("tiko_expiry")||"0",10);
   if(expiry && Date.now()<expiry) showVipContent(expiry);
   await loadData();
+  startAutoRefresh();  /* ← تحديث تلقائي كل 30 ثانية */
 };
+
 window.addEventListener("beforeinstallprompt", e=>{
-  e.preventDefault(); deferredInstall=e;
+  e.preventDefault(); deferredInstall = e;
   document.getElementById("installPrompt").classList.add("visible");
 });
 
-/* ── DATA ── */
-function todayStr(){ return new Date().toISOString().split("T")[0]; }
+/* ══════════════════════════════════════════
+   AUTO-REFRESH — كل 30 ثانية
+   يجلب أحدث التوقعات تلقائياً لجميع المستخدمين
+   بدون الحاجة لإعادة تحميل الصفحة
+══════════════════════════════════════════ */
+function startAutoRefresh(){
+  if(autoRefreshTimer) clearInterval(autoRefreshTimer);
+  autoRefreshTimer = setInterval(async () => {
+    /* لا تحدّث إذا كانت لوحة التحكم مفتوحة */
+    if(adminOpen) return;
+    try {
+      const [mRes, sRes] = await Promise.all([
+        fetch("/api/matches?type=all&_=" + Date.now()), /* منع الكاش */
+        fetch("/api/matches/stats?_=" + Date.now())
+      ]);
+      if(!mRes.ok) return;
+      const data = await mRes.json();
+      if(!Array.isArray(data)) return;
+      /* فقط أعد الرسم إذا تغيرت البيانات */
+      if(JSON.stringify(data) !== JSON.stringify(allMatches)){
+        allMatches = data;
+        if(sRes.ok) stats = await sRes.json();
+        else stats = computeStats(allMatches);
+        renderStats();
+        renderMatches();
+      }
+    } catch { /* silent — keep existing data */ }
+  }, 30000);
 
+  /* أظهر مؤشر التحديث الحي */
+  document.getElementById("liveDot").style.display = "flex";
+}
+
+/* ══════════════════════════════════════════
+   DATA FETCH
+══════════════════════════════════════════ */
 function computeStats(matches){
   const decided = matches.filter(m=>m.result!=="pending");
   const won = matches.filter(m=>m.result==="won").length;
@@ -434,19 +438,17 @@ function computeStats(matches){
 async function loadData(){
   try {
     const [mRes, sRes] = await Promise.all([
-      fetch("/api/matches?type=all"),
-      fetch("/api/matches/stats")
+      fetch("/api/matches?type=all&_=" + Date.now()),
+      fetch("/api/matches/stats?_=" + Date.now())
     ]);
     if(!mRes.ok) throw new Error("api error");
     const data = await mRes.json();
     if(!Array.isArray(data)) throw new Error("bad data");
     allMatches = data;
     apiAvailable = true;
-    if(sRes.ok) stats = await sRes.json();
-    else stats = computeStats(allMatches);
+    stats = sRes.ok ? await sRes.json() : computeStats(allMatches);
   } catch {
-    /* Keep existing allMatches if already loaded; only use empty on first load */
-    if(allMatches.length === 0) {
+    if(allMatches.length === 0){
       allMatches = [];
       stats = {total:0,won:0,lost:0,pending:0,winRate:0};
     } else {
@@ -457,20 +459,23 @@ async function loadData(){
   renderMatches();
 }
 
-/* ── STATS ── */
+/* ══════════════════════════════════════════
+   STATS
+══════════════════════════════════════════ */
 function renderStats(){
-  const t = LABELS[lang];
   const g = document.getElementById("statsGrid");
   if(!stats || stats.total===0){ g.style.display="none"; return; }
   g.style.display = "grid";
   g.innerHTML = `
-    <div class="stat-card"><div class="stat-val c-green">${stats.winRate}%</div><div class="stat-label">${t.statsWinRate}</div></div>
-    <div class="stat-card"><div class="stat-val c-primary">${stats.total}</div><div class="stat-label">${t.statsTotal}</div></div>
-    <div class="stat-card"><div class="stat-val c-green">${stats.won}</div><div class="stat-label">${t.statsWon}</div></div>
-    <div class="stat-card"><div class="stat-val c-red">${stats.lost}</div><div class="stat-label">${t.statsLost}</div></div>`;
+    <div class="stat-card"><div class="stat-val c-green">${stats.winRate}%</div><div class="stat-label">${lang==="ar"?"معدل الدقة":"Win Rate"}</div></div>
+    <div class="stat-card"><div class="stat-val c-primary">${stats.total}</div><div class="stat-label">${lang==="ar"?"إجمالي التوقعات":"Total"}</div></div>
+    <div class="stat-card"><div class="stat-val c-green">${stats.won}</div><div class="stat-label">${lang==="ar"?"ناجح":"Won"}</div></div>
+    <div class="stat-card"><div class="stat-val c-red">${stats.lost}</div><div class="stat-label">${lang==="ar"?"فاشل":"Lost"}</div></div>`;
 }
 
-/* ── MATCH CARDS ── */
+/* ══════════════════════════════════════════
+   MATCH CARDS
+══════════════════════════════════════════ */
 function confColor(v){ return v>=85?"#27ae60":v>=70?"#f1c40f":"#e74c3c"; }
 
 function matchCardHTML(m, isVip=false){
@@ -479,11 +484,11 @@ function matchCardHTML(m, isVip=false){
   const confBar = m.confidence!=null ? `
     <div class="conf-row">
       <span style="font-size:13px;color:${color}">🎯</span>
-      <div class="conf-bar-track"><div class="conf-bar-fill" style="width:${m.confidence}%;background:${isVip?"linear-gradient(90deg,#f1c40f,#f39c12)":color}"></div></div>
+      <div class="conf-bar-track">
+        <div class="conf-bar-fill" style="width:${m.confidence}%;background:${isVip?"linear-gradient(90deg,#f1c40f,#f39c12)":color}"></div>
+      </div>
       <span class="conf-val" style="color:${color}">${m.confidence}%</span>
     </div>` : "";
-  const cdHtml = `<div class="countdown" id="cd-${m.id}">
-    ${m.matchTime?`<span style="font-size:11px;color:var(--text-muted)">🕐 ${m.matchTime}</span>`:""}</div>`;
   return `
   <div class="match-card${isVip?" vip-card":""}">
     <div class="teams-row">
@@ -492,7 +497,12 @@ function matchCardHTML(m, isVip=false){
       <span class="team-name">${m.team2}</span>
     </div>
     <div class="prediction-box${isVip?" gold-box":""}">${pred}</div>
-    <div class="card-footer">${confBar}${cdHtml}</div>
+    <div class="card-footer">
+      ${confBar}
+      <div class="countdown" id="cd-${m.id}">
+        ${m.matchTime?`<span style="font-size:11px;color:var(--text-muted)">🕐 ${m.matchTime}</span>`:""}
+      </div>
+    </div>
   </div>`;
 }
 
@@ -516,56 +526,60 @@ function resultCardHTML(m){
 }
 
 function renderMatches(){
-  const t = LABELS[lang];
-  /* clear old countdowns */
   Object.keys(cdIntervals).forEach(k=>clearInterval(cdIntervals[k]));
 
-  /* filter: active only for free/vip tabs */
   const activeMatches = allMatches.filter(m => m.isActive !== false);
-  const free    = activeMatches.filter(m => m.type==="free");
-  const vip     = activeMatches.filter(m => m.type==="vip");
-  /* history: all matches that have a result (won/lost), regardless of isActive */
-  const hist    = allMatches.filter(m => m.result!=="pending")
-                             .sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
+  const free  = activeMatches.filter(m => m.type==="free");
+  const vip   = activeMatches.filter(m => m.type==="vip");
+  const hist  = allMatches.filter(m => m.result!=="pending")
+                           .sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
+
+  const noMatchesMsg = lang==="ar"?"لا توجد مباريات اليوم":"No matches today";
+  const noHistMsg    = lang==="ar"?"لا توجد نتائج سابقة بعد":"No results yet";
 
   document.getElementById("freeMatchesContainer").innerHTML =
     free.length===0
-      ? `<p style="text-align:center;padding:40px;color:var(--text-muted);font-weight:700">${t.noMatches}</p>`
+      ? `<p style="text-align:center;padding:40px;color:var(--text-muted);font-weight:700">${noMatchesMsg}</p>`
       : free.map(m=>matchCardHTML(m)).join("");
 
   document.getElementById("vipMatchesContainer").innerHTML =
     vip.length===0
-      ? `<p style="text-align:center;padding:20px;color:var(--text-muted);font-weight:700">${t.noMatches}</p>`
+      ? `<p style="text-align:center;padding:20px;color:var(--text-muted);font-weight:700">${noMatchesMsg}</p>`
       : vip.map(m=>matchCardHTML(m,true)).join("");
 
   document.getElementById("historyContainer").innerHTML =
     hist.length===0
-      ? `<p style="text-align:center;padding:40px;color:var(--text-muted);font-weight:700">${t.noHistory}</p>`
+      ? `<p style="text-align:center;padding:40px;color:var(--text-muted);font-weight:700">${noHistMsg}</p>`
       : hist.map(m=>resultCardHTML(m)).join("");
 
   renderAdminList();
   activeMatches.forEach(m => startCountdown(m));
 }
 
-/* ── COUNTDOWN ── */
+/* ══════════════════════════════════════════
+   COUNTDOWN
+══════════════════════════════════════════ */
 function startCountdown(m){
-  const t = LABELS[lang];
+  if(!m.matchDate && !m.matchTime) return;
+  const labels = lang==="ar"
+    ? {days:"أيام",hours:"ساعات",mins:"دقائق",secs:"ثواني",live:"🔴 يلعب الآن!",ended:"انتهت"}
+    : {days:"d",hours:"h",mins:"m",secs:"s",live:"🔴 Live Now!",ended:"Ended"};
   const tick = () => {
     const el = document.getElementById(`cd-${m.id}`);
     if(!el) return clearInterval(cdIntervals[m.id]);
-    const target = new Date(`${m.matchDate||todayStr()}T${m.matchTime||"00:00"}:00`).getTime();
+    const target = new Date(`${m.matchDate||new Date().toISOString().split("T")[0]}T${m.matchTime||"00:00"}:00`).getTime();
     const diff = target - Date.now();
     if(diff > 0){
-      const d=Math.floor(diff/86400000), h=Math.floor(diff%86400000/3600000),
-            mi=Math.floor(diff%3600000/60000), s=Math.floor(diff%60000/1000);
-      el.innerHTML = (d>0?`<span class="cd-pill">${String(d).padStart(2,"0")}<span>${t.days}</span></span>`:"")
-        +`<span class="cd-pill">${String(h).padStart(2,"0")}<span>${t.hours}</span></span>`
-        +`<span class="cd-pill">${String(mi).padStart(2,"0")}<span>${t.mins}</span></span>`
-        +`<span class="cd-pill">${String(s).padStart(2,"0")}<span>${t.secs}</span></span>`;
+      const d=Math.floor(diff/86400000),h=Math.floor(diff%86400000/3600000),
+            mi=Math.floor(diff%3600000/60000),s=Math.floor(diff%60000/1000);
+      el.innerHTML = (d>0?`<span class="cd-pill">${String(d).padStart(2,"0")}<span>${labels.days}</span></span>`:"")
+        +`<span class="cd-pill">${String(h).padStart(2,"0")}<span>${labels.hours}</span></span>`
+        +`<span class="cd-pill">${String(mi).padStart(2,"0")}<span>${labels.mins}</span></span>`
+        +`<span class="cd-pill">${String(s).padStart(2,"0")}<span>${labels.secs}</span></span>`;
     } else if(diff > -5400000){
-      el.innerHTML = `<span class="live-badge">${t.liveNow}</span>`;
+      el.innerHTML = `<span class="live-badge">${labels.live}</span>`;
     } else {
-      el.innerHTML = `<span style="font-size:11px;color:var(--text-muted)">${t.matchEnded}</span>`;
+      el.innerHTML = `<span style="font-size:11px;color:var(--text-muted)">${labels.ended}</span>`;
       clearInterval(cdIntervals[m.id]);
     }
   };
@@ -573,13 +587,14 @@ function startCountdown(m){
   cdIntervals[m.id] = setInterval(tick, 1000);
 }
 
-/* ── TABS ── */
+/* ══════════════════════════════════════════
+   TABS
+══════════════════════════════════════════ */
 function showTab(tab){
-  currentTab = tab;
   ["free","vip","results"].forEach(s =>
     document.getElementById(`sec-${s}`).classList.toggle("active", s===tab));
   document.getElementById("tabFreeBtn").className = "tab-btn"+(tab==="free"?" active-free":"");
-  document.getElementById("tabVipBtn").className  = "tab-btn"+(tab==="vip" ?" active-vip" :"");
+  document.getElementById("tabVipBtn").className  = "tab-btn"+(tab==="vip"?" active-vip":"");
   document.getElementById("tabResBtn").className  = "tab-btn"+(tab==="results"?" active-results":"");
   if(tab==="vip"){
     const e = parseInt(localStorage.getItem("tiko_expiry")||"0",10);
@@ -587,28 +602,28 @@ function showTab(tab){
   }
 }
 
-/* ── VIP ── */
+/* ══════════════════════════════════════════
+   VIP
+══════════════════════════════════════════ */
 function activateCode(){
   const input = document.getElementById("codeInput").value.trim();
   const devSeq = parseInt(localStorage.getItem("tiko_dev_seq")||"1",10);
   const days = parseInt(document.getElementById("subType").value,10);
-  const t = LABELS[lang];
-  if(input === `TiKO${devSeq}`){
+  if(input===`TiKO${devSeq}`){
     const expiry = Date.now() + days*86400000;
     localStorage.setItem("tiko_expiry", expiry.toString());
     localStorage.setItem("tiko_dev_seq", (devSeq+1).toString());
-    showToast(t.activatedSuccessfully,"success");
+    showToast(lang==="ar"?"تم التفعيل بنجاح":"Activated!","success");
     showVipContent(expiry);
   } else {
-    showToast(t.invalidCode,"error");
+    showToast(lang==="ar"?"الكود غير صالح!":"Invalid Code!","error");
   }
 }
 function showVipContent(expiry){
   document.getElementById("vip-gate").style.display = "none";
   document.getElementById("vip-content").style.display = "block";
-  const date = new Date(expiry);
   document.getElementById("expiryDisplay").textContent =
-    date.toLocaleDateString(lang==="ar"?"ar-EG":"en-US",{year:"numeric",month:"long",day:"numeric"});
+    new Date(expiry).toLocaleDateString(lang==="ar"?"ar-EG":"en-US",{year:"numeric",month:"long",day:"numeric"});
 }
 function logout(){
   localStorage.removeItem("tiko_expiry");
@@ -617,7 +632,9 @@ function logout(){
   document.getElementById("codeInput").value = "";
 }
 
-/* ── PAYMENT ── */
+/* ══════════════════════════════════════════
+   PAYMENT
+══════════════════════════════════════════ */
 function openPaymentModal(){
   document.getElementById("orderIdDisplay").textContent =
     "#TKO-" + Math.random().toString(36).substr(2,6).toUpperCase();
@@ -625,10 +642,6 @@ function openPaymentModal(){
   document.getElementById("payModal").classList.add("open");
 }
 function closePaymentModal(){ document.getElementById("payModal").classList.remove("open"); }
-document.addEventListener("click", e=>{
-  if(e.target===document.getElementById("payModal")) closePaymentModal();
-  if(e.target===document.getElementById("adminLoginModal")) closeAdminLogin();
-});
 function sendSupport(){
   const name = document.getElementById("clientName").value.trim();
   const order = document.getElementById("orderIdDisplay").textContent;
@@ -636,7 +649,9 @@ function sendSupport(){
   window.open(`https://t.me/TiKO_SUPPORT?text=${encodeURIComponent("Order ID: "+order+"\nName: "+name)}`,"_blank");
 }
 
-/* ── ADMIN LOGIN ── */
+/* ══════════════════════════════════════════
+   ADMIN LOGIN
+══════════════════════════════════════════ */
 function openAdminLogin(){
   document.getElementById("adminPassInput").value = "";
   document.getElementById("adminLoginModal").classList.add("open");
@@ -644,40 +659,42 @@ function openAdminLogin(){
 function closeAdminLogin(){ document.getElementById("adminLoginModal").classList.remove("open"); }
 function tryAdminLogin(){
   const pass = document.getElementById("adminPassInput").value;
-  if(pass === ADMIN_KEY){
+  if(pass===ADMIN_KEY){
     closeAdminLogin();
+    adminOpen = true;
     document.getElementById("adminPanel").classList.add("open");
     renderAdminList();
   } else {
-    showToast(LABELS[lang].adminWrongPass,"error");
+    showToast(lang==="ar"?"كلمة السر غير صحيحة":"Wrong password","error");
   }
 }
 document.getElementById("adminPassInput").addEventListener("keydown", e=>{
   if(e.key==="Enter") tryAdminLogin();
 });
 
-/* ── ADMIN CLOSE — بدون إعادة تحميل كاملة ── */
-function closeAdmin(){
+/* ══════════════════════════════════════════
+   ADMIN CLOSE — يحفظ البيانات للجميع
+══════════════════════════════════════════ */
+async function closeAdmin(){
+  adminOpen = false;
   document.getElementById("adminPanel").classList.remove("open");
-  /* refresh from API if available, otherwise just re-render local data */
-  if(apiAvailable){
-    fetch("/api/matches?type=all")
-      .then(r => r.ok ? r.json() : null)
-      .then(data => {
-        if(data && Array.isArray(data)){
-          allMatches = data;
-          stats = computeStats(allMatches);
-        }
-        renderStats();
-        renderMatches();
-      })
-      .catch(() => { renderStats(); renderMatches(); });
-  } else {
-    /* no API — local data is authoritative, just re-render */
-    stats = computeStats(allMatches);
-    renderStats();
-    renderMatches();
-  }
+
+  /* أعد جلب البيانات من السيرفر للتأكد من التزامن */
+  try {
+    const [mRes, sRes] = await Promise.all([
+      fetch("/api/matches?type=all&_=" + Date.now()),
+      fetch("/api/matches/stats?_=" + Date.now())
+    ]);
+    if(mRes.ok){
+      const data = await mRes.json();
+      if(Array.isArray(data)) allMatches = data;
+      if(sRes.ok) stats = await sRes.json();
+      else stats = computeStats(allMatches);
+    }
+  } catch { stats = computeStats(allMatches); }
+
+  renderStats();
+  renderMatches();
 }
 
 function toggleAddForm(){
@@ -685,13 +702,14 @@ function toggleAddForm(){
   f.style.display = f.style.display==="none" ? "block" : "none";
 }
 
-/* ── ADMIN LIST ── */
+/* ══════════════════════════════════════════
+   ADMIN LIST
+══════════════════════════════════════════ */
 function renderAdminList(){
-  const t = LABELS[lang];
   const el = document.getElementById("adminMatchList");
   if(!el) return;
   if(allMatches.length===0){
-    el.innerHTML = `<p style="text-align:center;padding:30px;color:var(--text-muted);font-weight:700">${t.noMatches}</p>`;
+    el.innerHTML = `<p style="text-align:center;padding:30px;color:var(--text-muted);font-weight:700">${lang==="ar"?"لا توجد مباريات":"No matches"}</p>`;
     return;
   }
   el.innerHTML = allMatches.map(m => `
@@ -706,15 +724,19 @@ function renderAdminList(){
         <div class="admin-match-pred">${lang==="ar"?m.predictionAr:m.predictionEn}</div>
       </div>
       <div class="admin-actions">
-        <span style="font-size:11px;color:var(--text-muted);font-weight:700">${t.markResult}</span>
+        <span style="font-size:11px;color:var(--text-muted);font-weight:700">${lang==="ar"?"النتيجة:":"Result:"}</span>
         ${["won","lost","pending"].map(r=>`
-          <button class="result-btn${m.result===r?" active":""}" onclick="setResult(${m.id},'${r}')">${t[r]}</button>
-        `).join("")}
+          <button class="result-btn${m.result===r?" active":""}" onclick="setResult(${m.id},'${r}')">
+            ${lang==="ar"?(r==="won"?"فاز ✅":r==="lost"?"خسر ❌":"انتظار ⏳"):(r==="won"?"Won ✅":r==="lost"?"Lost ❌":"Pending ⏳")}
+          </button>`).join("")}
         <button class="del-btn" onclick="deleteMatch(${m.id})">🗑️</button>
       </div>
     </div>`).join("");
 }
 
+/* ══════════════════════════════════════════
+   ADMIN ACTIONS
+══════════════════════════════════════════ */
 function setResult(id, result){
   const m = allMatches.find(x=>x.id===id);
   if(!m) return;
@@ -736,44 +758,30 @@ function deleteMatch(id){
     headers:{"x-admin-key":ADMIN_KEY}
   }).catch(()=>{});
   stats = computeStats(allMatches);
-  showToast(LABELS[lang].deleteConfirm,"success");
+  showToast(lang==="ar"?"تم الحذف":"Deleted","success");
   renderAdminList();
   renderStats();
 }
 
 async function submitMatch(){
-  const team1 = document.getElementById("f_team1").value.trim();
-  const team2 = document.getElementById("f_team2").value.trim();
-  const predAr = document.getElementById("f_predAr").value.trim();
-  const predEn = document.getElementById("f_predEn").value.trim();
-  const type = document.getElementById("f_type").value;
+  const team1   = document.getElementById("f_team1").value.trim();
+  const team2   = document.getElementById("f_team2").value.trim();
+  const predAr  = document.getElementById("f_predAr").value.trim();
+  const predEn  = document.getElementById("f_predEn").value.trim();
+  const type    = document.getElementById("f_type").value;
   const matchDate = document.getElementById("f_date").value.trim();
   const matchTime = document.getElementById("f_time").value.trim();
   const confidence = parseInt(document.getElementById("f_conf").value)||80;
 
   if(!team1||!team2||!predAr||!predEn){
-    showToast("أكمل جميع الحقول المطلوبة","error");
+    showToast(lang==="ar"?"أكمل جميع الحقول":"Fill all fields","error");
     return;
   }
 
-  /* Show saving badge */
-  document.getElementById("savingBadge").classList.add("visible");
+  /* ──── حفظ في قاعدة البيانات ──── */
+  let savedId = Date.now();
+  let savedOk = false;
 
-  const newMatch = {
-    id: Date.now(),
-    team1, team2,
-    predictionAr: predAr,
-    predictionEn: predEn,
-    type,
-    matchDate: matchDate||null,
-    matchTime: matchTime||null,
-    confidence,
-    result: "pending",
-    isActive: true,
-    createdAt: new Date().toISOString()
-  };
-
-  /* Try to save to API */
   if(apiAvailable){
     try {
       const res = await fetch("/api/matches",{
@@ -792,33 +800,46 @@ async function submitMatch(){
       });
       if(res.ok){
         const created = await res.json();
-        newMatch.id = created.id;
+        savedId = created.id;
+        savedOk = true;
       }
-    } catch(e){
-      /* Save locally even if API fails */
-    }
+    } catch { /* fallback to local */ }
   }
 
-  /* Add to local state IMMEDIATELY — this is the key fix */
+  /* ──── أضف للقائمة المحلية فوراً ──── */
+  const newMatch = {
+    id: savedId,
+    team1, team2,
+    predictionAr: predAr,
+    predictionEn: predEn,
+    type,
+    matchDate: matchDate||null,
+    matchTime: matchTime||null,
+    confidence,
+    result: "pending",
+    isActive: true,
+    createdAt: new Date().toISOString()
+  };
   allMatches.unshift(newMatch);
   stats = computeStats(allMatches);
 
-  showToast(LABELS[lang].addSuccess,"success");
-  document.getElementById("savingBadge").classList.remove("visible");
-  document.getElementById("addForm").style.display = "none";
+  const msg = savedOk
+    ? (lang==="ar"?"✅ تمت الإضافة وحُفظت للجميع":"✅ Saved for all users")
+    : (lang==="ar"?"✅ تمت الإضافة":"✅ Added");
 
-  /* Clear form */
+  showToast(msg,"success");
+  document.getElementById("addForm").style.display = "none";
   ["f_team1","f_team2","f_predAr","f_predEn","f_date","f_time"].forEach(id=>{
     document.getElementById(id).value = "";
   });
   document.getElementById("f_conf").value = "80";
-
-  /* Re-render admin list immediately with new match */
   renderAdminList();
   renderStats();
 }
 
-/* ── ABOUT ── */
+/* ══════════════════════════════════════════
+   ABOUT
+══════════════════════════════════════════ */
 function toggleAbout(){
   const b = document.getElementById("aboutBody");
   const open = b.style.display!=="none";
@@ -826,7 +847,9 @@ function toggleAbout(){
   document.getElementById("aboutArrow").textContent = open?"▼":"▲";
 }
 
-/* ── COPY ── */
+/* ══════════════════════════════════════════
+   COPY
+══════════════════════════════════════════ */
 function copyText(text){
   navigator.clipboard.writeText(text).catch(()=>{
     const el = document.createElement("textarea");
@@ -834,10 +857,12 @@ function copyText(text){
     el.select(); document.execCommand("copy");
     document.body.removeChild(el);
   });
-  showToast(LABELS[lang].copied,"success");
+  showToast(lang==="ar"?"تم النسخ!":"Copied!","success");
 }
 
-/* ── THEME ── */
+/* ══════════════════════════════════════════
+   THEME
+══════════════════════════════════════════ */
 function applyTheme(t){
   theme = t;
   document.documentElement.setAttribute("data-theme", t==="dark"?"dark":"");
@@ -846,11 +871,16 @@ function applyTheme(t){
 }
 function toggleTheme(){ applyTheme(theme==="dark"?"light":"dark"); }
 
-/* ── LANGUAGE ── */
+/* ══════════════════════════════════════════
+   LANGUAGE
+══════════════════════════════════════════ */
 function applyLangAttrs(){
   document.documentElement.lang = lang;
   document.documentElement.dir  = lang==="ar"?"rtl":"ltr";
-  document.getElementById("appSubtitle").textContent = LABELS[lang].appSubtitle;
+  document.getElementById("appSubtitle").textContent =
+    lang==="ar"?"أقوى توقعات المباريات اليومية":"Strongest Daily Match Predictions";
+  const liveDot = document.getElementById("liveDot");
+  if(liveDot) liveDot.textContent = lang==="ar"?"● مباشر — يتحدث تلقائياً":"● Live — auto-refresh";
   localStorage.setItem("tiko_lang",lang);
 }
 function toggleLang(){
@@ -860,7 +890,9 @@ function toggleLang(){
   renderMatches();
 }
 
-/* ── PWA ── */
+/* ══════════════════════════════════════════
+   PWA
+══════════════════════════════════════════ */
 function installApp(){
   if(deferredInstall){ deferredInstall.prompt(); deferredInstall=null; }
   document.getElementById("installPrompt").classList.remove("visible");
@@ -869,14 +901,24 @@ function dismissInstall(){
   document.getElementById("installPrompt").classList.remove("visible");
 }
 
-/* ── TOAST ── */
+/* ══════════════════════════════════════════
+   CLICK OUTSIDE MODALS
+══════════════════════════════════════════ */
+document.addEventListener("click", e=>{
+  if(e.target===document.getElementById("payModal")) closePaymentModal();
+  if(e.target===document.getElementById("adminLoginModal")) closeAdminLogin();
+});
+
+/* ══════════════════════════════════════════
+   TOAST
+══════════════════════════════════════════ */
 let toastTimer;
 function showToast(msg, type){
   const toast = document.getElementById("toast");
   toast.textContent = msg;
   toast.className = "toast show "+(type||"");
   clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=>{ toast.className="toast"; }, 2800);
+  toastTimer = setTimeout(()=>{ toast.className="toast"; }, 3000);
 }
 </script>
 </body>
