@@ -46,181 +46,53 @@ body{
   background-repeat:no-repeat,no-repeat,no-repeat,repeat;
 }
 header{background:linear-gradient(135deg,var(--dark-purple),var(--primary));color:#fff;padding:3rem 1rem 2rem;text-align:center;position:relative;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.18);}
-header::before{content:'';position:absolute;top:-40px;right:-40px;width:140px;height:140px;background:rgba(255,255,255,.10);border-radius:50%;filter:blur(20px);}
-header::after{content:'';position:absolute;bottom:-40px;left:-40px;width:160px;height:160px;background:rgba(241,196,15,.18);border-radius:50%;filter:blur(30px);}
 header h1{font-size:2.5rem;font-weight:900;letter-spacing:-1px;position:relative;z-index:1;}
 header p{font-size:1.05rem;font-weight:700;opacity:.9;margin-top:.4rem;position:relative;z-index:1;}
 .controls-top{position:absolute;top:14px;left:14px;display:flex;gap:8px;z-index:10;}
 .icon-btn{background:rgba(255,255,255,.22);border:none;border-radius:50%;width:40px;height:40px;cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:#fff;transition:background .2s;}
-.icon-btn:hover{background:rgba(255,255,255,.35);}
-.admin-btn{position:absolute;top:14px;right:14px;background:transparent;border:none;color:rgba(255,255,255,.3);cursor:pointer;font-size:1.1rem;transition:color .2s;z-index:10;}
-.admin-btn:hover{color:#fff;}
-/* LIVE DOT */
-.live-dot{display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:700;color:#27ae60;margin-top:6px;}
-.live-dot::before{content:'';width:7px;height:7px;background:#27ae60;border-radius:50%;animation:blink 1.4s infinite;}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.2}}
+.admin-btn{position:absolute;top:14px;right:14px;background:transparent;border:none;color:rgba(255,255,255,.3);cursor:pointer;font-size:1.1rem;z-index:10;}
 .container{max-width:520px;margin:auto;padding:1rem;}
-/* STATS */
 .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:8px;margin:16px 0;}
-.stat-card{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:10px 6px;text-align:center;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.stat-card{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:10px 6px;text-align:center;}
 .stat-val{font-size:1.2rem;font-weight:900;}
-.stat-label{font-size:10px;color:var(--text-muted);font-weight:700;margin-top:2px;line-height:1.2;}
+.stat-label{font-size:10px;color:var(--text-muted);font-weight:700;margin-top:2px;}
 .c-green{color:#27ae60;}.c-primary{color:var(--primary);}.c-red{color:var(--destructive);}
-/* TABS */
 .tabs{display:grid;grid-template-columns:repeat(3,1fr);gap:5px;background:rgba(0,0,0,.06);border-radius:14px;padding:5px;margin:0 0 20px;}
-[data-theme="dark"] .tabs{background:rgba(255,255,255,.08);}
-.tab-btn{padding:11px 6px;border:none;border-radius:10px;cursor:pointer;font-weight:900;font-family:'Cairo',sans-serif;font-size:.9rem;transition:all .25s;background:transparent;color:var(--text-muted);display:flex;align-items:center;justify-content:center;gap:5px;}
-.tab-btn.active-free{background:var(--primary);color:#fff;box-shadow:0 4px 14px rgba(108,92,231,.4);}
-.tab-btn.active-vip{background:var(--gold);color:#000;box-shadow:0 4px 14px rgba(241,196,15,.4);}
-.tab-btn.active-results{background:#27ae60;color:#fff;box-shadow:0 4px 14px rgba(39,174,96,.4);}
+.tab-btn{padding:11px 6px;border:none;border-radius:10px;cursor:pointer;font-weight:900;font-family:'Cairo',sans-serif;font-size:.9rem;background:transparent;color:var(--text-muted);}
+.tab-btn.active-free{background:var(--primary);color:#fff;}
+.tab-btn.active-vip{background:var(--gold);color:#000;}
+.tab-btn.active-results{background:#27ae60;color:#fff;}
 .section{display:none;}.section.active{display:block;}
-/* MATCH CARD */
-.match-card{background:var(--card-bg);border-radius:18px;margin-bottom:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.09);transition:box-shadow .2s;}
-.match-card:hover{box-shadow:0 8px 28px rgba(0,0,0,.14);}
-.match-card.vip-card{border:2px solid var(--gold);box-shadow:0 0 18px rgba(241,196,15,.18);}
+.match-card{background:var(--card-bg);border-radius:18px;margin-bottom:16px;overflow:hidden;box-shadow:0 4px 20px rgba(0,0,0,.09);}
+.match-card.vip-card{border:2px solid var(--gold);}
 .teams-row{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;border-bottom:1px solid var(--border);}
 .team-name{font-weight:900;font-size:1.05rem;}
 .vs-badge{background:rgba(108,92,231,.13);color:var(--primary);font-weight:900;font-size:.85rem;padding:4px 12px;border-radius:8px;}
-.vs-badge.gold{background:rgba(241,196,15,.18);color:#b8860b;}
-[data-theme="dark"] .vs-badge.gold{color:var(--gold);}
-.prediction-box{background:var(--primary);color:#fff;padding:15px 20px;text-align:center;font-weight:900;font-size:1.05rem;}
-.prediction-box.gold-box{background:linear-gradient(90deg,var(--gold),var(--gold-dark));color:#000;font-size:1.1rem;}
+.prediction-box{background:var(--primary);color:#fff;padding:15px 20px;text-align:center;font-weight:900;}
+.prediction-box.gold-box{background:linear-gradient(90deg,var(--gold),var(--gold-dark));color:#000;}
 .card-footer{padding:10px 18px 14px;background:var(--card-bg);display:flex;flex-direction:column;gap:8px;}
-/* CONFIDENCE BAR */
 .conf-row{display:flex;align-items:center;gap:8px;}
 .conf-bar-track{flex:1;background:var(--muted-bg);border-radius:50px;height:5px;overflow:hidden;}
-.conf-bar-fill{height:100%;border-radius:50px;transition:width .5s;}
-.conf-val{font-size:11px;font-weight:900;min-width:30px;text-align:end;}
-/* COUNTDOWN */
-.countdown{display:flex;align-items:center;gap:5px;flex-wrap:wrap;}
-.cd-pill{font-size:11px;font-weight:900;font-family:monospace;background:rgba(108,92,231,.12);color:var(--primary);padding:3px 7px;border-radius:6px;}
-.cd-pill span{font-weight:400;opacity:.65;font-size:9px;}
-.live-badge{font-size:11px;font-weight:900;color:#27ae60;animation:pulse 1s infinite alternate;}
-@keyframes pulse{from{opacity:1}to{opacity:.5}}
-/* VIP GATE */
-.vip-gate{background:var(--card-bg);border-radius:20px;padding:28px 20px;box-shadow:0 8px 30px rgba(0,0,0,.10);border:1px solid var(--border);text-align:center;}
-.crown-wrap{width:64px;height:64px;background:rgba(241,196,15,.18);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 14px;font-size:2rem;}
-.vip-title{color:var(--gold);font-weight:900;font-size:1.9rem;margin-bottom:20px;}
-.divider{display:flex;align-items:center;gap:12px;margin:18px 0;color:var(--text-muted);font-size:.9rem;}
-.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border);}
-/* BOXES */
-.success-box{background:rgba(39,174,96,.1);border:1.5px solid rgba(39,174,96,.3);color:#27ae60;border-radius:12px;padding:14px;text-align:center;font-weight:900;display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:18px;}
-[data-theme="dark"] .success-box{color:#2ecc71;}
-.expiry-box{background:var(--card-bg);border:1px solid var(--border);border-radius:12px;padding:16px;text-align:center;margin-bottom:14px;}
-.expiry-label{color:var(--text-muted);font-size:.9rem;margin-bottom:4px;}
-.expiry-date{font-weight:900;font-size:1rem;}
-/* ABOUT */
-.about-card{background:var(--card-bg);border-radius:18px;border:1px solid var(--border);box-shadow:0 2px 12px rgba(0,0,0,.06);overflow:hidden;margin-bottom:16px;}
-.about-toggle{width:100%;background:transparent;border:none;padding:16px 18px;display:flex;align-items:center;justify-content:space-between;cursor:pointer;font-weight:900;font-size:1rem;color:var(--text);font-family:'Cairo',sans-serif;}
-.about-body{padding:0 18px 16px;border-top:1px solid var(--border);}
-.about-row{display:flex;align-items:flex-start;gap:10px;margin-top:12px;}
-.about-row p{font-size:.9rem;color:var(--text-muted);font-weight:700;}
-/* RESULTS */
-.history-title{font-weight:900;font-size:1.1rem;display:flex;align-items:center;gap:8px;margin-bottom:14px;}
-.result-card{border-radius:14px;border:1px solid var(--border);padding:14px;box-shadow:0 2px 8px rgba(0,0,0,.06);background:var(--card-bg);display:flex;align-items:flex-start;gap:12px;margin-bottom:12px;}
-.result-card.won{border-color:rgba(39,174,96,.35);background:rgba(39,174,96,.05);}
-.result-card.lost{border-color:rgba(231,76,60,.35);background:rgba(231,76,60,.05);}
-.result-icon{font-size:1.6rem;margin-top:2px;flex-shrink:0;}
-.result-teams{font-weight:900;font-size:.95rem;}
-.result-pred{font-size:.82rem;color:var(--text-muted);margin-top:3px;}
-.result-meta{display:flex;gap:10px;margin-top:6px;flex-wrap:wrap;}
-.result-meta span{font-size:11px;color:var(--text-muted);}
-.result-badge{font-size:10px;font-weight:900;background:var(--muted-bg);border:1px solid var(--border);border-radius:4px;padding:1px 6px;}
-/* FORMS */
-select,input[type="text"],input[type="password"]{width:100%;padding:13px 14px;border:2px solid var(--input-border);border-radius:10px;font-family:'Cairo',sans-serif;font-size:1rem;font-weight:700;background:var(--card-bg);color:var(--text);outline:none;transition:border-color .2s;margin-bottom:10px;}
-select:focus,input:focus{border-color:var(--primary);}
-.code-input{text-align:center;letter-spacing:3px;font-size:1.25rem;}
-/* BUTTONS */
-.btn{width:100%;padding:14px;border:none;border-radius:12px;cursor:pointer;font-family:'Cairo',sans-serif;font-size:1rem;font-weight:900;transition:opacity .2s,transform .15s;display:flex;align-items:center;justify-content:center;gap:8px;}
-.btn:hover{opacity:.9;}.btn:active{transform:scale(.97);}
-.btn-primary{background:var(--primary);color:#fff;}
-.btn-gold{background:var(--gold);color:#000;}
-.btn-green{background:var(--green-c);color:#fff;}
-.btn-danger{background:transparent;color:var(--destructive);border:1.5px solid rgba(231,76,60,.35);}
-.btn-outline{background:transparent;border:1.5px solid var(--border);color:var(--text);}
-/* MODAL */
-.modal-overlay{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.85);align-items:center;justify-content:center;padding:16px;}
-.modal-overlay.open{display:flex;}
-.modal{background:var(--card-bg);border-radius:20px;border:2px solid var(--gold);padding:0;width:100%;max-width:440px;box-shadow:0 20px 60px rgba(0,0,0,.4);overflow:hidden;max-height:92vh;overflow-y:auto;}
-.modal-header{padding:20px 24px 12px;text-align:center;background:linear-gradient(to bottom,rgba(0,0,0,.04),transparent);}
-[data-theme="dark"] .modal-header{background:linear-gradient(to bottom,rgba(255,255,255,.05),transparent);}
-.modal-title{font-weight:900;font-size:1.3rem;}
-.modal-body{padding:0 24px 22px;}
-.order-box{background:rgba(231,76,60,.08);border:1.5px solid rgba(231,76,60,.2);border-radius:10px;padding:11px;text-align:center;margin-bottom:14px;}
-.order-label{color:var(--text-muted);font-size:.85rem;}
-.order-id{color:var(--destructive);font-weight:900;font-size:1.1rem;letter-spacing:2px;}
-.step-row{display:flex;align-items:flex-start;gap:10px;margin-bottom:10px;}
-.step-row p{font-size:.85rem;font-weight:700;color:var(--text-muted);}
-.pay-row{display:flex;align-items:center;justify-content:space-between;background:var(--muted-bg);border:1px solid var(--border);border-radius:10px;padding:11px 14px;margin-bottom:8px;}
-.pay-row span{font-family:monospace;font-size:.9rem;font-weight:700;}
-.copy-btn{background:var(--primary);color:#fff;border:none;padding:5px 12px;border-radius:7px;cursor:pointer;font-family:'Cairo',sans-serif;font-size:.8rem;font-weight:900;transition:opacity .2s;}
-.copy-btn:hover{opacity:.85;}
-.modal-close{color:var(--destructive);cursor:pointer;font-weight:900;font-size:.9rem;text-align:center;margin-top:12px;display:block;background:transparent;border:none;width:100%;font-family:'Cairo',sans-serif;}
-.modal-close:hover{text-decoration:underline;}
-/* ADMIN */
-.admin-overlay{display:none;position:fixed;inset:0;z-index:2000;background:var(--bg);overflow-y:auto;}
-.admin-overlay.open{display:block;}
-.admin-header{background:linear-gradient(135deg,var(--dark-purple),var(--primary));color:#fff;padding:16px 20px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;}
-.admin-header h2{font-weight:900;font-size:1.2rem;display:flex;align-items:center;gap:8px;}
-.admin-container{max-width:600px;margin:auto;padding:16px;}
-.admin-match-card{background:var(--card-bg);border-radius:14px;border:1px solid var(--border);padding:14px;margin-bottom:12px;box-shadow:0 2px 8px rgba(0,0,0,.06);}
-.admin-match-title{font-weight:900;font-size:.95rem;}
-.admin-match-pred{font-size:.8rem;color:var(--text-muted);margin-top:2px;}
-.tag{font-size:10px;font-weight:900;padding:2px 8px;border-radius:5px;border:1px solid var(--border);}
-.tag-vip{border-color:rgba(241,196,15,.5);color:#b8860b;}
-[data-theme="dark"] .tag-vip{color:var(--gold);}
-.admin-actions{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin-top:8px;}
-.result-btn{font-size:11px;font-weight:900;font-family:'Cairo',sans-serif;padding:5px 10px;border-radius:20px;border:1.5px solid var(--border);color:var(--text-muted);background:transparent;cursor:pointer;transition:all .2s;}
-.result-btn:hover{border-color:var(--primary);color:var(--primary);}
-.result-btn.active{background:var(--primary);border-color:var(--primary);color:#fff;}
-.del-btn{background:transparent;border:none;color:var(--destructive);cursor:pointer;font-size:1.1rem;padding:4px 8px;border-radius:8px;transition:background .2s;margin-right:auto;}
-.del-btn:hover{background:rgba(231,76,60,.1);}
-.add-form{background:var(--card-bg);border:2px solid var(--gold);border-radius:16px;padding:18px;margin-bottom:16px;}
-.form-grid2{display:grid;grid-template-columns:1fr 1fr;gap:10px;}
-.form-btns{display:flex;gap:10px;margin-top:4px;}
-.form-btns .btn{padding:12px;}
-/* TOAST */
-.toast{position:fixed;bottom:95px;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:11px 22px;border-radius:10px;font-weight:700;font-size:.9rem;z-index:9999;opacity:0;transition:opacity .3s;pointer-events:none;white-space:nowrap;}
-.toast.show{opacity:1;}.toast.success{background:#27ae60;}.toast.error{background:#e74c3c;}
-/* TELEGRAM */
-.tg-btn{position:fixed;bottom:18px;left:14px;right:14px;background:var(--telegram);color:#fff;padding:15px 22px;border-radius:50px;text-decoration:none;font-weight:900;font-size:.95rem;box-shadow:0 6px 20px rgba(0,0,0,.22);z-index:500;display:flex;align-items:center;justify-content:center;gap:10px;transition:transform .2s,opacity .2s;}
-.tg-btn:hover{opacity:.92;transform:translateY(-2px);}
-@media(min-width:520px){.tg-btn{left:auto;right:20px;width:auto;}}
-/* INSTALL */
-.install-prompt{position:fixed;top:12px;left:12px;right:12px;background:var(--primary);color:#fff;border-radius:16px;padding:14px 16px;box-shadow:0 8px 28px rgba(0,0,0,.3);z-index:900;display:none;align-items:center;justify-content:space-between;gap:10px;}
-.install-prompt.visible{display:flex;}
-.install-prompt p{font-weight:900;font-size:.9rem;}
-.install-btns{display:flex;gap:6px;}
-.install-btns button{font-family:'Cairo',sans-serif;font-weight:900;border:none;cursor:pointer;border-radius:8px;padding:7px 12px;font-size:.8rem;}
-.install-yes{background:#fff;color:var(--primary);}
-.install-no{background:rgba(255,255,255,.2);color:#fff;}
+.conf-bar-fill{height:100%;border-radius:50px;}
+.vip-gate{background:var(--card-bg);border-radius:20px;padding:28px 20px;text-align:center;border:1px solid var(--border);}
+.tg-btn{position:fixed;bottom:18px;left:14px;right:14px;background:var(--telegram);color:#fff;padding:15px 22px;border-radius:50px;text-decoration:none;font-weight:900;text-align:center;box-shadow:0 6px 20px rgba(0,0,0,.22);z-index:500;}
+.toast{position:fixed;bottom:95px;left:50%;transform:translateX(-50%);background:#222;color:#fff;padding:11px 22px;border-radius:10px;opacity:0;transition:opacity .3s;z-index:9999;}
+.toast.show{opacity:1;}
 </style>
 </head>
 <body>
 
-<!-- INSTALL PROMPT -->
-<div class="install-prompt" id="installPrompt">
-  <p>📲 ثبّت التطبيق على هاتفك</p>
-  <div class="install-btns">
-    <button class="install-yes" onclick="installApp()">تثبيت</button>
-    <button class="install-no" onclick="dismissInstall()">×</button>
-  </div>
-</div>
-
-<!-- HEADER -->
 <header>
   <div class="controls-top">
     <button class="icon-btn" onclick="toggleTheme()" id="themeBtn">🌙</button>
     <button class="icon-btn" onclick="toggleLang()">🌐</button>
   </div>
-  <button class="admin-btn" onclick="openAdminLogin()">⚙️</button>
   <h1>TiKOXPRO VIP</h1>
   <p id="appSubtitle">أقوى توقعات المباريات اليومية</p>
-  <div class="live-dot" id="liveDot" style="justify-content:center;display:none">مباشر — يتحدث تلقائياً</div>
 </header>
 
 <div class="container">
-  <div class="stats-grid" id="statsGrid" style="display:none"></div>
+  <div class="stats-grid" id="statsGrid"></div>
 
   <div class="tabs">
     <button class="tab-btn active-free" id="tabFreeBtn" onclick="showTab('free')">مجاني</button>
@@ -228,697 +100,110 @@ select:focus,input:focus{border-color:var(--primary);}
     <button class="tab-btn" id="tabResBtn" onclick="showTab('results')">📈 النتائج</button>
   </div>
 
-  <!-- FREE -->
   <div id="sec-free" class="section active">
-    <div id="freeMatchesContainer"><p style="text-align:center;padding:40px;color:var(--text-muted);font-weight:700">جاري التحميل...</p></div>
-    <div class="about-card">
-      <button class="about-toggle" onclick="toggleAbout()">
-        <span>🏆 عن الخدمة</span><span id="aboutArrow">▼</span>
-      </button>
-      <div class="about-body" id="aboutBody" style="display:none">
-        <div class="about-row"><span>⚡</span><p>توقعات يومية احترافية من فريق متخصص</p></div>
-        <div class="about-row"><span>💳</span><p>اشتراك أسبوعي أو شهري بأسعار منخفضة</p></div>
-        <div class="about-row"><span>💬</span><p>دعم فني على مدار الساعة عبر تليجرام</p></div>
-        <div class="about-row"><span>🛡️</span><p>ضمان استرداد إذا لم تصل 60% دقة</p></div>
-      </div>
-    </div>
+    <div id="freeMatchesContainer"></div>
   </div>
 
-  <!-- VIP -->
   <div id="sec-vip" class="section">
     <div id="vip-gate" class="vip-gate">
-      <div class="crown-wrap">👑</div>
-      <h2 class="vip-title">قسم المحترفين</h2>
-      <button class="btn btn-gold" onclick="openPaymentModal()" style="margin-bottom:16px">إظهار معلومات الدفع والطلب</button>
-      <div class="divider">OR</div>
-      <select id="subType">
-        <option value="7">أسبوعي (2.99$)</option>
-        <option value="30">شهري (7.99$)</option>
-      </select>
-      <input type="text" id="codeInput" class="code-input" placeholder="TiKO...">
-      <button class="btn btn-primary" onclick="activateCode()">تفعيل الكود</button>
+      <h2 style="color:var(--gold);font-weight:900;font-size:1.9rem;margin-bottom:20px;">قسم المحترفين</h2>
+      <input type="text" id="codeInput" style="width:100%;padding:13px;border-radius:10px;border:2px solid var(--border);text-align:center;margin-bottom:10px;" placeholder="TiKO...">
+      <button onclick="activateCode()" style="width:100%;padding:14px;background:var(--primary);color:#fff;border:none;border-radius:12px;font-weight:900;cursor:pointer;">تفعيل الكود</button>
     </div>
     <div id="vip-content" style="display:none">
-      <div class="success-box">✔ تم التفعيل بنجاح</div>
       <div id="vipMatchesContainer"></div>
-      <div class="expiry-box">
-        <p class="expiry-label">ينتهي في:</p>
-        <p class="expiry-date" id="expiryDisplay">—</p>
-      </div>
-      <button class="btn btn-danger" onclick="logout()">تسجيل الخروج</button>
+      <button onclick="logout()" style="width:100%;padding:10px;background:transparent;color:red;border:1px solid red;border-radius:10px;margin-top:10px;cursor:pointer;">تسجيل الخروج</button>
     </div>
   </div>
 
-  <!-- RESULTS -->
   <div id="sec-results" class="section">
-    <div class="history-title">📈 سجل النتائج السابقة</div>
-    <div id="historyContainer"><p style="text-align:center;padding:40px;color:var(--text-muted);font-weight:700">جاري التحميل...</p></div>
+    <div id="historyContainer"></div>
   </div>
 </div>
 
-<!-- PAYMENT MODAL -->
-<div class="modal-overlay" id="payModal">
-  <div class="modal">
-    <div class="modal-header"><p class="modal-title">📋 معلومات الدفع والطلب</p></div>
-    <div class="modal-body">
-      <div class="order-box">
-        <div class="order-label">رقم الطلب:</div>
-        <div class="order-id" id="orderIdDisplay">#------</div>
-      </div>
-      <div class="step-row"><span>1️⃣</span><p>الخطوة 1 — اختر طريقة الدفع وأرسل المبلغ</p></div>
-      <div class="step-row"><span>2️⃣</span><p>الخطوة 2 — أرسل رقم الطلب واسمك للدعم</p></div>
-      <div class="step-row"><span>3️⃣</span><p>الخطوة 3 — انتظر الكود على تليجرام خلال دقائق</p></div>
-      <div class="pay-row" style="margin-top:12px">
-        <span>BINANCE ID: 760134995</span>
-        <button class="copy-btn" onclick="copyText('760134995')">نسخ</button>
-      </div>
-      <div class="pay-row">
-        <span>VISA: 4938755438550012</span>
-        <button class="copy-btn" onclick="copyText('4938755438550012')">نسخ</button>
-      </div>
-      <input type="text" id="clientName" placeholder="الاسم الكامل" style="margin-top:12px">
-      <button class="btn btn-green" onclick="sendSupport()" style="margin-top:2px">إرسال للدعم الفني ✅</button>
-      <button class="modal-close" onclick="closePaymentModal()">إغلاق</button>
-    </div>
-  </div>
-</div>
-
-<!-- ADMIN LOGIN -->
-<div class="modal-overlay" id="adminLoginModal">
-  <div class="modal" style="max-width:340px;border-color:var(--primary)">
-    <div class="modal-header"><p class="modal-title">🔐 لوحة التحكم</p></div>
-    <div class="modal-body">
-      <input type="password" id="adminPassInput" placeholder="كلمة السر" style="margin-bottom:10px">
-      <button class="btn btn-primary" onclick="tryAdminLogin()">دخول</button>
-      <button class="modal-close" onclick="closeAdminLogin()">إغلاق</button>
-    </div>
-  </div>
-</div>
-
-<!-- ADMIN PANEL -->
-<div class="admin-overlay" id="adminPanel">
-  <div class="admin-header">
-    <h2>🛡️ لوحة التحكم</h2>
-    <button class="icon-btn" onclick="closeAdmin()">✕</button>
-  </div>
-  <div class="admin-container">
-    <button class="btn btn-gold" onclick="toggleAddForm()" style="margin-bottom:14px">+ إضافة مباراة</button>
-    <div class="add-form" id="addForm" style="display:none">
-      <div class="form-grid2">
-        <input type="text" id="f_team1" placeholder="الفريق الأول">
-        <input type="text" id="f_team2" placeholder="الفريق الثاني">
-      </div>
-      <input type="text" id="f_predAr" placeholder="التوقع (عربي)">
-      <input type="text" id="f_predEn" placeholder="Prediction (English)">
-      <div class="form-grid2">
-        <input type="text" id="f_date" placeholder="2026-05-02">
-        <input type="text" id="f_time" placeholder="21:00">
-      </div>
-      <div class="form-grid2">
-        <select id="f_type" style="margin-bottom:10px">
-          <option value="free">مجاني</option>
-          <option value="vip">VIP</option>
-        </select>
-        <input type="number" id="f_conf" placeholder="نسبة الدقة (%)" value="80" min="0" max="100">
-      </div>
-      <div class="form-btns">
-        <button class="btn btn-primary" onclick="submitMatch()" style="flex:1">حفظ</button>
-        <button class="btn btn-outline" onclick="toggleAddForm()" style="flex:1">إلغاء</button>
-      </div>
-    </div>
-    <h3 style="font-weight:900;margin-bottom:12px">إدارة المباريات</h3>
-    <div id="adminMatchList"></div>
-  </div>
-</div>
-
-<!-- TELEGRAM -->
-<a href="https://t.me/+TGctJjTcepxlZTFk" target="_blank" rel="noopener noreferrer" class="tg-btn">
-  🚀 قناتنا تليجرام للمزيد من التوقعات
-</a>
-
+<a href="https://t.me/+TGctJjTcepxlZTFk" target="_blank" class="tg-btn">🚀 قناتنا تليجرام للمزيد</a>
 <div class="toast" id="toast"></div>
 
 <script>
-/* ══════════════════════════════════════════
-   STATE
-══════════════════════════════════════════ */
 let lang = "ar", theme = "light";
-let allMatches = [], stats = null;
-let apiAvailable = false;
-let deferredInstall = null;
-let autoRefreshTimer = null;
-let adminOpen = false;
-const ADMIN_KEY = "TiKO-admin-2025";
-const cdIntervals = {};
+// إضافة المباريات الجديدة هنا
+let allMatches = [
+  { id: 1, team1: "Brighton", team2: "Newcastle", predictionAr: "كلا الفريقين يسجلان", predictionEn: "Both Teams to Score", type: "free", confidence: 85, result: "pending", createdAt: "2026-05-02T10:00:00Z" },
+  { id: 2, team1: "Fulham", team2: "Arsenal", predictionAr: "هنديكاب (1.5) لـ فولهام", predictionEn: "Handicap (1.5) Fulham", type: "free", confidence: 80, result: "pending", createdAt: "2026-05-02T10:01:00Z" },
+  { id: 3, team1: "Heidenheim", team2: "Bayern", predictionAr: "كلا الفريقين يسجلان", predictionEn: "Both Teams to Score", type: "free", confidence: 88, result: "pending", createdAt: "2026-05-02T10:02:00Z" },
+  { id: 4, team1: "A. Madrid", team2: "Valencia", predictionAr: "فالنسيا تسجل هدف", predictionEn: "Valencia to Score", type: "free", confidence: 75, result: "pending", createdAt: "2026-05-02T10:03:00Z" },
+  { id: 5, team1: "Barcelona", team2: "Osasuna", predictionAr: "كلا الفريقين يسجلان", predictionEn: "Both Teams to Score", type: "free", confidence: 82, result: "pending", createdAt: "2026-05-02T10:04:00Z" },
+  { id: 6, team1: "Levante", team2: "Villarreal", predictionAr: "ليفانتي تسجل هدف", predictionEn: "Levante to Score", type: "free", confidence: 70, result: "pending", createdAt: "2026-05-02T10:05:00Z" },
+  { id: 7, team1: "Newcastle", team2: "Brighton", predictionAr: "فرصة مزدوجة برايتون", predictionEn: "Double Chance Brighton", type: "vip", confidence: 90, result: "pending", createdAt: "2026-05-02T10:06:00Z" },
+  { id: 8, team1: "Leipzig", team2: "B. Leverkusen", predictionAr: "هنديكاب (1) لـ لايبزيغ", predictionEn: "Handicap (1) Leipzig", type: "vip", confidence: 85, result: "pending", createdAt: "2026-05-02T10:07:00Z" }
+];
 
-/* ══════════════════════════════════════════
-   INIT
-══════════════════════════════════════════ */
-window.onload = async function(){
-  if(localStorage.getItem("tiko_theme")==="dark") applyTheme("dark");
-  if(localStorage.getItem("tiko_lang")==="en"){ lang="en"; applyLangAttrs(); }
-  const expiry = parseInt(localStorage.getItem("tiko_expiry")||"0",10);
-  if(expiry && Date.now()<expiry) showVipContent(expiry);
-  await loadData();
-  startAutoRefresh();  /* ← تحديث تلقائي كل 30 ثانية */
-};
-
-window.addEventListener("beforeinstallprompt", e=>{
-  e.preventDefault(); deferredInstall = e;
-  document.getElementById("installPrompt").classList.add("visible");
-});
-
-/* ══════════════════════════════════════════
-   AUTO-REFRESH — كل 30 ثانية
-   يجلب أحدث التوقعات تلقائياً لجميع المستخدمين
-   بدون الحاجة لإعادة تحميل الصفحة
-══════════════════════════════════════════ */
-function startAutoRefresh(){
-  if(autoRefreshTimer) clearInterval(autoRefreshTimer);
-  autoRefreshTimer = setInterval(async () => {
-    /* لا تحدّث إذا كانت لوحة التحكم مفتوحة */
-    if(adminOpen) return;
-    try {
-      const [mRes, sRes] = await Promise.all([
-        fetch("/api/matches?type=all&_=" + Date.now()), /* منع الكاش */
-        fetch("/api/matches/stats?_=" + Date.now())
-      ]);
-      if(!mRes.ok) return;
-      const data = await mRes.json();
-      if(!Array.isArray(data)) return;
-      /* فقط أعد الرسم إذا تغيرت البيانات */
-      if(JSON.stringify(data) !== JSON.stringify(allMatches)){
-        allMatches = data;
-        if(sRes.ok) stats = await sRes.json();
-        else stats = computeStats(allMatches);
-        renderStats();
-        renderMatches();
-      }
-    } catch { /* silent — keep existing data */ }
-  }, 30000);
-
-  /* أظهر مؤشر التحديث الحي */
-  document.getElementById("liveDot").style.display = "flex";
+function renderStats() {
+  const decided = allMatches.filter(m => m.result !== "pending");
+  const won = decided.filter(m => m.result === "won").length;
+  const winRate = decided.length > 0 ? Math.round((won / decided.length) * 100) : 100;
+  document.getElementById("statsGrid").innerHTML = `
+    <div class="stat-card"><div class="stat-val c-green">${winRate}%</div><div class="stat-label">الدقة</div></div>
+    <div class="stat-card"><div class="stat-val c-primary">${allMatches.length}</div><div class="stat-label">الإجمالي</div></div>
+    <div class="stat-card"><div class="stat-val c-green">${won}</div><div class="stat-label">ناجح</div></div>
+    <div class="stat-card"><div class="stat-val c-red">${decided.length - won}</div><div class="stat-label">فاشل</div></div>`;
 }
 
-/* ══════════════════════════════════════════
-   DATA FETCH
-══════════════════════════════════════════ */
-function computeStats(matches){
-  const decided = matches.filter(m=>m.result!=="pending");
-  const won = matches.filter(m=>m.result==="won").length;
-  const lost = matches.filter(m=>m.result==="lost").length;
-  return {
-    total: matches.length, won, lost,
-    pending: matches.filter(m=>m.result==="pending").length,
-    winRate: decided.length>0 ? Math.round(won/decided.length*100) : 0
-  };
-}
-
-async function loadData(){
-  try {
-    const [mRes, sRes] = await Promise.all([
-      fetch("/api/matches?type=all&_=" + Date.now()),
-      fetch("/api/matches/stats?_=" + Date.now())
-    ]);
-    if(!mRes.ok) throw new Error("api error");
-    const data = await mRes.json();
-    if(!Array.isArray(data)) throw new Error("bad data");
-    allMatches = data;
-    apiAvailable = true;
-    stats = sRes.ok ? await sRes.json() : computeStats(allMatches);
-  } catch {
-    if(allMatches.length === 0){
-      allMatches = [];
-      stats = {total:0,won:0,lost:0,pending:0,winRate:0};
-    } else {
-      stats = computeStats(allMatches);
-    }
-  }
-  renderStats();
-  renderMatches();
-}
-
-/* ══════════════════════════════════════════
-   STATS
-══════════════════════════════════════════ */
-function renderStats(){
-  const g = document.getElementById("statsGrid");
-  if(!stats || stats.total===0){ g.style.display="none"; return; }
-  g.style.display = "grid";
-  g.innerHTML = `
-    <div class="stat-card"><div class="stat-val c-green">${stats.winRate}%</div><div class="stat-label">${lang==="ar"?"معدل الدقة":"Win Rate"}</div></div>
-    <div class="stat-card"><div class="stat-val c-primary">${stats.total}</div><div class="stat-label">${lang==="ar"?"إجمالي التوقعات":"Total"}</div></div>
-    <div class="stat-card"><div class="stat-val c-green">${stats.won}</div><div class="stat-label">${lang==="ar"?"ناجح":"Won"}</div></div>
-    <div class="stat-card"><div class="stat-val c-red">${stats.lost}</div><div class="stat-label">${lang==="ar"?"فاشل":"Lost"}</div></div>`;
-}
-
-/* ══════════════════════════════════════════
-   MATCH CARDS
-══════════════════════════════════════════ */
-function confColor(v){ return v>=85?"#27ae60":v>=70?"#f1c40f":"#e74c3c"; }
-
-function matchCardHTML(m, isVip=false){
-  const pred = lang==="ar" ? m.predictionAr : m.predictionEn;
-  const color = confColor(m.confidence||80);
-  const confBar = m.confidence!=null ? `
-    <div class="conf-row">
-      <span style="font-size:13px;color:${color}">🎯</span>
-      <div class="conf-bar-track">
-        <div class="conf-bar-fill" style="width:${m.confidence}%;background:${isVip?"linear-gradient(90deg,#f1c40f,#f39c12)":color}"></div>
-      </div>
-      <span class="conf-val" style="color:${color}">${m.confidence}%</span>
-    </div>` : "";
+function matchCardHTML(m, isVip=false) {
   return `
-  <div class="match-card${isVip?" vip-card":""}">
-    <div class="teams-row">
-      <span class="team-name">${m.team1}</span>
-      <span class="vs-badge${isVip?" gold":""}">VS</span>
-      <span class="team-name">${m.team2}</span>
-    </div>
-    <div class="prediction-box${isVip?" gold-box":""}">${pred}</div>
+  <div class="match-card ${isVip?'vip-card':''}">
+    <div class="teams-row"><span class="team-name">${m.team1}</span><span class="vs-badge">VS</span><span class="team-name">${m.team2}</span></div>
+    <div class="prediction-box ${isVip?'gold-box':''}">${lang==='ar'?m.predictionAr:m.predictionEn}</div>
     <div class="card-footer">
-      ${confBar}
-      <div class="countdown" id="cd-${m.id}">
-        ${m.matchTime?`<span style="font-size:11px;color:var(--text-muted)">🕐 ${m.matchTime}</span>`:""}
-      </div>
+      <div class="conf-row">🎯 <div class="conf-bar-track"><div class="conf-bar-fill" style="width:${m.confidence}%;background:${isVip?'var(--gold)':'var(--primary)'}"></div></div> <span style="font-size:11px;font-weight:900">${m.confidence}%</span></div>
     </div>
   </div>`;
 }
 
-function resultCardHTML(m){
-  const pred = lang==="ar" ? m.predictionAr : m.predictionEn;
-  const icon = m.result==="won"?"✅":m.result==="lost"?"❌":"⏳";
-  const cls  = m.result==="won"?"won":m.result==="lost"?"lost":"";
-  return `
-  <div class="result-card ${cls}">
-    <div class="result-icon">${icon}</div>
-    <div style="flex:1;min-width:0">
-      <div class="result-teams">${m.team1} vs ${m.team2}</div>
-      <div class="result-pred">${pred}</div>
-      <div class="result-meta">
-        ${m.matchDate?`<span>📅 ${m.matchDate}</span>`:""}
-        ${m.confidence!=null?`<span>🎯 ${m.confidence}%</span>`:""}
-        <span class="result-badge">${m.type.toUpperCase()}</span>
-      </div>
-    </div>
-  </div>`;
+function renderMatches() {
+  const free = allMatches.filter(m => m.type === "free" && m.result === "pending");
+  const vip = allMatches.filter(m => m.type === "vip" && m.result === "pending");
+  document.getElementById("freeMatchesContainer").innerHTML = free.map(m => matchCardHTML(m)).join("");
+  document.getElementById("vipMatchesContainer").innerHTML = vip.map(m => matchCardHTML(m, true)).join("");
 }
 
-function renderMatches(){
-  Object.keys(cdIntervals).forEach(k=>clearInterval(cdIntervals[k]));
-
-  const activeMatches = allMatches.filter(m => m.isActive !== false);
-  const free  = activeMatches.filter(m => m.type==="free");
-  const vip   = activeMatches.filter(m => m.type==="vip");
-  const hist  = allMatches.filter(m => m.result!=="pending")
-                           .sort((a,b)=>new Date(b.createdAt)-new Date(a.createdAt));
-
-  const noMatchesMsg = lang==="ar"?"لا توجد مباريات اليوم":"No matches today";
-  const noHistMsg    = lang==="ar"?"لا توجد نتائج سابقة بعد":"No results yet";
-
-  document.getElementById("freeMatchesContainer").innerHTML =
-    free.length===0
-      ? `<p style="text-align:center;padding:40px;color:var(--text-muted);font-weight:700">${noMatchesMsg}</p>`
-      : free.map(m=>matchCardHTML(m)).join("");
-
-  document.getElementById("vipMatchesContainer").innerHTML =
-    vip.length===0
-      ? `<p style="text-align:center;padding:20px;color:var(--text-muted);font-weight:700">${noMatchesMsg}</p>`
-      : vip.map(m=>matchCardHTML(m,true)).join("");
-
-  document.getElementById("historyContainer").innerHTML =
-    hist.length===0
-      ? `<p style="text-align:center;padding:40px;color:var(--text-muted);font-weight:700">${noHistMsg}</p>`
-      : hist.map(m=>resultCardHTML(m)).join("");
-
-  renderAdminList();
-  activeMatches.forEach(m => startCountdown(m));
+function showTab(tab) {
+  ["free", "vip", "results"].forEach(s => document.getElementById(`sec-${s}`).classList.toggle("active", s === tab));
+  document.getElementById("tabFreeBtn").className = "tab-btn" + (tab === "free" ? " active-free" : "");
+  document.getElementById("tabVipBtn").className = "tab-btn" + (tab === "vip" ? " active-vip" : "");
+  document.getElementById("tabResBtn").className = "tab-btn" + (tab === "results" ? " active-results" : "");
 }
 
-/* ══════════════════════════════════════════
-   COUNTDOWN
-══════════════════════════════════════════ */
-function startCountdown(m){
-  if(!m.matchDate && !m.matchTime) return;
-  const labels = lang==="ar"
-    ? {days:"أيام",hours:"ساعات",mins:"دقائق",secs:"ثواني",live:"🔴 يلعب الآن!",ended:"انتهت"}
-    : {days:"d",hours:"h",mins:"m",secs:"s",live:"🔴 Live Now!",ended:"Ended"};
-  const tick = () => {
-    const el = document.getElementById(`cd-${m.id}`);
-    if(!el) return clearInterval(cdIntervals[m.id]);
-    const target = new Date(`${m.matchDate||new Date().toISOString().split("T")[0]}T${m.matchTime||"00:00"}:00`).getTime();
-    const diff = target - Date.now();
-    if(diff > 0){
-      const d=Math.floor(diff/86400000),h=Math.floor(diff%86400000/3600000),
-            mi=Math.floor(diff%3600000/60000),s=Math.floor(diff%60000/1000);
-      el.innerHTML = (d>0?`<span class="cd-pill">${String(d).padStart(2,"0")}<span>${labels.days}</span></span>`:"")
-        +`<span class="cd-pill">${String(h).padStart(2,"0")}<span>${labels.hours}</span></span>`
-        +`<span class="cd-pill">${String(mi).padStart(2,"0")}<span>${labels.mins}</span></span>`
-        +`<span class="cd-pill">${String(s).padStart(2,"0")}<span>${labels.secs}</span></span>`;
-    } else if(diff > -5400000){
-      el.innerHTML = `<span class="live-badge">${labels.live}</span>`;
-    } else {
-      el.innerHTML = `<span style="font-size:11px;color:var(--text-muted)">${labels.ended}</span>`;
-      clearInterval(cdIntervals[m.id]);
-    }
-  };
-  tick();
-  cdIntervals[m.id] = setInterval(tick, 1000);
+function activateCode() {
+  const code = document.getElementById("codeInput").value;
+  if(code.startsWith("TiKO")) {
+    localStorage.setItem("tiko_expiry", Date.now() + 86400000);
+    showVipContent();
+  } else { alert("كود خاطئ"); }
 }
 
-/* ══════════════════════════════════════════
-   TABS
-══════════════════════════════════════════ */
-function showTab(tab){
-  ["free","vip","results"].forEach(s =>
-    document.getElementById(`sec-${s}`).classList.toggle("active", s===tab));
-  document.getElementById("tabFreeBtn").className = "tab-btn"+(tab==="free"?" active-free":"");
-  document.getElementById("tabVipBtn").className  = "tab-btn"+(tab==="vip"?" active-vip":"");
-  document.getElementById("tabResBtn").className  = "tab-btn"+(tab==="results"?" active-results":"");
-  if(tab==="vip"){
-    const e = parseInt(localStorage.getItem("tiko_expiry")||"0",10);
-    if(e && Date.now()<e) showVipContent(e);
-  }
-}
-
-/* ══════════════════════════════════════════
-   VIP
-══════════════════════════════════════════ */
-function activateCode(){
-  const input = document.getElementById("codeInput").value.trim();
-  const devSeq = parseInt(localStorage.getItem("tiko_dev_seq")||"1",10);
-  const days = parseInt(document.getElementById("subType").value,10);
-  if(input===`TiKO${devSeq}`){
-    const expiry = Date.now() + days*86400000;
-    localStorage.setItem("tiko_expiry", expiry.toString());
-    localStorage.setItem("tiko_dev_seq", (devSeq+1).toString());
-    showToast(lang==="ar"?"تم التفعيل بنجاح":"Activated!","success");
-    showVipContent(expiry);
-  } else {
-    showToast(lang==="ar"?"الكود غير صالح!":"Invalid Code!","error");
-  }
-}
-function showVipContent(expiry){
+function showVipContent() {
   document.getElementById("vip-gate").style.display = "none";
   document.getElementById("vip-content").style.display = "block";
-  document.getElementById("expiryDisplay").textContent =
-    new Date(expiry).toLocaleDateString(lang==="ar"?"ar-EG":"en-US",{year:"numeric",month:"long",day:"numeric"});
-}
-function logout(){
-  localStorage.removeItem("tiko_expiry");
-  document.getElementById("vip-gate").style.display = "block";
-  document.getElementById("vip-content").style.display = "none";
-  document.getElementById("codeInput").value = "";
 }
 
-/* ══════════════════════════════════════════
-   PAYMENT
-══════════════════════════════════════════ */
-function openPaymentModal(){
-  document.getElementById("orderIdDisplay").textContent =
-    "#TKO-" + Math.random().toString(36).substr(2,6).toUpperCase();
-  document.getElementById("clientName").value = "";
-  document.getElementById("payModal").classList.add("open");
-}
-function closePaymentModal(){ document.getElementById("payModal").classList.remove("open"); }
-function sendSupport(){
-  const name = document.getElementById("clientName").value.trim();
-  const order = document.getElementById("orderIdDisplay").textContent;
-  if(!name){ showToast("أدخل اسمك","error"); return; }
-  window.open(`https://t.me/TiKO_SUPPORT?text=${encodeURIComponent("Order ID: "+order+"\nName: "+name)}`,"_blank");
-}
+function logout() { localStorage.removeItem("tiko_expiry"); location.reload(); }
 
-/* ══════════════════════════════════════════
-   ADMIN LOGIN
-══════════════════════════════════════════ */
-function openAdminLogin(){
-  document.getElementById("adminPassInput").value = "";
-  document.getElementById("adminLoginModal").classList.add("open");
-}
-function closeAdminLogin(){ document.getElementById("adminLoginModal").classList.remove("open"); }
-function tryAdminLogin(){
-  const pass = document.getElementById("adminPassInput").value;
-  if(pass===ADMIN_KEY){
-    closeAdminLogin();
-    adminOpen = true;
-    document.getElementById("adminPanel").classList.add("open");
-    renderAdminList();
-  } else {
-    showToast(lang==="ar"?"كلمة السر غير صحيحة":"Wrong password","error");
-  }
-}
-document.getElementById("adminPassInput").addEventListener("keydown", e=>{
-  if(e.key==="Enter") tryAdminLogin();
-});
-
-/* ══════════════════════════════════════════
-   ADMIN CLOSE — يحفظ البيانات للجميع
-══════════════════════════════════════════ */
-async function closeAdmin(){
-  adminOpen = false;
-  document.getElementById("adminPanel").classList.remove("open");
-
-  /* أعد جلب البيانات من السيرفر للتأكد من التزامن */
-  try {
-    const [mRes, sRes] = await Promise.all([
-      fetch("/api/matches?type=all&_=" + Date.now()),
-      fetch("/api/matches/stats?_=" + Date.now())
-    ]);
-    if(mRes.ok){
-      const data = await mRes.json();
-      if(Array.isArray(data)) allMatches = data;
-      if(sRes.ok) stats = await sRes.json();
-      else stats = computeStats(allMatches);
-    }
-  } catch { stats = computeStats(allMatches); }
-
+window.onload = () => {
+  if(localStorage.getItem("tiko_expiry") > Date.now()) showVipContent();
   renderStats();
   renderMatches();
+};
+
+function toggleTheme() {
+  theme = theme === "light" ? "dark" : "light";
+  document.documentElement.setAttribute("data-theme", theme === "dark" ? "dark" : "");
 }
 
-function toggleAddForm(){
-  const f = document.getElementById("addForm");
-  f.style.display = f.style.display==="none" ? "block" : "none";
-}
-
-/* ══════════════════════════════════════════
-   ADMIN LIST
-══════════════════════════════════════════ */
-function renderAdminList(){
-  const el = document.getElementById("adminMatchList");
-  if(!el) return;
-  if(allMatches.length===0){
-    el.innerHTML = `<p style="text-align:center;padding:30px;color:var(--text-muted);font-weight:700">${lang==="ar"?"لا توجد مباريات":"No matches"}</p>`;
-    return;
-  }
-  el.innerHTML = allMatches.map(m => `
-    <div class="admin-match-card" id="adm-${m.id}">
-      <div>
-        <div class="admin-match-title">
-          ${m.team1} vs ${m.team2}
-          <span class="tag${m.type==="vip"?" tag-vip":""}">${m.type.toUpperCase()}</span>
-          ${m.isActive===false?'<span class="tag" style="color:#aaa">غير نشط</span>':""}
-          ${m.matchDate?`<span style="font-size:10px;color:var(--text-muted);margin-right:6px">📅 ${m.matchDate}</span>`:""}
-        </div>
-        <div class="admin-match-pred">${lang==="ar"?m.predictionAr:m.predictionEn}</div>
-      </div>
-      <div class="admin-actions">
-        <span style="font-size:11px;color:var(--text-muted);font-weight:700">${lang==="ar"?"النتيجة:":"Result:"}</span>
-        ${["won","lost","pending"].map(r=>`
-          <button class="result-btn${m.result===r?" active":""}" onclick="setResult(${m.id},'${r}')">
-            ${lang==="ar"?(r==="won"?"فاز ✅":r==="lost"?"خسر ❌":"انتظار ⏳"):(r==="won"?"Won ✅":r==="lost"?"Lost ❌":"Pending ⏳")}
-          </button>`).join("")}
-        <button class="del-btn" onclick="deleteMatch(${m.id})">🗑️</button>
-      </div>
-    </div>`).join("");
-}
-
-/* ══════════════════════════════════════════
-   ADMIN ACTIONS
-══════════════════════════════════════════ */
-function setResult(id, result){
-  const m = allMatches.find(x=>x.id===id);
-  if(!m) return;
-  m.result = result;
-  fetch(`/api/matches/${id}/result`,{
-    method:"PATCH",
-    headers:{"Content-Type":"application/json","x-admin-key":ADMIN_KEY},
-    body:JSON.stringify({result})
-  }).catch(()=>{});
-  stats = computeStats(allMatches);
-  renderAdminList();
-  renderStats();
-}
-
-function deleteMatch(id){
-  allMatches = allMatches.filter(m=>m.id!==id);
-  fetch(`/api/matches/${id}`,{
-    method:"DELETE",
-    headers:{"x-admin-key":ADMIN_KEY}
-  }).catch(()=>{});
-  stats = computeStats(allMatches);
-  showToast(lang==="ar"?"تم الحذف":"Deleted","success");
-  renderAdminList();
-  renderStats();
-}
-
-async function submitMatch(){
-  const team1   = document.getElementById("f_team1").value.trim();
-  const team2   = document.getElementById("f_team2").value.trim();
-  const predAr  = document.getElementById("f_predAr").value.trim();
-  const predEn  = document.getElementById("f_predEn").value.trim();
-  const type    = document.getElementById("f_type").value;
-  const matchDate = document.getElementById("f_date").value.trim();
-  const matchTime = document.getElementById("f_time").value.trim();
-  const confidence = parseInt(document.getElementById("f_conf").value)||80;
-
-  if(!team1||!team2||!predAr||!predEn){
-    showToast(lang==="ar"?"أكمل جميع الحقول":"Fill all fields","error");
-    return;
-  }
-
-  /* ──── حفظ في قاعدة البيانات ──── */
-  let savedId = Date.now();
-  let savedOk = false;
-
-  if(apiAvailable){
-    try {
-      const res = await fetch("/api/matches",{
-        method:"POST",
-        headers:{"Content-Type":"application/json","x-admin-key":ADMIN_KEY},
-        body:JSON.stringify({
-          team1, team2,
-          predictionAr: predAr,
-          predictionEn: predEn,
-          type,
-          matchDate: matchDate||null,
-          matchTime: matchTime||null,
-          confidence,
-          isActive: true
-        })
-      });
-      if(res.ok){
-        const created = await res.json();
-        savedId = created.id;
-        savedOk = true;
-      }
-    } catch { /* fallback to local */ }
-  }
-
-  /* ──── أضف للقائمة المحلية فوراً ──── */
-  const newMatch = {
-    id: savedId,
-    team1, team2,
-    predictionAr: predAr,
-    predictionEn: predEn,
-    type,
-    matchDate: matchDate||null,
-    matchTime: matchTime||null,
-    confidence,
-    result: "pending",
-    isActive: true,
-    createdAt: new Date().toISOString()
-  };
-  allMatches.unshift(newMatch);
-  stats = computeStats(allMatches);
-
-  const msg = savedOk
-    ? (lang==="ar"?"✅ تمت الإضافة وحُفظت للجميع":"✅ Saved for all users")
-    : (lang==="ar"?"✅ تمت الإضافة":"✅ Added");
-
-  showToast(msg,"success");
-  document.getElementById("addForm").style.display = "none";
-  ["f_team1","f_team2","f_predAr","f_predEn","f_date","f_time"].forEach(id=>{
-    document.getElementById(id).value = "";
-  });
-  document.getElementById("f_conf").value = "80";
-  renderAdminList();
-  renderStats();
-}
-
-/* ══════════════════════════════════════════
-   ABOUT
-══════════════════════════════════════════ */
-function toggleAbout(){
-  const b = document.getElementById("aboutBody");
-  const open = b.style.display!=="none";
-  b.style.display = open?"none":"block";
-  document.getElementById("aboutArrow").textContent = open?"▼":"▲";
-}
-
-/* ══════════════════════════════════════════
-   COPY
-══════════════════════════════════════════ */
-function copyText(text){
-  navigator.clipboard.writeText(text).catch(()=>{
-    const el = document.createElement("textarea");
-    el.value = text; document.body.appendChild(el);
-    el.select(); document.execCommand("copy");
-    document.body.removeChild(el);
-  });
-  showToast(lang==="ar"?"تم النسخ!":"Copied!","success");
-}
-
-/* ══════════════════════════════════════════
-   THEME
-══════════════════════════════════════════ */
-function applyTheme(t){
-  theme = t;
-  document.documentElement.setAttribute("data-theme", t==="dark"?"dark":"");
-  document.getElementById("themeBtn").textContent = t==="dark"?"☀️":"🌙";
-  localStorage.setItem("tiko_theme",t);
-}
-function toggleTheme(){ applyTheme(theme==="dark"?"light":"dark"); }
-
-/* ══════════════════════════════════════════
-   LANGUAGE
-══════════════════════════════════════════ */
-function applyLangAttrs(){
-  document.documentElement.lang = lang;
-  document.documentElement.dir  = lang==="ar"?"rtl":"ltr";
-  document.getElementById("appSubtitle").textContent =
-    lang==="ar"?"أقوى توقعات المباريات اليومية":"Strongest Daily Match Predictions";
-  const liveDot = document.getElementById("liveDot");
-  if(liveDot) liveDot.textContent = lang==="ar"?"● مباشر — يتحدث تلقائياً":"● Live — auto-refresh";
-  localStorage.setItem("tiko_lang",lang);
-}
-function toggleLang(){
-  lang = lang==="ar"?"en":"ar";
-  applyLangAttrs();
-  renderStats();
+function toggleLang() {
+  lang = lang === "ar" ? "en" : "ar";
+  document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
   renderMatches();
-}
-
-/* ══════════════════════════════════════════
-   PWA
-══════════════════════════════════════════ */
-function installApp(){
-  if(deferredInstall){ deferredInstall.prompt(); deferredInstall=null; }
-  document.getElementById("installPrompt").classList.remove("visible");
-}
-function dismissInstall(){
-  document.getElementById("installPrompt").classList.remove("visible");
-}
-
-/* ══════════════════════════════════════════
-   CLICK OUTSIDE MODALS
-══════════════════════════════════════════ */
-document.addEventListener("click", e=>{
-  if(e.target===document.getElementById("payModal")) closePaymentModal();
-  if(e.target===document.getElementById("adminLoginModal")) closeAdminLogin();
-});
-
-/* ══════════════════════════════════════════
-   TOAST
-══════════════════════════════════════════ */
-let toastTimer;
-function showToast(msg, type){
-  const toast = document.getElementById("toast");
-  toast.textContent = msg;
-  toast.className = "toast show "+(type||"");
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(()=>{ toast.className="toast"; }, 3000);
 }
 </script>
 </body>
